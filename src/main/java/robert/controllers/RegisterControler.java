@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RegisterControler {
 
-    @RequestMapping("/register")
+    @RequestMapping(value = {"/register"})
     String goRegister() {
         return "register";
     }
