@@ -3,6 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import robert.entities.Contractor;
 import robert.entities.User;
 import robert.repositories.UserRepository;
 
@@ -36,14 +37,21 @@ public class DbService {
         u.setPassword(passwd);
 
         logger.info("Created new user: " + u.toString());
+
+        Contractor contractor = new Contractor();
+        contractor.setUser(u);
+        contractor.setName("Jane");
+        contractor.setSurname("Doe");
+
         userRepository.save(u);
         logger.info("User saved.");
 
         User u2 = null;
         u2 = userRepository.findByEmail(email);
 
+
         if (u2 != null) {
-            logger.info("User has been found: " + u2.toString());
+            logger.info("User has been found: " + u2.toString() /*  +". User's contractors: " + u2.getContractors().toString() */);
         } else {
             logger.error("User not found!");
         }
