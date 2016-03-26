@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="Invoice-Writer" />
         <module name="InvoiceWriter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Invoice-Writer" target="1.8" />
       <module name="InvoiceWriter" target="1.8" />
     </bytecodeTargetLevel>
   </component>
