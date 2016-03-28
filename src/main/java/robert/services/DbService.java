@@ -34,7 +34,13 @@ public class DbService {
         String email = "nowak_robert@example.mail.com";
         user.setEmail(email);
 
-        userRepository.save(user);  //TODO fix this
+        userRepository.save(user);
+
+        email = "robertn@example.mail.org";
+        user.setEmail(email);
+        userRepository.save(user);
+
+
     }
 
 

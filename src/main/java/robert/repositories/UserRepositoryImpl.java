@@ -2,6 +2,7 @@ package robert.repositories;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import robert.entities.User;
 
 import javax.persistence.EntityManager;
@@ -26,11 +27,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    @Transactional
     public User save(User user) {
-        if (em == null) {
-            logger.error("ENTITY MANAGER == NULL");
-            return null;
-        } else logger.info("Entity manager: " + em.toString());
         if (user.getId() == null) {
             em.persist(user);
             logger.info("User has been added.");
