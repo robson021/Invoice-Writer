@@ -22,7 +22,6 @@ public class EmailAddress {
     }
 
     protected EmailAddress() {
-
     }
 
 
