@@ -1,5 +1,6 @@
 package robert.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 @Entity
 public class TheService extends AbstractEntity {
     private String name;
+    @Column(unique = true)
     private String symbol;
     private int vatPercentage;
     private double nettoValue;
@@ -75,5 +77,17 @@ public class TheService extends AbstractEntity {
     public void calculatetVatAndBruttoValue() {
         this.vatValue = nettoValue * vatPercentage;
         this.calculateBruttoValue();
+    }
+
+    @Override
+    public String toString() {
+        return "TheService{" +
+                "name='" + name + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", vatPercentage=" + vatPercentage +
+                ", nettoValue=" + nettoValue +
+                ", bruttoValue=" + bruttoValue +
+                ", vatValue=" + vatValue +
+                '}';
     }
 }
