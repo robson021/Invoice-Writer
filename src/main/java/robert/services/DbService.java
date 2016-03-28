@@ -3,6 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import robert.entities.EmailAddress;
 import robert.entities.TheService;
 import robert.entities.User;
 import robert.repositories.UserRepository;
@@ -33,12 +34,12 @@ public class DbService {
         char[] passwd = {'a', 'b', 'c'};
         user.setPassword(passwd);
         String email = "nowak_robert@example.mail.com";
-        user.setEmail(email);
+        user.setEmail(new EmailAddress(email));
 
         userRepository.save(user);
 
         email = "robertn@example.mail.org";
-        user.setEmail(email);
+        user.setEmail(new EmailAddress(email));
         userRepository.save(user);
 
         TheService service = new TheService("Example service", "E.S.", 23, 555.55);
