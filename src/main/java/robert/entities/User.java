@@ -43,6 +43,30 @@ public class User extends AbstractEntity {
         this.services.add(service);
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public char[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(char[] password) {
+        this.password = password;
+    }
+
     public Set<TheService> getServices() {
         return Collections.unmodifiableSet(this.services);
     }
