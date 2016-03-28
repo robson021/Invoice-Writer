@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import robert.entities.User;
-import robert.repositories.UserRepositoryImpl;
+import robert.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -20,7 +20,7 @@ public class DbService {
     private static final Logger logger = Logger.getLogger(DbService.class);
 
     @Autowired
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
     @PostConstruct
     public void init() {
