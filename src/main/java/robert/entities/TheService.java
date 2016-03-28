@@ -1,13 +1,12 @@
 package robert.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
+/**
+ * Created by robert on 28.03.16.
+ */
 @Entity
-public class Service_ {
-
-    @Id
-    @GeneratedValue
-    private long id;
+public class TheService extends AbstractEntity {
     private String name;
     private String symbol;
     private int vatPercentage;
@@ -15,14 +14,7 @@ public class Service_ {
     private double bruttoValue;
     private double vatValue;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user = null;
-
-    public Service_() {
-    }
-
-    public Service_(String name, String symbol, int vatPercentage, double nettoValue) {
+    public TheService(String name, String symbol, int vatPercentage, double nettoValue) {
         this.name = name;
         this.symbol = symbol;
         this.vatPercentage = vatPercentage;
@@ -32,20 +24,7 @@ public class Service_ {
 
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public TheService() {
     }
 
     public String getName() {
@@ -84,16 +63,16 @@ public class Service_ {
         return bruttoValue;
     }
 
-    public void setBruttoValue(double bruttoValue) {
-        this.bruttoValue = bruttoValue;
+    public void calculateBruttoValue() {
+        this.calculatetVatValue();
+        this.bruttoValue = nettoValue + vatValue;
     }
 
     public double getVatValue() {
         return vatValue;
     }
 
-    public void setVatValue(double vatValue) {
-        this.vatValue = vatValue;
+    public void calculatetVatValue() {
+        this.vatValue = nettoValue * vatPercentage;
     }
-
 }

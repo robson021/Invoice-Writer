@@ -1,43 +1,34 @@
 package robert.entities;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * Created by robert on 28.03.16.
+ */
 @Entity
-public class User {
-
-    @Id
-    @GeneratedValue
-    private long id;
+public class User extends AbstractEntity {
     @NotNull
     private String firstName;
+
     @NotNull
     private String surname;
+
     @Column(unique = true)
     @NotNull
     private String email;
+
     @NotNull
     private char[] password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Service_> services = new ArrayList<Service_>();
-
-    @OneToMany(mappedBy = "user")
-    private List<Contractor> contractors = new ArrayList<Contractor>();
-
-    @OneToMany(mappedBy = "user")
-    private List<Salesman> salesmans = new ArrayList<Salesman>();
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private Set<TheService> services = new HashSet<>();
 
     public String getFirstName() {
         return firstName;
@@ -47,58 +38,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public void addService(TheService service) {
+        Assert.notNull(service);
+        this.services.add(service);
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public Set<TheService> getServices() {
+        return Collections.unmodifiableSet(this.services);
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public char[] getPassword() {
-        return password;
-    }
-
-    public void setPassword(char[] password) {
-        this.password = password;
-    }
-
-    public List<Contractor> getContractors() {
-        return contractors;
-    }
-
-    public void setContractors(List<Contractor> contractors) {
-        this.contractors = contractors;
-    }
-
-    public List<Service_> getServices() {
-        return services;
-    }
-
-    public void setServices(List<Service_> services) {
-        this.services = services;
-    }
-
-    public List<Salesman> getSalesmans() {
-        return salesmans;
-    }
-
-    public void setSalesmans(List<Salesman> salesmans) {
-        this.salesmans = salesmans;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", email=" + email
-                + ", password=" + Arrays.toString(password) + "]";
-    }
-
 }

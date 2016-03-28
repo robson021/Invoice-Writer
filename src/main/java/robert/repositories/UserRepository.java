@@ -1,15 +1,15 @@
 package robert.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.Repository;
 import robert.entities.User;
 
 /**
- * Created by robert on 25.03.16.
+ * Created by robert on 28.03.16.
  */
+public interface UserRepository extends Repository<User, Long> {
+    User findOne(Long id);
 
+    User save(User user);
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    public User findByEmail(String email);
+    User findByEmail(String email);
 }
