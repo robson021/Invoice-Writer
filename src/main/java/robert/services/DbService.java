@@ -3,6 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import robert.entities.TheService;
 import robert.entities.User;
 import robert.repositories.UserRepository;
 
@@ -40,6 +41,18 @@ public class DbService {
         user.setEmail(email);
         userRepository.save(user);
 
+        TheService service = new TheService("Example service", "E.S.", 23, 555.55);
+        user.addService(service);
+        TheService service2 = new TheService("Service #2", "S.no 2", 8, 33.62);
+        user.addService(service2);
+        userRepository.save(user);
+
+        User user2 = null;
+        user2 = userRepository.findOne(user.getId());
+        logger.info("Search test by id:\n" + user2.toString());
+
+        System.out.println(user.getServices().toString());
+        //System.out.println(user2.getServices().toString()); //TODO fix oneToMany relation
 
     }
 

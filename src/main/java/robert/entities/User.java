@@ -4,6 +4,7 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -69,5 +70,15 @@ public class User extends AbstractEntity {
 
     public Set<TheService> getServices() {
         return Collections.unmodifiableSet(this.services);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password=" + Arrays.toString(password) +
+                '}';
     }
 }

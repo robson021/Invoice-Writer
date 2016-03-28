@@ -63,8 +63,8 @@ public class TheService extends AbstractEntity {
         return bruttoValue;
     }
 
-    public void calculateBruttoValue() {
-        this.calculatetVatValue();
+    private void calculateBruttoValue() {
+        //this.calculatetVatAndBruttoValue();
         this.bruttoValue = nettoValue + vatValue;
     }
 
@@ -72,7 +72,8 @@ public class TheService extends AbstractEntity {
         return vatValue;
     }
 
-    public void calculatetVatValue() {
+    public void calculatetVatAndBruttoValue() {
         this.vatValue = nettoValue * vatPercentage;
+        this.calculateBruttoValue();
     }
 }

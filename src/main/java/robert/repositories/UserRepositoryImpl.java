@@ -23,7 +23,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findOne(Long id) {
-        return null;
+        return em.find(User.class, id);
     }
 
     @Override
