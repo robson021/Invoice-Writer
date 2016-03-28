@@ -16,7 +16,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 
-    @PersistenceContext
+
+    @PersistenceContext //@Autowired
     private EntityManager em;
 
     @Override
@@ -26,11 +27,16 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
+        if (em == null) {
+            logger.error("ENTITY MANAGER == NULL");
+            return null;
+        } else logger.info("Entity manager: " + em.toString());
         if (user.getId() == null) {
             em.persist(user);
             logger.info("User has been added.");
             return user;
         } else {
+            logger.info("save via merge");
             return em.merge(user);
         }
     }
