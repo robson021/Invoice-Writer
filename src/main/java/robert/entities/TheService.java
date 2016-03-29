@@ -2,6 +2,8 @@ package robert.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by robert on 28.03.16.
@@ -15,6 +17,10 @@ public class TheService extends AbstractEntity {
     private double nettoValue;
     private double bruttoValue;
     private double vatValue;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public TheService(String name, String symbol, int vatPercentage, double nettoValue) {
         this.name = name;
@@ -47,6 +53,14 @@ public class TheService extends AbstractEntity {
 
     public int getVatPercentage() {
         return vatPercentage;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setVatPercentage(int vatPercentage) {

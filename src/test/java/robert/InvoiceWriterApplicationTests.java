@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import robert.entities.Contractor;
 import robert.entities.EmailAddress;
+import robert.entities.TheService;
 import robert.entities.User;
+import robert.repositories.ContractorRepository;
+import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
 
 import static org.junit.Assert.assertEquals;
@@ -22,12 +26,20 @@ public class InvoiceWriterApplicationTests {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ServiceRepository serviceRepository;
+
+    @Autowired
+    private ContractorRepository contractorRepository;
+
     @Test
     public void contextLoads() {
     }
 
     @Test
     public void dbTests() {
+        System.out.println("DB test start");
+
         String email = "test_email@example.com";
         User user = new User();
         user.setFirstName("Jane");
@@ -42,6 +54,54 @@ public class InvoiceWriterApplicationTests {
         User dbUser = userRepository.findOne(user.getId());
         assertNotNull(dbUser);
         assertEquals(email, dbUser.getEmail());
+        System.out.println(dbUser.toString());
+
+        TheService service = new TheService();
+        service.setName("Test service");
+        service.setNettoValue(567.43);
+        service.setVatPercentage(23);
+        service.calculatetVatAndBruttoValue();
+        String symbol = "dsada-jneqwrt";
+        service.setSymbol(symbol);
+
+        serviceRepository.save(service);
+
+        TheService dbService = serviceRepository.findOneBySymbol(symbol);
+        assertNotNull(dbService);
+        System.out.println(dbService.toString());
+
+
+        // one to many relation check
+        user.addService(service);
+        service.setUser(user);
+
+        userRepository.save(user);
+        serviceRepository.save(service);
+
+        dbUser = null;
+        dbUser = userRepository.findOne(user.getId());
+        assertNotNull(dbUser);
+
+
+        Contractor contractor = new Contractor();
+        contractor.setName("John");
+        contractor.setSurname("Smith");
+        String nip = "938797387";
+        contractor.setNipNo(nip);
+
+
+        contractorRepository.save(contractor);
+
+        Contractor dbContractor = contractorRepository.findOneByNipNo(nip);
+        assertNotNull(dbContractor);
+        System.out.println(dbContractor.toString());
+
+        //TODO fix relations
+       /* System.out.println("User's services list contains:");
+        for (TheService s : dbUser.getServices()) {
+            System.out.println(s.toString());
+        }*/
+
 
 
         //TODO fix findByEmail method

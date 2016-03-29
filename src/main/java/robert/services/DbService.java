@@ -58,7 +58,7 @@ public class DbService {
         logger.info("Search test by id:\n" + user2.toString());
 
         System.out.println(user.getServices().toString());
-        //System.out.println(user2.getServices().toString()); //TODO fix oneToMany relation
+        //System.out.println(user2.getServices().toString());
         TheService service3 = serviceRepository.findOneBySymbol(symbol);
         System.out.println(service3.toString());*/
     }

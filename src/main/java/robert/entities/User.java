@@ -4,16 +4,16 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by robert on 28.03.16.
  */
 @Entity
 public class User extends AbstractEntity {
+
     @NotNull
     private String firstName;
 
@@ -29,7 +29,7 @@ public class User extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
-    private Set<TheService> services = new HashSet<>();
+    private List<TheService> services = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -68,11 +68,11 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
-    public Set<TheService> getServices() {
-        return Collections.unmodifiableSet(this.services);
+    public List<TheService> getServices() {
+        return services;
     }
 
-    public void setServices(Set<TheService> services) {
+    public void setServices(List<TheService> services) {
         this.services = services;
     }
 
