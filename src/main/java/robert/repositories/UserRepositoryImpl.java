@@ -3,6 +3,7 @@ package robert.repositories;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import robert.entities.EmailAddress;
 import robert.entities.User;
 
 import javax.persistence.EntityManager;
@@ -31,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(User user) {
         if (user.getId() == null) {
             em.persist(user);
-            logger.info("User has been added.");
+            logger.info("User has been added");
             return user;
         } else {
             logger.info("save via merge");
@@ -40,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return null;
-    } //TODO write implementation for that method
+    public User findByEmail(EmailAddress emailAddress) {
+        return em.find(User.class, emailAddress);
+    } //TODO write implementation for this method
 }

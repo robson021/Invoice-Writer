@@ -1,6 +1,7 @@
 package robert.repositories;
 
 import org.springframework.data.repository.Repository;
+import robert.entities.EmailAddress;
 import robert.entities.User;
 
 /**
@@ -11,5 +12,5 @@ public interface UserRepository extends Repository<User, Long> {
 
     User save(User user);
 
-    User findByEmail(String email);
+    User findByEmail(EmailAddress emailAddress);
 }

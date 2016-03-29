@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import robert.entities.EmailAddress;
-import robert.entities.TheService;
 import robert.entities.User;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
@@ -45,7 +44,7 @@ public class DbService {
         user.setEmail(new EmailAddress(email));
         userRepository.save(user);
 
-        String symbol = "E.S.";
+        /*String symbol = "E.S.";
         TheService service = new TheService("Example service", symbol, 23, 555.55);
         user.addService(service);
         TheService service2 = new TheService("Service #2", "S.no 2", 8, 33.62);
@@ -61,7 +60,7 @@ public class DbService {
         System.out.println(user.getServices().toString());
         //System.out.println(user2.getServices().toString()); //TODO fix oneToMany relation
         TheService service3 = serviceRepository.findOneBySymbol(symbol);
-        System.out.println(service3.toString());
+        System.out.println(service3.toString());*/
     }
 
 

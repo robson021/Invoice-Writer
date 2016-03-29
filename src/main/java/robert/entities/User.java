@@ -72,6 +72,10 @@ public class User extends AbstractEntity {
         return Collections.unmodifiableSet(this.services);
     }
 
+    public void setServices(Set<TheService> services) {
+        this.services = services;
+    }
+
     @Override
     public String toString() {
         return "User{" +
