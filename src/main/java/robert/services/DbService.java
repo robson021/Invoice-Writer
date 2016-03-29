@@ -35,7 +35,7 @@ public class DbService {
         user.setSurname("Nowak");
         char[] passwd = {'a', 'b', 'c'};
         user.setPassword(passwd);
-        String email = "nowak_robert@example.mail.com";
+        String email = "robert@example.mail.com";
         user.setEmail(new EmailAddress(email));
 
         userRepository.save(user);
@@ -44,23 +44,14 @@ public class DbService {
         user.setEmail(new EmailAddress(email));
         userRepository.save(user);
 
-        /*String symbol = "E.S.";
-        TheService service = new TheService("Example service", symbol, 23, 555.55);
-        user.addService(service);
-        TheService service2 = new TheService("Service #2", "S.no 2", 8, 33.62);
-        user.addService(service2);
-        serviceRepository.save(service);
-        serviceRepository.save(service2);
-        userRepository.save(user);
+        User user1 = new User();
+        user1.setFirstName("John");
+        user1.setSurname("Zorn");
+        passwd = new char[]{'x', 'y', 'z'};
+        user1.setPassword(passwd);
+        user1.setEmail(new EmailAddress("john_zorn@example.mail.com"));
 
-        User user2 = null;
-        user2 = userRepository.findOne(user.getId());
-        logger.info("Search test by id:\n" + user2.toString());
-
-        System.out.println(user.getServices().toString());
-        //System.out.println(user2.getServices().toString());
-        TheService service3 = serviceRepository.findOneBySymbol(symbol);
-        System.out.println(service3.toString());*/
+        userRepository.save(user1);
     }
 
 
