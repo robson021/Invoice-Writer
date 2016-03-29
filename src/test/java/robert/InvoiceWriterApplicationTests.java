@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import robert.entities.Contractor;
-import robert.entities.EmailAddress;
-import robert.entities.TheService;
-import robert.entities.User;
+import robert.entities.*;
 import robert.repositories.ContractorRepository;
+import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
 
@@ -31,6 +29,10 @@ public class InvoiceWriterApplicationTests {
 
     @Autowired
     private ContractorRepository contractorRepository;
+
+    @Autowired
+    private SalesmanRepository salesmanRepository;
+
 
     @Test
     public void contextLoads() {
@@ -96,6 +98,19 @@ public class InvoiceWriterApplicationTests {
         assertNotNull(dbContractor);
         System.out.println(dbContractor.toString());
 
+        Salesman salesman = new Salesman();
+        salesman.setName("Jaden");
+        salesman.setSurname("Pitt");
+        String nip2 = "563900582";
+        salesman.setNipNo(nip2);
+
+        salesmanRepository.save(salesman);
+
+        Salesman dBsalesman = salesmanRepository.findOneByNipNo(nip2);
+        assertNotNull(dBsalesman);
+        System.out.println(dBsalesman.toString());
+
+
         //TODO fix relations
        /* System.out.println("User's services list contains:");
         for (TheService s : dbUser.getServices()) {
@@ -111,7 +126,7 @@ public class InvoiceWriterApplicationTests {
         System.out.println(dbUser2.toString());
         */
 
-        System.out.println("DB test complete");
+        System.out.println("DB test finish");
 
 
     }

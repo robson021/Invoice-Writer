@@ -31,6 +31,17 @@ public class User extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private List<TheService> services = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Contractor> contractors = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Salesman> salesmens = new ArrayList<>();
+
+
+    // getters and setters
+
     public String getFirstName() {
         return firstName;
     }
@@ -70,6 +81,22 @@ public class User extends AbstractEntity {
 
     public List<TheService> getServices() {
         return services;
+    }
+
+    public List<Contractor> getContractors() {
+        return contractors;
+    }
+
+    public void setContractors(List<Contractor> contractors) {
+        this.contractors = contractors;
+    }
+
+    public List<Salesman> getSalesmens() {
+        return salesmens;
+    }
+
+    public void setSalesmens(List<Salesman> salesmens) {
+        this.salesmens = salesmens;
     }
 
     public void setServices(List<TheService> services) {
