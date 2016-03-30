@@ -17,24 +17,28 @@ import robert.responses.BasicResponse;
 
 @RestController
 @RequestMapping("/register")
-public class RegisterControler {
+public class RegisterController {
 
-    private static final Logger logger = Logger.getLogger(RegisterControler.class);
+    private static final Logger logger = Logger.getLogger(RegisterController.class);
 
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     BasicResponse registerNewUser(@RequestBody User user) {
+        logger.info("new user request");
         BasicResponse response = new BasicResponse();
 
         if (userRepository.findByEmail(new EmailAddress(user.getEmail())) == null) {
             userRepository.save(user);
-            logger.info("User: " + user.getEmail() + " has beed registered");
+            logger.info("User " + user.getEmail() + " has beed registered");
             response.setResult(true);
         } else {
             logger.error("Given e-mail address already exists");
         }
+        //List<BasicResponse> responses = new ArrayList<>();
+        //responses.add(response);
+        //return responses;
         return response;
     }
 }

@@ -33,8 +33,8 @@ public class Greetings {
     @Override
     public String toString() {
         return "Greetings{" +
-                "text='" + text + '\'' +
-                ", date='" + date + '\'' +
+                "text='" + text + '\''
+                + "\n" + ", date='" + date + '\'' +
                 '}';
     }
 }

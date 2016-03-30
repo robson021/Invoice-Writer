@@ -1,8 +1,10 @@
 package robert.controllers;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import robert.responses.BasicResponse;
 import robert.responses.Greetings;
 
 import java.util.ArrayList;
@@ -28,5 +30,13 @@ public class TestController {
         greetingsList.add(greetings2);
         greetingsList.add(greetings3);
         return greetingsList;
+    }
+
+    @RequestMapping(value = "/greetings/post", method = RequestMethod.POST)
+    public BasicResponse postGreetings(@RequestBody Greetings greetings) {
+        System.out.println(greetings.toString());
+        BasicResponse response = new BasicResponse();
+        response.setResult(true);
+        return response;
     }
 }

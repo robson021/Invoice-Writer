@@ -40,8 +40,6 @@ public class User extends AbstractEntity {
     private List<Salesman> salesmens = new ArrayList<>();
 
 
-    // getters and setters
-
     public String getFirstName() {
         return firstName;
     }
