@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Register your account here</title>
+    <LINK rel="stylesheet" href="css/register.css" type="text/css">
+</head>
+<body ng-controller="MasterController">
+<h1>Register new account</h1>
+<div ng-app="registerApp">
+
+    <script> var msg = 'simple message'; </script>
+
+    <div ng-app="ngLocale">
+        <form novalidate class="simple-form">
+            First name: <input type="text" ng-model="user.firstName" required> <br>
+            First name: <input type="text" ng-model="user.surname" required> <br>
+            First name: <input type="email" ng-model="user.email" required> <br>
+            First name: <input type="password" ng-model="user.password" required> <br>
+            First name: <input type="password" ng-model="user.repassword" required> <br>
+        </form>
+    </div>
+
+    <h2>{{$scope.data.message}}</h2>
+
+</div>
+
+
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/registerController.js"></script>
+</body>
+</html>

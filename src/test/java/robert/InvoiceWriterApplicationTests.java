@@ -76,21 +76,30 @@ public class InvoiceWriterApplicationTests {
         // one to many relation check
         user.addService(service);
         service.setUser(user);
+        Contractor c = new Contractor();
+        c.setNipNo("111111111");
+        user.addContractor(c);
+        Salesman s = new Salesman();
+        s.setNipNo("222222222");
+        user.addSalesman(s);
 
         userRepository.save(user);
+        salesmanRepository.save(s);
+        contractorRepository.save(c);
         serviceRepository.save(service);
 
         dbUser = null;
         dbUser = userRepository.findOne(user.getId());
         assertNotNull(dbUser);
 
+        System.out.println("user data from DB:");
+        System.out.println(dbUser.toString());
 
         Contractor contractor = new Contractor();
-        contractor.setName("John");
+        contractor.setName("Mark");
         contractor.setSurname("Smith");
         String nip = "938797387";
         contractor.setNipNo(nip);
-
 
         contractorRepository.save(contractor);
 
@@ -100,7 +109,7 @@ public class InvoiceWriterApplicationTests {
 
         Salesman salesman = new Salesman();
         salesman.setName("Jaden");
-        salesman.setSurname("Pitt");
+        salesman.setSurname("Brown");
         String nip2 = "563900582";
         salesman.setNipNo(nip2);
 
@@ -110,21 +119,13 @@ public class InvoiceWriterApplicationTests {
         assertNotNull(dBsalesman);
         System.out.println(dBsalesman.toString());
 
+        user.setFirstName("Xxxxx");
+        user.setSurname("Yyyyy");
 
-        //TODO fix relations
-       /* System.out.println("User's services list contains:");
-        for (TheService s : dbUser.getServices()) {
-            System.out.println(s.toString());
-        }*/
+        userRepository.save(user);
 
-
-
-        //TODO fix findByEmail method
-
-        /*User dbUser2 = userRepository.findByEmail(new EmailAddress(email));
-        assertNotNull(dbUser2);
-        System.out.println(dbUser2.toString());
-        */
+        User someUser = userRepository.findOne(user.getId());
+        System.out.println("User after data change:\n" + someUser.toString());
 
         System.out.println("DB test finish");
 

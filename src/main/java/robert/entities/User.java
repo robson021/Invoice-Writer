@@ -27,15 +27,15 @@ public class User extends AbstractEntity {
     @NotNull
     private char[] password;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<TheService> services = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Contractor> contractors = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Salesman> salesmens = new ArrayList<>();
 
@@ -48,6 +48,16 @@ public class User extends AbstractEntity {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void addContractor(Contractor contractor) {
+        Assert.notNull(contractor);
+        this.contractors.add(contractor);
+    }
+
+    public void addSalesman(Salesman salesman) {
+        Assert.notNull(salesman);
+        this.salesmens.add(salesman);
     }
 
     public void addService(TheService service) {
@@ -108,8 +118,11 @@ public class User extends AbstractEntity {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
-                ", email='" + email.toString() + '\'' +
+                ", email=" + email +
                 ", password=" + Arrays.toString(password) +
+                ", services=" + services.toString() +
+                ", contractors=" + contractors.toString() +
+                ", salesmens=" + salesmens.toString() +
                 '}';
     }
 }

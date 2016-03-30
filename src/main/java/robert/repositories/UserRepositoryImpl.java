@@ -42,6 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findByEmail(EmailAddress emailAddress) {
-        return em.find(User.class, emailAddress);
+        //return em.find(User.class, emailAddress);
+        return null;
     } //TODO write implementation for this method
 }

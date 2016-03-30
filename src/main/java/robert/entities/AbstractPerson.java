@@ -1,6 +1,5 @@
 package robert.entities;
 
-import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +16,7 @@ public abstract class AbstractPerson extends AbstractEntity {
     private String postCode;
     private String city;
 
-    @Column(unique = true)
+    //@Column(unique = true) //TODO uniqe nip number causes sql exception
     @NotNull
     private String nipNo;
 
