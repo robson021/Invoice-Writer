@@ -1,0 +1,23 @@
+Harmonogram projektu 3.03.16
+
+Projekt dotyczy aplkacji służącej do tworzenia faktur.
+Użytkownik ma możliwość zalogowania się do swojego konta. W bazie danych przechowuje informacje
+o swoich usługach/produktach, kontrahentach, sprzedawcach itp. Za pomocą formularzy przesyła
+dane potrzebne do stworzenia faktury. Ta jest generowana przy pomocy blioteki iText.
+Gotowa faktura jest pobierana przez użytkownika na dysk.
+
+1. Zaprojektowanie bazy danych + obsługa i implementacja.
+2. Podstawowa obsługa back-endu (logowanie, rejestracja).
+-formularz tworzenia faktur
+-lisa usług, kontrahentow, sprzedawcy
+-dodawanie i edycja
+- walidacja z angularem - odpowiedzi serwera
+- stylowanie (selektory, animacje, css3)
+- szablony ngulaorwe
+- kontroloery z postawowymi funkcjami i opercjami(serwis $http w kontrolerach)
+- serwis logwania i rejestracji wspolny
+- filtry angulara (cat 1333456666776555|less     {{zm|reverse}})
+3. Zaprojektowanie podstawowego wyglądu strony.
+4. Obsługa zaptań uzytkownika i funkcjonalności (przesyłanie danych do
+   stworzenia faktury itd).
+5. Ostateczny wygląd strony i generowanie gotowego pliku pdf.

@@ -128,8 +128,6 @@ public class InvoiceWriterApplicationTests {
         System.out.println("User after data change:\n" + someUser.toString());
 
         System.out.println("DB test finish");
-
-
     }
 
 }

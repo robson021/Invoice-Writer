@@ -32,8 +32,8 @@ public class TestController {
         return greetingsList;
     }
 
-    @RequestMapping(value = "/greetings/post", method = RequestMethod.POST)
-    public BasicResponse postGreetings(@RequestBody Greetings greetings) {
+    @RequestMapping(value = "/greetings2", method = RequestMethod.POST)
+    public BasicResponse postGreetings(@RequestBody String greetings) {
         System.out.println(greetings.toString());
         BasicResponse response = new BasicResponse();
         response.setResult(true);

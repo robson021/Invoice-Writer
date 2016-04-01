@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import robert.entities.EmailAddress;
 import robert.entities.User;
+import robert.repositories.ContractorRepository;
+import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
 
@@ -25,6 +27,10 @@ public class DbService {
     private UserRepository userRepository;
     @Autowired
     private ServiceRepository serviceRepository;
+    @Autowired
+    private ContractorRepository contractorRepository;
+    @Autowired
+    private SalesmanRepository salesmanRepository;
 
     @PostConstruct
     public void init() {
