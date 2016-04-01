@@ -32,7 +32,7 @@ public class TestController {
         return greetingsList;
     }
 
-    @RequestMapping(value = "/greetings2", method = RequestMethod.POST)
+    @RequestMapping(value = "/greetings", method = RequestMethod.POST)
     public BasicResponse postGreetings(@RequestBody String greetings) {
         System.out.println(greetings.toString());
         BasicResponse response = new BasicResponse();
