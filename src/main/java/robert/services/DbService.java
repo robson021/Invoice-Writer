@@ -60,5 +60,13 @@ public class DbService {
         userRepository.save(user1);
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(new EmailAddress(email));
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
 
 }
