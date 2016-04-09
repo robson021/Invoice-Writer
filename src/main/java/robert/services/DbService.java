@@ -3,6 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import robert.entities.Contractor;
 import robert.entities.EmailAddress;
 import robert.entities.User;
 import robert.repositories.ContractorRepository;
@@ -12,6 +13,8 @@ import robert.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by robert on 25.03.16.
@@ -57,6 +60,16 @@ public class DbService {
         user1.setPassword(passwd);
         user1.setEmail(new EmailAddress("john_zorn@example.mail.com"));
 
+        Contractor contractor = new Contractor();
+        contractor.setUser(user1);
+        List<Contractor> contractors = new ArrayList<>();
+        contractors.add(contractor);
+        user1.setContractors(contractors);
+        contractor.setNipNo("324563456");
+        contractor.setName("Examplename");
+        contractor.setSurname("Examplesurname");
+
+        //contractorRepository.save(contractor);
         userRepository.save(user1);
     }
 
@@ -66,6 +79,10 @@ public class DbService {
 
     public User saveUser(User user) {
         return userRepository.save(user);
+    }
+
+    public User findUserById(Long id) {
+        return userRepository.findOne(id);
     }
 
 

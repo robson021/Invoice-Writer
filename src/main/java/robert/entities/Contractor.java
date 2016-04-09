@@ -18,6 +18,10 @@ public class Contractor extends AbstractPerson {
         super();
     }
 
+    public Contractor(String name, String surname, String companyName, String streetName, String homeNo, String postCode, String city, String nipNo) {
+        super(name, surname, companyName, streetName, homeNo, postCode, city, nipNo);
+    }
+
     public User getUser() {
         return user;
     }

@@ -11,6 +11,10 @@ import robert.repositories.ContractorRepository;
 import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
+import robert.services.DbService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -33,6 +37,9 @@ public class InvoiceWriterApplicationTests {
     @Autowired
     private SalesmanRepository salesmanRepository;
 
+    @Autowired
+    private DbService dataBaseService;
+
 
     @Test
     public void contextLoads() {
@@ -40,7 +47,7 @@ public class InvoiceWriterApplicationTests {
 
     @Test
     public void dbTests() {
-        System.out.println("DB test start");
+        System.out.println("DB test start ******");
 
         String email = "test_email@example.com";
         User user = new User();
@@ -127,7 +134,53 @@ public class InvoiceWriterApplicationTests {
         User someUser = userRepository.findOne(user.getId());
         System.out.println("User after data change:\n" + someUser.toString());
 
-        System.out.println("DB test finish");
+
+        // COMPLETE USER WITH ALL FIELDS
+        email = "robert_nowak@gmail.com";
+        passwd = new char[]{'p', 'a', 's', 's', 'w', 'd',};
+        User user1 = new User("Robert", "Nowak", new EmailAddress(email), passwd);
+
+        String nip1 = "123450987";
+        Contractor contractor1 = new Contractor("Mark", "Morgan", null, null, null, null, null, nip1);
+        nip2 = "456927400";
+        Contractor contractor2 = new Contractor("John", "Coltrane", null, null, null, null, null, nip2);
+        List<Contractor> contractors = new ArrayList<>();
+        contractors.add(contractor1);
+        contractors.add(contractor2);
+
+        user1.setContractors(contractors);
+
+        List<Salesman> salesmens = new ArrayList<>();
+        nip1 = "597632109";
+        Salesman salesman1 = new Salesman("Rachel", "Goswell", nip1);
+        nip2 = "974532999";
+        Salesman salesman2 = new Salesman("Kevin", "Shields", nip2);
+        salesmens.add(salesman1);
+        salesmens.add(salesman2);
+
+        user1.setSalesmens(salesmens);
+
+        List<TheService> services = new ArrayList<>();
+        String symbol1 = "gd43fd";
+        TheService service1 = new TheService("Service_name", symbol1, 23, 863.75);
+        String symbol2 = "jlke23dsa";
+        TheService service2 = new TheService("Another_Service", symbol2, 8, 5673.43);
+
+        services.add(service1);
+        services.add(service2);
+
+        user1.setServices(services);
+
+
+        userRepository.save(user1);
+        User testUser = null;
+        testUser = dataBaseService.findUserById(user1.getId());
+        assertNotNull(testUser);
+
+        System.out.println(testUser.toString());
+
+
+        System.out.println("DB test finish ******");
     }
 
 }

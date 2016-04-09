@@ -23,6 +23,7 @@ public class TheService extends AbstractEntity {
     private User user;
 
     public TheService(String name, String symbol, int vatPercentage, double nettoValue) {
+        super();
         this.name = name;
         this.symbol = symbol;
         this.vatPercentage = vatPercentage;

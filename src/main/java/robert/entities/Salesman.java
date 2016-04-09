@@ -23,6 +23,10 @@ public class Salesman extends AbstractPerson {
         super();
     }
 
+    public Salesman(String name, String surname, String nipNo) {
+        super(name, surname, nipNo);
+    }
+
     public String getRegon() {
         return regon;
     }

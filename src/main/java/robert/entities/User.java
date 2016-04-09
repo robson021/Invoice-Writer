@@ -39,6 +39,17 @@ public class User extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private List<Salesman> salesmens = new ArrayList<>();
 
+    public User() {
+        super();
+    }
+
+    public User(String firstName, String surname, EmailAddress email, char[] password) {
+        super();
+        this.firstName = firstName;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -38,6 +38,13 @@ public abstract class AbstractPerson extends AbstractEntity {
         this.nipNo = nipNo;
     }
 
+    // basic constructor
+    public AbstractPerson(String name, String surname, String nipNo) {
+        super();
+        this.name = name;
+        this.surname = surname;
+        this.nipNo = nipNo;
+    }
 
     public String getName() {
         return name;
