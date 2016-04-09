@@ -30,25 +30,25 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     @Transactional
     public User save(User user) {
-        if (user.getId() == null) {
-            em.persist(user);
-            logger.info("User has been added");
-            return user;
-        } else {
-            logger.info("save via merge");
-            return em.merge(user);
+        try {
+            if (user.getId() == null) {
+                em.persist(user);
+                logger.info("User has been added");
+                return user;
+            } else {
+                logger.info("save via merge");
+                return em.merge(user);
+            }
+        } catch (Exception e) {
+            logger.error("User save exception");
+            e.printStackTrace();
+            return null;
         }
     }
 
     @Override
     @Transactional
-    public User findByEmail(EmailAddress emailAddress) { //TODO write implementation for this method
-        /*TypedQuery<User> query = em.createQuery("select u from User u where u.emailAddress = :email",
-                User.class);
-        query.setParameter("email", emailAddress);
-
-        return query.getSingleResult();*/
-
+    public User findByEmail(EmailAddress emailAddress) {
         try {
             return (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
                     .setParameter("email", emailAddress.toString()).getSingleResult();

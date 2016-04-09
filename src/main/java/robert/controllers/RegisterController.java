@@ -25,20 +25,19 @@ public class RegisterController {
     private DbService dbService;
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    BasicResponse registerNewUser(@RequestBody User user) {
-        logger.info("new user request");
+    public BasicResponse registerNewUser(@RequestBody User user) {
+        logger.info("New user request");
         BasicResponse response = new BasicResponse();
 
         if (dbService.findUserByEmail(new EmailAddress(user.getEmail())) == null) {
             dbService.saveUser(user);
             logger.info("User " + user.getEmail() + " has been registered");
             response.setResult(true);
+            logger.info("Registration complete. " + user.toString());
         } else {
             logger.error("Given e-mail address already exists");
         }
-        //List<BasicResponse> responses = new ArrayList<>();
-        //responses.add(response);
-        //return responses;
+
         return response;
     }
 }

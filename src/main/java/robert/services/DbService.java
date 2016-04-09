@@ -3,9 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import robert.entities.Contractor;
-import robert.entities.EmailAddress;
-import robert.entities.User;
+import robert.entities.*;
 import robert.repositories.ContractorRepository;
 import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
@@ -35,42 +33,75 @@ public class DbService {
     @Autowired
     private SalesmanRepository salesmanRepository;
 
+    private static long exampleUserId;
+    private static String exampleUserEmail;
+
+
     @PostConstruct
     public void init() {
         logger.info("DbService constructed");
 
         User user = new User();
-        user.setFirstName("Robert");
-        user.setSurname("Nowak");
+        user.setFirstName("Example");
+        user.setSurname("Man");
         char[] passwd = {'a', 'b', 'c'};
         user.setPassword(passwd);
-        String email = "robert@example.mail.com";
+        String email = "example@example.mail.com";
         user.setEmail(new EmailAddress(email));
 
         userRepository.save(user);
 
-        email = "robertn@example.mail.org";
-        user.setEmail(new EmailAddress(email));
-        userRepository.save(user);
+        // COMPLETE USER
+        email = "robert_nowak@gmail.com";
+        passwd = new char[]{'p', 'a', 's', 's', 'w', 'd',};
+        User user1 = new User("Robert", "Nowak", new EmailAddress(email), passwd);
 
-        User user1 = new User();
-        user1.setFirstName("John");
-        user1.setSurname("Zorn");
-        passwd = new char[]{'x', 'y', 'z'};
-        user1.setPassword(passwd);
-        user1.setEmail(new EmailAddress("john_zorn@example.mail.com"));
-
-        Contractor contractor = new Contractor();
-        contractor.setUser(user1);
+        String nip1 = "123450987";
+        Contractor contractor1 = new Contractor("Mark", "Morgan", null, null, null, null, null, nip1);
+        String nip2 = "456927400";
+        Contractor contractor2 = new Contractor("John", "Coltrane", null, null, null, null, null, nip2);
         List<Contractor> contractors = new ArrayList<>();
-        contractors.add(contractor);
-        user1.setContractors(contractors);
-        contractor.setNipNo("324563456");
-        contractor.setName("Examplename");
-        contractor.setSurname("Examplesurname");
+        contractors.add(contractor1);
+        contractors.add(contractor2);
 
-        //contractorRepository.save(contractor);
+        user1.setContractors(contractors);
+
+        List<Salesman> salesmens = new ArrayList<>();
+        nip1 = "597632109";
+        Salesman salesman1 = new Salesman("Rachel", "Goswell", nip1);
+        nip2 = "974532999";
+        Salesman salesman2 = new Salesman("Kevin", "Shields", nip2);
+        salesmens.add(salesman1);
+        salesmens.add(salesman2);
+
+        user1.setSalesmens(salesmens);
+
+        List<TheService> services = new ArrayList<>();
+        String symbol1 = "gd43fd";
+        TheService service1 = new TheService("Service_name", symbol1, 23, 863.75);
+        String symbol2 = "jlke23dsa";
+        TheService service2 = new TheService("Another_Service", symbol2, 8, 5673.43);
+
+        services.add(service1);
+        services.add(service2);
+
+        user1.setServices(services);
+
+
         userRepository.save(user1);
+        logger.info("Example user has been added.\n" + user1.toString());
+        exampleUserId = user1.getId();
+        exampleUserEmail = user1.getEmail();
+
+        //User dbUser = userRepository.findByEmail(new EmailAddress(email));
+    }
+
+    public static long getExampleUserId() {
+        return exampleUserId;
+    }
+
+    public static String getExampleUserEmail() {
+        return exampleUserEmail;
     }
 
     public User findUserByEmail(EmailAddress email) {

@@ -109,6 +109,19 @@ public class User extends AbstractEntity {
         return contractors;
     }
 
+    public String getContractorsAsString() {
+        int i = 0;
+        System.out.println("Contractors list size: " + this.contractors.size());
+        StringBuilder sb = new StringBuilder();
+        for (Contractor c : this.contractors) {
+            sb.append(c.toString());
+            sb.append("\n");
+            i++;
+        }
+        sb.append("iterations: " + i);
+        return sb.toString();
+    }
+
     public void setContractors(List<Contractor> contractors) {
         this.contractors = contractors;
     }
