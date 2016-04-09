@@ -3,7 +3,7 @@ package robert.responses;
 /**
  * Created by robert on 26.03.16.
  */
-public class BasicResponse {
+public class BasicResponse /*implements Serializable*/ {
     private boolean result = false;
 
     public boolean isResult() {

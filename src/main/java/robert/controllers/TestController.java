@@ -10,6 +10,7 @@ import robert.entities.EmailAddress;
 import robert.entities.User;
 import robert.responses.BasicResponse;
 import robert.responses.Greetings;
+import robert.responses.SimpleContractor;
 import robert.responses.UserDataResponse;
 import robert.services.DbService;
 
@@ -69,5 +70,16 @@ public class TestController {
         User user = dbService.findUserByEmail(new EmailAddress(DbService.getExampleUserEmail()));
         System.out.println("Contractors as string:\n" + user.getContractorsAsString());
         return user.getContractorsAsString();
+    }
+
+    @RequestMapping(value = "/getsimplecontractors")
+    public List<SimpleContractor> getSimpleContractorsList() {
+        List<SimpleContractor> contractors = new ArrayList<>();
+        contractors.add(new SimpleContractor());
+        contractors.add(new SimpleContractor());
+        contractors.add(new SimpleContractor());
+        contractors.add(new SimpleContractor());
+
+        return contractors;
     }
 }
