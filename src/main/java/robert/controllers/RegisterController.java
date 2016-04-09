@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import robert.entities.EmailAddress;
 import robert.entities.User;
 import robert.responses.BasicResponse;
 import robert.services.DbService;
@@ -28,7 +29,7 @@ public class RegisterController {
         logger.info("new user request");
         BasicResponse response = new BasicResponse();
 
-        if (dbService.findUserByEmail(user.getEmail()) == null) {
+        if (dbService.findUserByEmail(new EmailAddress(user.getEmail())) == null) {
             dbService.saveUser(user);
             logger.info("User " + user.getEmail() + " has been registered");
             response.setResult(true);

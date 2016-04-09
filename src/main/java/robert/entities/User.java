@@ -23,6 +23,7 @@ public class User extends AbstractEntity {
     @Column(unique = true)
     @NotNull
     private EmailAddress email;
+    private String emailAsString = null;
 
     @NotNull
     private char[] password;
@@ -48,6 +49,7 @@ public class User extends AbstractEntity {
         this.firstName = firstName;
         this.surname = surname;
         this.email = email;
+        this.emailAsString = email.toString();
         this.password = password;
     }
 
@@ -88,6 +90,7 @@ public class User extends AbstractEntity {
 
     public void setEmail(EmailAddress email) {
         this.email = email;
+        this.emailAsString = email.toString();
     }
 
     public char[] getPassword() {

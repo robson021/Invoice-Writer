@@ -180,6 +180,17 @@ public class InvoiceWriterApplicationTests {
         System.out.println(testUser.toString());
 
 
+        testUser = null;
+        testUser = dataBaseService.findUserByEmail(new EmailAddress(user1.getEmail()));
+        assertNotNull(testUser);
+        assertEquals(testUser, user1);
+        assertEquals(testUser.toString(), user1.toString());
+
+        /*System.out.println("User's services:");
+        for (TheService theService : testUser.getServices()) {
+            System.out.println(theService.toString());
+        }*/
+
         System.out.println("DB test finish ******");
     }
 

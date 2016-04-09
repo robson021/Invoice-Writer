@@ -41,8 +41,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findByEmail(EmailAddress emailAddress) {
-        //return em.find(User.class, emailAddress);
-        return null;
-    } //TODO write implementation for this method
+    @Transactional
+    public User findByEmail(EmailAddress emailAddress) { //TODO write implementation for this method
+        /*TypedQuery<User> query = em.createQuery("select u from User u where u.emailAddress = :email",
+                User.class);
+        query.setParameter("email", emailAddress);
+
+        return query.getSingleResult();*/
+
+        try {
+            return (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
+                    .setParameter("email", emailAddress.toString()).getSingleResult();
+        } catch (Exception e) {
+            logger.error("Finding user by email exception");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
