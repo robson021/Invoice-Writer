@@ -38,7 +38,7 @@ public class User extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private List<Salesman> salesmens = new ArrayList<>();
+    private List<Salesman> salesmen = new ArrayList<>();
 
     public User() {
         super();
@@ -68,7 +68,7 @@ public class User extends AbstractEntity {
 
     public void addSalesman(Salesman salesman) {
         Assert.notNull(salesman);
-        this.salesmens.add(salesman);
+        this.salesmen.add(salesman);
     }
 
     public void addService(TheService service) {
@@ -126,12 +126,12 @@ public class User extends AbstractEntity {
         this.contractors = contractors;
     }
 
-    public List<Salesman> getSalesmens() {
-        return salesmens;
+    public List<Salesman> getSalesmen() {
+        return salesmen;
     }
 
-    public void setSalesmens(List<Salesman> salesmens) {
-        this.salesmens = salesmens;
+    public void setSalesmen(List<Salesman> salesmen) {
+        this.salesmen = salesmen;
     }
 
     public void setServices(List<TheService> services) {
@@ -147,7 +147,7 @@ public class User extends AbstractEntity {
                 ", password=" + Arrays.toString(password) +
                 ", services=" + services.toString() +
                 ", contractors=" + contractors.toString() +
-                ", salesmens=" + salesmens.toString() +
+                ", salesmen=" + salesmen.toString() +
                 '}';
     }
 }

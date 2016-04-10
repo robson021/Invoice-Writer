@@ -74,7 +74,7 @@ public class DbService {
         salesmens.add(salesman1);
         salesmens.add(salesman2);
 
-        user1.setSalesmens(salesmens);
+        user1.setSalesmen(salesmens);
 
         List<TheService> services = new ArrayList<>();
         String symbol1 = "gd43fd";

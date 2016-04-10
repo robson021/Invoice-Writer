@@ -145,11 +145,11 @@ public class InvoiceWriterApplicationTests {
         testUser = dataBaseService.findUserById(DbService.getExampleUserId());
         assertNotNull(testUser);*/
         //TODO finding user by id causes invalid lists sizes (duplicated records)
-        assertEquals(testUser.getSalesmens().size(), 2);
+        assertEquals(testUser.getSalesmen().size(), 2);
         assertEquals(testUser.getContractors().size(), 2);
         assertEquals(testUser.getServices().size(), 2);
         System.out.println("sizes of lists: ");
-        System.out.println(testUser.getSalesmens().size());
+        System.out.println(testUser.getSalesmen().size());
         System.out.println(testUser.getContractors().size());
         System.out.println(testUser.getServices().size());
 

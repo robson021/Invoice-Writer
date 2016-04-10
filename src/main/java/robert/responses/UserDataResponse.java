@@ -23,7 +23,7 @@ public class UserDataResponse extends BasicResponse {
     public UserDataResponse(User user) {
         super();
         contractors = user.getContractors();
-        salesmen = user.getSalesmens();
+        salesmen = user.getSalesmen();
         services = user.getServices();
         this.setResult(true);
     }
