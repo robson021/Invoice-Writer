@@ -43,7 +43,7 @@ public class InvoiceWriterApplicationTests {
 
     @Test
     public void dbTests() {
-        System.out.println("DB test start ******");
+        System.out.println("\nDB test start ******");
 
         String email = "test_email@example.com";
         User user = new User();
