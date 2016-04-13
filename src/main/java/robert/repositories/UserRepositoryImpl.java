@@ -41,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
         } catch (Exception e) {
             logger.error("User save exception");
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }
@@ -50,11 +50,12 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public User findByEmail(EmailAddress emailAddress) {
         try {
-            return (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
+            User u = (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
                     .setParameter("email", emailAddress.toString()).getSingleResult();
+            return u;
         } catch (Exception e) {
             logger.error("Finding user by email exception");
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }

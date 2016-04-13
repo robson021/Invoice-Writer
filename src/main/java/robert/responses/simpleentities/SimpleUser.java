@@ -15,6 +15,7 @@ public class SimpleUser {
 
     @NotNull
     private String password;
+    private String repassword;
 
     public SimpleUser(String firstname, String surname, String email, String password) {
         this.firstname = firstname;
@@ -61,6 +62,14 @@ public class SimpleUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 
     public String getPassword() {

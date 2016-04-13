@@ -1,6 +1,7 @@
 package robert.entities;
 
 import org.springframework.util.Assert;
+import robert.responses.simpleentities.SimpleUser;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,14 @@ public class User extends AbstractEntity {
 
     public User() {
         super();
+    }
+
+    public User(SimpleUser user) {
+        this.email = new EmailAddress(user.getEmail());
+        this.emailAsString = this.email.toString();
+        this.firstName = user.getFirstname();
+        this.surname = user.getSurname();
+        this.password = user.getPassword().toCharArray();
     }
 
     public User(String firstName, String surname, EmailAddress email, char[] password) {

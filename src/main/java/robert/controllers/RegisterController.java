@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import robert.entities.User;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
@@ -26,8 +27,18 @@ public class RegisterController {
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     public BasicResponse registerNewUser(@RequestBody SimpleUser user) {
         logger.info("New user request");
-        System.out.println(user.toString());
         BasicResponse response = new BasicResponse();
+        User u = null;
+        u = dbService.findUserByEmail(user.getEmail());
+        if (u == null) {
+            System.out.println(user.toString());
+            u = new User(user);
+            dbService.saveUser(u);
+            response.setResult(true);
+            logger.info("User registered");
+        } else {
+            logger.error("Given e-mail is already taken!");
+        }
         return response;
     }
 }

@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html ng-app="registerApp">
+<html lang="en">
 <head>
     <title>Register your account here</title>
     <LINK rel="stylesheet" href="css/register.css" type="text/css">
 </head>
-<body ng-controller="register">
+<body ng-app="ngApp" ng-controller="registerCtrl">
 <h1>Register new account</h1>
 
+<input type="text" placeholder="name" ng-model="user.firstname"> <br>
+<input type="text" placeholder="surname" ng-model="user.surname"> <br>
+<input type="email" placeholder="e-mail" ng-model="user.email"> <br>
+<input type="password" placeholder="password" ng-model="user.password"><br>
+<input type="password" placeholder="retype password" ng-model="user.repassword"><br>
+<button ng-click="registerFunction()">Register me</button>
 
-<div ng-app="ngLocale">
-        <form novalidate class="simple-form">
-            First firstname: <input type="text" ng-model="user.firstName" required> <br>
-            Surname firstname: <input type="text" ng-model="user.surname" required> <br>
-            E-mail firstname: <input type="email" ng-model="user.email" required> <br>
-            Passwword firstname: <input type="password" ng-model="user.password" required> <br>
-            Repassword firstname: <input type="password" ng-model="user.repassword" required> <br> <br>
-            <button ng-click="">Register</button>
-        </form>
-    </div>
+<h2>{{ user.firstname }}</h2>
 
+<p>{{message.text}}</p>
 
 
 
 <script type="text/javascript" src="js/angular.js"></script>
+<script src="js/app.js"></script>
 <script type="text/javascript" src="js/registerController.js"></script>
 </body>
 </html>

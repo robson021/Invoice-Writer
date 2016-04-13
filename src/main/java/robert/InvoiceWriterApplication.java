@@ -17,5 +17,3 @@ public class InvoiceWriterApplication {
         SpringApplication.run(InvoiceWriterApplication.class, args);
     }
 }
-
-// TODO: 09.04.16 fix json responses
