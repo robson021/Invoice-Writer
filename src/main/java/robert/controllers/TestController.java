@@ -114,4 +114,10 @@ public class TestController {
 
         return new ResponseEntity<DataHolderResponse>(holder, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/dataupdate", method = RequestMethod.POST)
+    public ResponseEntity<String> postDataToUpdate(@RequestBody DataHolderResponse holder) {
+        System.out.println(holder.toString());
+        return new ResponseEntity<String>("updated", HttpStatus.OK);
+    }
 }
