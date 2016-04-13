@@ -108,6 +108,10 @@ public class DbService {
         return userRepository.findByEmail(email);
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(new EmailAddress(email));
+    }
+
     public User saveUser(User user) {
         return userRepository.save(user);
     }

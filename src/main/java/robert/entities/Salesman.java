@@ -1,5 +1,7 @@
 package robert.entities;
 
+import robert.responses.simpleentities.SimpleSalesman;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -71,6 +73,10 @@ public class Salesman extends AbstractPerson {
 
     public User getUser() {
         return this.user;
+    }
+
+    public SimpleSalesman getSimpleSalesman() {
+        return new SimpleSalesman(this);
     }
 
 }

@@ -1,5 +1,7 @@
 package robert.entities;
 
+import robert.responses.simpleentities.SimpleService;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -104,5 +106,9 @@ public class TheService extends AbstractEntity {
                 ", bruttoValue=" + bruttoValue +
                 ", vatValue=" + vatValue +
                 '}';
+    }
+
+    public SimpleService getSimpleService() {
+        return new SimpleService(this);
     }
 }

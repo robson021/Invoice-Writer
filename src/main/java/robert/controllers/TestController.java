@@ -1,17 +1,17 @@
 package robert.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import robert.entities.Contractor;
-import robert.entities.EmailAddress;
-import robert.entities.User;
+import robert.entities.*;
 import robert.responses.BasicResponse;
 import robert.responses.Greetings;
-import robert.responses.SimpleContractor;
 import robert.responses.UserDataResponse;
+import robert.responses.simpleentities.*;
 import robert.services.DbService;
 
 import java.util.ArrayList;
@@ -59,10 +59,10 @@ public class TestController {
 
     }
 
-    @RequestMapping(value = "/getcontractors")
-    public List<Contractor> getExampleContractors() {
+    @RequestMapping(value = "/getusers")
+    public ResponseEntity<User> getExampleUsers() {
         User user = dbService.findUserByEmail(new EmailAddress(DbService.getExampleUserEmail()));
-        return user.getContractors();
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getcontractors_string")
@@ -81,5 +81,37 @@ public class TestController {
         contractors.add(new SimpleContractor());
 
         return contractors;
+    }
+
+    @RequestMapping(value = "/getsimpleusers")
+    public ResponseEntity<SimpleUser> getSimpleUser() {
+        SimpleUser user = new SimpleUser(dbService.findUserByEmail(DbService.getExampleUserEmail()));
+        return new ResponseEntity<SimpleUser>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/dataholder")
+    public ResponseEntity<DataHolderResponse> getExampleDataHolder() {
+        User user = dbService.findUserByEmail(DbService.getExampleUserEmail());
+
+        List<SimpleContractor> simpleContractors = new ArrayList<>();
+        List<SimpleSalesman> simpleSalesmen = new ArrayList<>();
+        List<SimpleService> simpleServices = new ArrayList<>();
+
+        for (Contractor c : user.getContractors()) {
+            simpleContractors.add(c.getSimpleContractor());
+        }
+        for (Salesman s : user.getSalesmen()) {
+            simpleSalesmen.add(s.getSimpleSalesman());
+        }
+        for (TheService se : user.getServices()) {
+            simpleServices.add(se.getSimpleService());
+        }
+
+        DataHolderResponse holder = new DataHolderResponse();
+        holder.setContractors(simpleContractors);
+        holder.setSalesmen(simpleSalesmen);
+        holder.setServices(simpleServices);
+
+        return new ResponseEntity<DataHolderResponse>(holder, HttpStatus.OK);
     }
 }

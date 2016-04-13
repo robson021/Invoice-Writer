@@ -1,5 +1,7 @@
 package robert.entities;
 
+import robert.responses.simpleentities.SimpleContractor;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,5 +30,9 @@ public class Contractor extends AbstractPerson {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public SimpleContractor getSimpleContractor() {
+        return new SimpleContractor(this);
     }
 }

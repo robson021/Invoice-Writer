@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import robert.entities.EmailAddress;
-import robert.entities.User;
 import robert.responses.BasicResponse;
+import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by robert on 25.03.16.
@@ -25,19 +27,10 @@ public class RegisterController {
     private DbService dbService;
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public BasicResponse registerNewUser(@RequestBody User user) {
+    public BasicResponse registerNewUser(HttpSession session, HttpServletRequest request, @RequestBody SimpleUser user) {
         logger.info("New user request");
+        System.out.println(user.toString());
         BasicResponse response = new BasicResponse();
-
-        if (dbService.findUserByEmail(new EmailAddress(user.getEmail())) == null) {
-            dbService.saveUser(user);
-            logger.info("User " + user.getEmail() + " has been registered");
-            response.setResult(true);
-            logger.info("Registration complete. " + user.toString());
-        } else {
-            logger.error("Given e-mail address already exists");
-        }
-
         return response;
     }
 }
