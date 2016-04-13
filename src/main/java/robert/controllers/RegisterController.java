@@ -10,9 +10,6 @@ import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * Created by robert on 25.03.16.
  */
@@ -27,7 +24,7 @@ public class RegisterController {
     private DbService dbService;
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public BasicResponse registerNewUser(HttpSession session, HttpServletRequest request, @RequestBody SimpleUser user) {
+    public BasicResponse registerNewUser(@RequestBody SimpleUser user) {
         logger.info("New user request");
         System.out.println(user.toString());
         BasicResponse response = new BasicResponse();
