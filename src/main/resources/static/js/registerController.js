@@ -20,10 +20,14 @@
                 console.info($scope.user);
                 if ($scope.user.password === $scope.user.repassword) {
                     console.info("passwords ok")
-                    $scope.message.text = 'Failed to register new account.';
+                    //$scope.message.text = 'Failed to register new account.';
                     var ajax = $http.post('/register/newuser', $scope.user);
                     ajax.success(function (data) {
-                        $scope.message.text = 'You are registered now!';
+                        if (data.result) {
+                            $scope.message.text = 'You are registered now!';
+                        } else {
+                            $scope.message.text = 'Registration failed.';
+                        }
                     });
                 } else {
                     console.error("passwords do not match");
