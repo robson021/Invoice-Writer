@@ -36,8 +36,10 @@ public class RegisterController {
             dbService.saveUser(u);
             response.setResult(true);
             logger.info("User registered");
+            response.setText("You can login now.");
         } else {
             logger.error("Given e-mail is already taken!");
+            response.setText("That e-mail is already used!");
         }
         return response;
     }

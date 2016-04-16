@@ -24,9 +24,9 @@
                     var ajax = $http.post('/register/newuser', $scope.user);
                     ajax.success(function (data) {
                         if (data.result) {
-                            $scope.message.text = 'You are registered now!';
+                            $scope.message.text = 'You are registered. ' + data.text;
                         } else {
-                            $scope.message.text = 'Registration failed.';
+                            $scope.message.text = 'Registration failed. ' + data.text;
                         }
                     });
                 } else {
