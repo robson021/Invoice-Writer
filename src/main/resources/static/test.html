@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html ng-app="example">
+<html ng-app="ngApp">
 <head>
-    <meta charset="utf-8"/>
-    <script type="text/javascript" src="../../../resources/js/angular.js"></script>
-    <LINK rel="stylesheet" href="css/test.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 </head>
-<body ng-controller="MasterController as c" ng-cloak>
+<body ng-cloak>
 <script type="text/javascript">
 
 
 </script>
 
 <h1>this is the test page</h1>
+
+<md-button>test button</md-button>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+<!-- Your application bootstrap  -->
+<script type="text/javascript">
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+    //angular.module('ngApp', ['ngMaterial']);
+</script>
+
+<!-- my -->
+<script src="js/app.js"></script>
+<script src="js/registerController.js"></script>
 
 </body>
 </html>
