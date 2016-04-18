@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <firstname>InvoiceWriter</firstname>
+    <name>InvoiceWriter</name>
     <description>Web application for writing invoices</description>
 
     <parent>
