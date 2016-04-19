@@ -1,9 +1,11 @@
 package robert.responses.simpleentities;
 
+import robert.responses.BasicResponse;
+
 /**
  * Created by robert on 13.04.16.
  */
-public abstract class SimpleUserData {
+public abstract class SimpleUserData extends BasicResponse {
     private String email = null;
     private String password = null;
 

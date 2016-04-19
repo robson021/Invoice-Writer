@@ -1,6 +1,9 @@
 package robert.entities;
 
 import org.springframework.util.Assert;
+import robert.responses.simpleentities.SimpleContractor;
+import robert.responses.simpleentities.SimpleSalesman;
+import robert.responses.simpleentities.SimpleService;
 import robert.responses.simpleentities.SimpleUser;
 
 import javax.persistence.*;
@@ -112,6 +115,33 @@ public class User extends AbstractEntity {
 
     public List<TheService> getServices() {
         return services;
+    }
+
+    public List<SimpleService> getSimpleServices() {
+        if (services.isEmpty()) return null;
+        List<SimpleService> simpleServices = new ArrayList<>();
+        for (TheService s : services) {
+            simpleServices.add(new SimpleService(s));
+        }
+        return simpleServices;
+    }
+
+    public List<SimpleContractor> getSimpleContractors() {
+        if (contractors.isEmpty()) return null;
+        List<SimpleContractor> simpleContractors = new ArrayList<>();
+        for (Contractor c : contractors) {
+            simpleContractors.add(new SimpleContractor(c));
+        }
+        return simpleContractors;
+    }
+
+    public List<SimpleSalesman> getSimpleSalesmen() {
+        if (salesmen.isEmpty()) return null;
+        List<SimpleSalesman> simpleSalesmen = new ArrayList<>();
+        for (Salesman s : salesmen) {
+            simpleSalesmen.add(new SimpleSalesman(s));
+        }
+        return simpleSalesmen;
     }
 
     public List<Contractor> getContractors() {
