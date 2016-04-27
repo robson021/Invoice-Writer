@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment="a">
+    <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment="angular login/register page done">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/entities/User.java" afterPath="$PROJECT_DIR$/src/main/java/robert/entities/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/registerController.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/registerController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/loginPage.html" afterPath="$PROJECT_DIR$/src/main/resources/static/loginPage.html" />
     </list>
     <ignored path="InvoiceWriter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +29,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="243">
-              <caret line="35" column="82" selection-start-line="35" selection-start-column="82" selection-end-line="35" selection-end-column="82" />
-              <folding />
+              <caret line="33" column="82" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
+              <folding>
+                <marker date="1461791111768" expanded="false" signature="36:544" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,8 +103,8 @@
       <file leaf-file-name="loginPage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/loginPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state relative-caret-position="288">
+              <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -117,7 +115,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
               <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
-              <folding />
+              <folding>
+                <marker date="1461791112392" expanded="true" signature="1531:2180" placeholder="{...}" />
+                <marker date="1461791112392" expanded="true" signature="1763:2164" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,7 +136,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="deployment" />
+        <entry key="$PROJECT_DIR$" value="experimental" />
       </map>
     </option>
   </component>
@@ -841,7 +842,7 @@
       <workItem from="1461143411413" duration="17000" />
       <workItem from="1461785629616" duration="84000" />
       <workItem from="1461785780404" duration="3188000" />
-      <workItem from="1461789030875" duration="2050000" />
+      <workItem from="1461789030875" duration="2159000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1461003836666</created>
@@ -864,11 +865,18 @@
       <option name="project" value="LOCAL" />
       <updated>1461070011657</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="angular login/register page done">
+      <created>1461791112804</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1461791112804</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11197000" />
+    <option name="totallyTimeSpent" value="11306000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="744" extended-state="6" />
@@ -920,7 +928,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="angular login/register page done" />
+    <option name="LAST_COMMIT_MESSAGE" value="angular login/register page done" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1283,8 +1292,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
-          <caret line="35" column="82" selection-start-line="35" selection-start-column="82" selection-end-line="35" selection-end-column="82" />
-          <folding />
+          <caret line="33" column="82" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
+          <folding>
+            <marker date="1461791111768" expanded="false" signature="36:544" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1292,14 +1303,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
-          <folding />
+          <folding>
+            <marker date="1461791112392" expanded="true" signature="1531:2180" placeholder="{...}" />
+            <marker date="1461791112392" expanded="true" signature="1763:2164" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/loginPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        <state relative-caret-position="288">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
           <folding />
         </state>
       </provider>
