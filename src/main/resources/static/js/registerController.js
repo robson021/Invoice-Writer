@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("registerCtrl", function ($scope, $http, $mdSidenav) {
+        .controller("registerCtrl", function ($scope, $http, $mdSidenav, $mdToast) {
             $scope.myData = null;
             $scope.user = {
                 firstname: "",
@@ -35,6 +35,7 @@
                     console.error("passwords do not match");
                     $scope.message.text = 'Passwords do not match!';
                 }
+                $scope.openToast();
             }
 
             $scope.loginFunction = function () {
@@ -48,13 +49,20 @@
                     if (data.result) {
                         console.info("ok!")
                         $scope.myData = data;
+                        console.info("Data form the server:");
                         console.info($scope.myData);
                     } else {
                         console.error("failed to login")
                     }
                     $scope.message.text = data.text;
                 });
+                $scope.openToast();
             }
+
+            $scope.openToast = function ($event) {
+                $mdToast.show($mdToast.simple().textContent($scope.message.text));
+                //$mdToast.showSimple(message.text);
+            };
 
             $scope.openSidebar = function () {
                 $mdSidenav('left').open();
