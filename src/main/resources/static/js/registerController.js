@@ -12,7 +12,7 @@
             };
 
             $scope.message = {
-                text: "You are not registered yet."
+                text: "Failed"
             };
 
 
