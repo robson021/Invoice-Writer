@@ -109,6 +109,14 @@ public class User extends AbstractEntity {
         return password;
     }
 
+    public String getPasswdAsString() {
+        String s = "";
+        for (char c : this.password) {
+            s += c;
+        }
+        return s;
+    }
+
     public void setPassword(char[] password) {
         this.password = password;
     }

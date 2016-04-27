@@ -2,10 +2,9 @@ package robert.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import robert.entities.User;
 import robert.responses.simpleentities.DataHolderResponse;
@@ -25,21 +24,31 @@ public class LoginController {
     private DbService dbService;
 
 
-    @RequestMapping("/")
-    public ResponseEntity<DataHolderResponse> logUserIn(@RequestBody SimpleUser user) {
+    @RequestMapping(value = "/loguser", method = RequestMethod.POST)
+    public DataHolderResponse logUserIn(@RequestBody SimpleUser user) {
+        logger.info("Login request\n" + user.toString());
         User dbUser = null;
         DataHolderResponse holder = new DataHolderResponse();
         dbUser = dbService.findUserByEmail(user.getEmail());
-        if (dbUser != null && user.getPassword().equals(dbUser.getPassword())) {
+        if (dbUser != null) {
+            if (dbUser.getPasswdAsString().trim().equals(user.getPassword().trim())) {
+                logger.info("passwords ok!");
+            } else {
+                logger.error("passwords do not match");
+                holder.setText("Invalid passwords.");
+                return holder;
+            }
             holder.setServices(dbUser.getSimpleServices());
             holder.setContractors(dbUser.getSimpleContractors());
             holder.setSalesmen(dbUser.getSimpleSalesmen());
             holder.setResult(true);
+            holder.setText("You are logged in!");
         } else {
             logger.info("Invalid data. User not found.");
+            holder.setText("User with given email does not exist.");
         }
 
-        return new ResponseEntity<DataHolderResponse>(holder, HttpStatus.OK);
+        return holder;
     }
 
 }

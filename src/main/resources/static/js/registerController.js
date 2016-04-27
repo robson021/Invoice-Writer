@@ -1,7 +1,8 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("registerCtrl", function ($scope, $http) {
+        .controller("registerCtrl", function ($scope, $http, $mdSidenav) {
+            $scope.myData = null;
             $scope.user = {
                 firstname: "",
                 surname: "",
@@ -25,6 +26,7 @@
                     ajax.success(function (data) {
                         if (data.result) {
                             $scope.message.text = 'You are registered. ' + data.text;
+                            $mdSidenav('left').close();
                         } else {
                             $scope.message.text = 'Registration failed. ' + data.text;
                         }
@@ -33,6 +35,32 @@
                     console.error("passwords do not match");
                     $scope.message.text = 'Passwords do not match!';
                 }
+            }
+
+            $scope.loginFunction = function () {
+                var u = $scope.user;
+                console.info("login button clicked");
+                console.info(u);
+
+                var ajax = $http.post('/login/loguser', u);
+                ajax.success(function (data) {
+                    console.info(data)
+                    if (data.result) {
+                        console.info("ok!")
+                        $scope.myData = data;
+                        console.info($scope.myData);
+                    } else {
+                        console.error("failed to login")
+                    }
+                    $scope.message.text = data.text;
+                });
+            }
+
+            $scope.openSidebar = function () {
+                $mdSidenav('left').open();
+            }
+            $scope.closeSidebar = function () {
+                $mdSidenav('left').close();
             }
         });
 })();
