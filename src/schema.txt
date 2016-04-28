@@ -37,3 +37,16 @@ backend:
     -przesyłanie obrazów (logo firmy u mieszczane na gotowej fakturze - miejsce na pieczątkę)
 
 5. Ostateczny wygląd strony, generowanie gotowego pliku pdf i jego przesłanie do klienta.
+
+
+//praca
+system gdzie mozna zakladac konta i na taj podstawie miec dostep do tego systemu
+-admini
+-prowadzacy
+-gosice
+-studenci
+
+pobieranie aplikacji
+
+sale i projektory - uprawnienia, wyklucznia [webservice]
+rezerwacje, jednorazowe kody - tokeny

@@ -11,6 +11,8 @@ import robert.responses.simpleentities.DataHolderResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by robert on 09.04.16.
  */
@@ -25,9 +27,15 @@ public class LoginController {
 
 
     @RequestMapping(value = "/loguser", method = RequestMethod.POST)
-    public DataHolderResponse logUserIn(@RequestBody SimpleUser user) {
+    public DataHolderResponse logUserIn(@RequestBody SimpleUser user, HttpSession session) {
+
+        String tmp = (String) session.getAttribute("user");
+
+        // TODO: 28.04.16 user agent
+
         logger.info("Login request\n" + user.toString());
         User dbUser = null;
+        session.setAttribute("user", "test");
         DataHolderResponse holder = new DataHolderResponse();
         dbUser = dbService.findUserByEmail(user.getEmail());
         if (dbUser != null) {
