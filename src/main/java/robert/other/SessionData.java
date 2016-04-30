@@ -9,7 +9,8 @@ import java.util.Date;
 
 //@Component
 public class SessionData {
-    private String email;
+    private String email; // TODO: 30.04.16 make email final and make proper bean constructor
+    private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
 
     public SessionData() {
@@ -28,6 +29,8 @@ public class SessionData {
     }
 
     public void setEmail(String email) {
+        if (emailSetted) throw new RuntimeException("Email already setted!");
+        emailSetted = true;
         this.email = email;
     }
 

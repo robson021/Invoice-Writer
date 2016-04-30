@@ -7,6 +7,13 @@ public class BasicResponse /*implements Serializable*/ {
     private String text = null;
     private boolean result = false;
 
+    public BasicResponse(String text) {
+        this.text = text;
+    }
+
+    public BasicResponse() {
+    }
+
     public boolean isResult() {
         return result;
     }
