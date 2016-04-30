@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import robert.InvoiceWriterApplication;
 import robert.entities.User;
+import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.responses.simpleentities.SimpleUser;
@@ -23,6 +25,7 @@ public class LoginController {
 
     private static final Logger logger = Logger.getLogger(LoginController.class);
 
+
     @Autowired
     private DbService dbService;
 
@@ -30,21 +33,26 @@ public class LoginController {
     @RequestMapping(value = "/loguser", method = RequestMethod.POST)
     public BasicResponse logUserIn(@RequestBody SimpleUser user, HttpSession session) {
 
-        // TODO: 28.04.16 user agent
+        // TODO: 28.04.16 user agent?
 
         logger.info("Login request\n" + user.toString());
         User dbUser = null;
         dbUser = dbService.findUserByEmail(user.getEmail().trim());
 
         if (dbUser != null) {
-            if (session.getAttribute(user.getEmail()) != null) {
-                logger.info("Session is still active. " + user.getEmail());
+            if (!session.isNew()) { // old session
+                logger.info("Session is still active.\n" + session.getAttribute(user.getEmail()).toString() +
+                        "\nSession id: " + session.getId());
                 DataHolderResponse holder = generateHolder(dbUser);
                 holder.setText("Session is still active.");
                 return holder;
-            } else if (dbUser.getPasswdAsString().trim().equals(user.getPassword().trim())) {
+            } else if (dbUser.getPasswdAsString().equals(user.getPassword())) { // new session
                 logger.info("passwords ok!");
-                session.setAttribute(user.getEmail(), new Object()); // TODO: 30.04.16 set other class
+                // session bean
+                SessionData data = InvoiceWriterApplication.ctx.getBean("sessionData", SessionData.class);
+                data.setEmail(dbUser.getEmail());
+                session.setAttribute(dbUser.getEmail(), data);
+                logger.info("Session info: " + data.toString());
                 return this.generateHolder(dbUser);
             } else {
                 BasicResponse response = new BasicResponse();

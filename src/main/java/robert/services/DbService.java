@@ -4,9 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import robert.entities.*;
-import robert.repositories.ContractorRepository;
-import robert.repositories.SalesmanRepository;
-import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
@@ -26,12 +23,13 @@ public class DbService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
+
+   /* @Autowired
     private ServiceRepository serviceRepository;
     @Autowired
     private ContractorRepository contractorRepository;
     @Autowired
-    private SalesmanRepository salesmanRepository;
+    private SalesmanRepository salesmanRepository;*/
 
     private static long exampleUserId;
     private static String exampleUserEmail;
@@ -93,7 +91,13 @@ public class DbService {
         exampleUserId = user1.getId();
         exampleUserEmail = user1.getEmail();
 
-        //User dbUser = userRepository.findByEmail(new EmailAddress(email));
+        passwd = new char[]{'a', 'a'};
+        User user2 = new User("Aaa", "Bbb", new EmailAddress("aa@aa.pl"), passwd);
+        this.saveUser(user2);
+
+        passwd = new char[]{'b', 'b'};
+        this.saveUser(new User("Bbb", "Aaa", new EmailAddress("bb@bb.pl"), passwd));
+
     }
 
     public static long getExampleUserId() {
