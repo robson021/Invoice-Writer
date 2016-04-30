@@ -21,21 +21,21 @@
                 console.info($scope.user);
                 if ($scope.user.password === $scope.user.repassword) {
                     console.info("passwords ok")
-                    //$scope.message.text = 'Failed to register new account.';
                     var ajax = $http.post('/register/newuser', $scope.user);
                     ajax.success(function (data) {
+                        $scope.message.text = data.text;
                         if (data.result) {
-                            $scope.message.text = 'You are registered. ' + data.text;
                             $mdSidenav('left').close();
+                            $scope.openToast();
                         } else {
-                            $scope.message.text = 'Registration failed. ' + data.text;
+                            $scope.openToast();
                         }
                     });
                 } else {
                     console.error("passwords do not match");
                     $scope.message.text = 'Passwords do not match!';
+                    $scope.openToast();
                 }
-                $scope.openToast();
             }
 
             $scope.loginFunction = function () {
@@ -45,18 +45,20 @@
 
                 var ajax = $http.post('/login/loguser', u);
                 ajax.success(function (data) {
-                    console.info(data)
+                    $scope.message.text = data.text;
                     if (data.result) {
+                        u.password = "";
+                        u.repassword = "";
                         console.info("ok!")
                         $scope.myData = data;
                         console.info("Data form the server:");
                         console.info($scope.myData);
+                        $scope.openToast();
                     } else {
                         console.error("failed to login")
+                        $scope.openToast();
                     }
-                    $scope.message.text = data.text;
                 });
-                $scope.openToast();
             }
 
             $scope.openToast = function ($event) {
