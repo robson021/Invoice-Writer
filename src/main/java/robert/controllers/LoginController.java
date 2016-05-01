@@ -38,7 +38,7 @@ public class LoginController {
         logger.info("Login request\n" + user.toString());
         User dbUser = null;
 
-        if (!session.isNew()) { // old session
+        if (session.getAttribute(session.getId()) != null) { // old session, user was successfully logged in
             try {
                 logger.info("Session is still active.\n" + session.getAttribute(session.getId()).toString() +
                         "\nSession id: " + session.getId());
@@ -53,9 +53,10 @@ public class LoginController {
             return holder;
         }
 
-        dbUser = dbService.findUserByEmail(user.getEmail());
 
-        if (dbUser != null) { // new session
+        // new session
+        dbUser = dbService.findUserByEmail(user.getEmail());
+        if (dbUser != null) {
             if (dbUser.getPasswdAsString().equals(user.getPassword())) {
                 logger.info("passwords ok!");
 

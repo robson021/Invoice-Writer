@@ -27,7 +27,6 @@ public abstract class AbstractPerson extends AbstractEntity {
     public AbstractPerson(String name, String surname, String companyName, String streetName, String homeNo,
                           String postCode, String city, String nipNo) {
 
-        super();
         this.name = name;
         this.surname = surname;
         this.companyName = companyName;
