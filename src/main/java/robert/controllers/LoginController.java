@@ -37,23 +37,26 @@ public class LoginController {
 
         logger.info("Login request\n" + user.toString());
         User dbUser = null;
-        dbUser = dbService.findUserByEmail(user.getEmail().trim());
 
-        if (dbUser != null) {
-            if (!session.isNew()) { // old session
-                try {
-                    logger.info("Session is still active.\n" + session.getAttribute(session.getId()).toString() +
-                            "\nSession id: " + session.getId());
-                } catch (Exception e) {
-                    logger.error("Session print exception. " + dbUser.getEmail());
-                    return new BasicResponse("Session error");
-                }
-                SessionData data = (SessionData) session.getAttribute(session.getId());
-                dbUser = dbService.findUserByEmail(data.getEmail());
-                DataHolderResponse holder = generateHolder(dbUser);
-                holder.setText("Session is still active.");
-                return holder;
-            } else if (dbUser.getPasswdAsString().equals(user.getPassword())) { // new session
+        if (!session.isNew()) { // old session
+            try {
+                logger.info("Session is still active.\n" + session.getAttribute(session.getId()).toString() +
+                        "\nSession id: " + session.getId());
+            } catch (Exception e) {
+                logger.error("Session print exception. " + user.getEmail());
+                return new BasicResponse("Session error");
+            }
+            SessionData data = (SessionData) session.getAttribute(session.getId());
+            dbUser = dbService.findUserByEmail(data.getEmail());
+            DataHolderResponse holder = generateHolder(dbUser);
+            holder.setText("Session is still active.");
+            return holder;
+        }
+
+        dbUser = dbService.findUserByEmail(user.getEmail());
+
+        if (dbUser != null) { // new session
+            if (dbUser.getPasswdAsString().equals(user.getPassword())) {
                 logger.info("passwords ok!");
 
                 // session bean
