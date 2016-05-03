@@ -10,8 +10,7 @@
 </head>
 <body ng-app="ngApp" ng-cloak="">
 
-<!-- HIDES AFRER LOGIN -->
-<div ng-controller="register-login-ctr" ng-hide="hideRegisterLogin">
+
 
 <!-- md toolbar -->
     <md-toolbar ng-controller="toolbar-ctr">
@@ -29,6 +28,9 @@
         <md-button ui-sref="teststate">Test Button</md-button>
     </div>
 </md-toolbar>
+
+<!-- HIDES AFRER LOGIN -->
+<div ng-controller="register-login-ctr" ng-hide="hideRegisterLogin">
 
     <!--
     <ui-view></ui-view>
@@ -98,6 +100,9 @@
 
 </div>
 </div>
+
+<!--APPEARS AFTER LOGIN TODO -->
+
 
 
 <!-- Angular Material requires Angular.js Libraries -->

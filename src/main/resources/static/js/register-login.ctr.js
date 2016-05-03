@@ -3,6 +3,7 @@
     angular.module("ngApp")
         .controller("register-login-ctr", function ($scope, $http, $mdSidenav, $mdToast) {
             $scope.hideRegisterLogin = false;
+            $scope.hideMainApp = true;
             $scope.myData = null;
             $scope.user = {
                 firstname: "",
