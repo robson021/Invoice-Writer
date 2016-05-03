@@ -2,6 +2,7 @@ package robert.other;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by robert on 30.04.16.
@@ -9,6 +10,8 @@ import java.util.Date;
 
 //@Component
 public class SessionData {
+    private static final AtomicInteger idCounter = new AtomicInteger(0);
+    private final int id = idCounter.incrementAndGet();
     private String email; // TODO: 30.04.16 make email final and make proper bean constructor
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
@@ -34,10 +37,15 @@ public class SessionData {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "SessionData{" +
-                "email='" + email + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
                 ", time=" + time.toString() +
                 '}';
     }

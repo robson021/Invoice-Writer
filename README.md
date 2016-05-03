@@ -1,3 +1,4 @@
 # Invoice-Writer
 
-Web application for writing invoices. Spring + AngularJS
+Web application for writing invoices.
+Spring + AngularJS

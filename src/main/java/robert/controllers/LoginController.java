@@ -2,11 +2,11 @@ package robert.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import robert.InvoiceWriterApplication;
 import robert.entities.User;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
@@ -25,6 +25,8 @@ public class LoginController {
 
     private static final Logger logger = Logger.getLogger(LoginController.class);
 
+    @Autowired
+    private ApplicationContext ctx;
 
     @Autowired
     private DbService dbService;
@@ -40,8 +42,8 @@ public class LoginController {
 
         if (session.getAttribute(session.getId()) != null) { // old session, user was successfully logged in
             try {
-                logger.info("Session is still active.\n" + session.getAttribute(session.getId()).toString() +
-                        "\nSession id: " + session.getId());
+                logger.info("Session is still active.\n\t" + session.getAttribute(session.getId()).toString() +
+                        "\n\tSession id: " + session.getId());
             } catch (Exception e) {
                 logger.error("Session print exception. " + user.getEmail());
                 return new BasicResponse("Session error");
@@ -55,13 +57,18 @@ public class LoginController {
 
 
         // new session
-        dbUser = dbService.findUserByEmail(user.getEmail());
+        try {
+            dbUser = dbService.findUserByEmail(user.getEmail());
+        } catch (Exception e) {
+            logger.error("Invalid e-mail pattern.");
+            return new BasicResponse("Invalid e-mail pattern.");
+        }
         if (dbUser != null) {
             if (dbUser.getPasswdAsString().equals(user.getPassword())) {
                 logger.info("passwords ok!");
 
                 // session bean
-                SessionData data = InvoiceWriterApplication.ctx.getBean("sessionData", SessionData.class);
+                SessionData data = ctx.getBean("sessionData", SessionData.class);
                 data.setEmail(dbUser.getEmail());
                 session.setAttribute(session.getId(), data);
                 logger.info("Session info: " + data.toString());
