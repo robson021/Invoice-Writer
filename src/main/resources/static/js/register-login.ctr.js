@@ -1,7 +1,8 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("registerCtrl", function ($scope, $http, $mdSidenav, $mdToast) {
+        .controller("register-login-ctr", function ($scope, $http, $mdSidenav, $mdToast) {
+            $scope.hideRegisterLogin = false;
             $scope.myData = null;
             $scope.user = {
                 firstname: "",
@@ -49,11 +50,12 @@
                     if (data.result) {
                         u.password = "";
                         u.repassword = "";
-                        console.info("ok!")
+                        //console.info("ok!")
                         $scope.myData = data;
                         console.info("Data form the server:");
                         console.info($scope.myData);
                         $scope.openToast();
+                        $scope.hideRegisterLogin = true;
                     } else {
                         console.error("failed to login")
                         $scope.openToast();
