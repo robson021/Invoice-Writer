@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import robert.entities.*;
-import robert.responses.BasicResponse;
+import robert.entities.Contractor;
+import robert.entities.Salesman;
+import robert.entities.TheService;
+import robert.entities.User;
+import robert.other.DefaultLogger;
 import robert.responses.Greetings;
-import robert.responses.UserDataResponse;
-import robert.responses.simpleentities.*;
+import robert.responses.simpleentities.DataHolderResponse;
+import robert.responses.simpleentities.SimpleContractor;
+import robert.responses.simpleentities.SimpleSalesman;
+import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
 
 import java.util.ArrayList;
@@ -27,8 +32,12 @@ public class TestController {
     @Autowired
     private DbService dbService;
 
+    @Autowired
+    private DefaultLogger logger;
+
     @RequestMapping(value = "/greetings", method = RequestMethod.GET)
     public List<Greetings> getGreetings() {
+        logger.info("greetings test");
         Greetings greetings = new Greetings();
         List<Greetings> greetingsList = new ArrayList<>();
         greetingsList.add(greetings);
@@ -41,56 +50,9 @@ public class TestController {
         return greetingsList;
     }
 
-    @RequestMapping(value = "/greetings", method = RequestMethod.POST)
-    public BasicResponse postGreetings(@RequestBody String greetings) {
-        System.out.println(greetings.toString());
-        BasicResponse response = new BasicResponse();
-        response.setResult(true);
-        return response;
-    }
-
-
-    @RequestMapping(value = "/getuserdata")
-    public UserDataResponse getTestUser() {
-        System.out.println("GET on: /test/getuserdata");
-        User user = dbService.findUserByEmail(new EmailAddress(DbService.getExampleUserEmail()));
-        System.out.println("Test user found:\n" + user.toString());
-        return new UserDataResponse(user);
-
-    }
-
-    @RequestMapping(value = "/getusers")
-    public ResponseEntity<User> getExampleUsers() {
-        User user = dbService.findUserByEmail(new EmailAddress(DbService.getExampleUserEmail()));
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/getcontractors_string")
-    public String getExampleContractorsAsString() {
-        User user = dbService.findUserByEmail(new EmailAddress(DbService.getExampleUserEmail()));
-        System.out.println("Contractors as string:\n" + user.getContractorsAsString());
-        return user.getContractorsAsString();
-    }
-
-    @RequestMapping(value = "/getsimplecontractors")
-    public List<SimpleContractor> getSimpleContractorsList() {
-        List<SimpleContractor> contractors = new ArrayList<>();
-        contractors.add(new SimpleContractor());
-        contractors.add(new SimpleContractor());
-        contractors.add(new SimpleContractor());
-        contractors.add(new SimpleContractor());
-
-        return contractors;
-    }
-
-    @RequestMapping(value = "/getsimpleusers")
-    public ResponseEntity<SimpleUser> getSimpleUser() {
-        SimpleUser user = new SimpleUser(dbService.findUserByEmail(DbService.getExampleUserEmail()));
-        return new ResponseEntity<SimpleUser>(user, HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/dataholder")
-    public ResponseEntity<DataHolderResponse> getExampleDataHolder() {
+    public ResponseEntity<?> getExampleDataHolder() {
+        logger.info("data holder get test");
         User user = dbService.findUserByEmail(DbService.getExampleUserEmail());
 
         List<SimpleContractor> simpleContractors = new ArrayList<>();
@@ -112,12 +74,12 @@ public class TestController {
         holder.setSalesmen(simpleSalesmen);
         holder.setServices(simpleServices);
 
-        return new ResponseEntity<DataHolderResponse>(holder, HttpStatus.OK);
+        return new ResponseEntity<>(holder, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/dataupdate", method = RequestMethod.POST)
-    public ResponseEntity<String> postDataToUpdate(@RequestBody DataHolderResponse holder) {
-        System.out.println(holder.toString());
-        return new ResponseEntity<String>("updated", HttpStatus.OK);
+    public ResponseEntity<?> postDataToUpdate(@RequestBody DataHolderResponse holder) {
+        logger.info(holder.toString());
+        return new ResponseEntity<>("updated", HttpStatus.OK);
     }
 }

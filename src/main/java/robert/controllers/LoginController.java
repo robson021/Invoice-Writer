@@ -37,7 +37,7 @@ public class LoginController {
 
         // TODO: 28.04.16 user agent?
 
-        logger.info("Login request\n" + user.toString());
+        logger.info("Login request\t" + user.toString());
         User dbUser = null;
 
         if (session.getAttribute(session.getId()) != null) { // old session, user was successfully logged in
@@ -60,7 +60,7 @@ public class LoginController {
         try {
             dbUser = dbService.findUserByEmail(user.getEmail());
         } catch (Exception e) {
-            logger.error("Invalid e-mail pattern.");
+            //logger.error("Invalid e-mail pattern.");
             return new BasicResponse("Invalid e-mail pattern.");
         }
         if (dbUser != null) {

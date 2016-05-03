@@ -1,8 +1,10 @@
 package robert.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import robert.other.DefaultLogger;
 import robert.other.SessionData;
 
 /**
@@ -11,10 +13,13 @@ import robert.other.SessionData;
 @Configuration
 public class OtherBeans {
 
+    @Autowired
+    private DefaultLogger logger;
+
     @Bean
     @Scope(value = "session")
     public SessionData sessionData() {
-        System.out.println("session bean init");
+        logger.info("Session bean init");
         return new SessionData();
     }
 }
