@@ -23,10 +23,15 @@
         <md-button ng-click="">
             Author
         </md-button>
+        <md-button ui-sref="teststate">Test Button</md-button>
     </div>
 </md-toolbar>
 
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+<ui-view></ui-view>
+
+<div class="login-register">
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
     <md-toolbar>
         <h1 class="md-toolbar-tools">Register new user</h1>
     </md-toolbar>
@@ -86,6 +91,8 @@
     </md-button>
 </form>
 
+</div>
+
 <br>
 
 
@@ -94,6 +101,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+<!-- route provider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
 
 <!-- Angular Material Library -->
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
