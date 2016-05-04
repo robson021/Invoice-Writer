@@ -13,19 +13,19 @@
 
 
 <!-- md toolbar -->
-<md-toolbar ng-controller="register-login-ctr">
+<md-toolbar ng-controller="toolbar-ctr">
     <div class="md-toolbar-tools">
         <p><strong>Navigation:</strong></p>
-        <md-button ng-click="openSidebar()">
-            Register
-        </md-button>
+        <!--<md-button ng-click="rButtonFun()"> //todo: fix it
+            {{buttonRegisterTest.text}}
+        </md-button>-->
         <md-button ng-click="">
             About application
         </md-button>
         <md-button ng-click="">
             Author
         </md-button>
-        <md-button ui-sref="teststate">Test Button</md-button>
+        <md-button ng-disabled="" class="md-raised md-warn" ng-click="callLogout();">Logout</md-button>
     </div>
 </md-toolbar>
 
@@ -36,7 +36,7 @@
     <ui-view></ui-view>
     -->
 
-    <div class="login-register-forms">
+    <div class="login-register-forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
     <md-toolbar>
@@ -119,6 +119,7 @@
 
 <!-- my -->
 <script src="js/app.js"></script>
+<script src="js/toolbar.ctr.js"></script>
 <script src="js/register-login.ctr.js"></script>
 </body>
 </html>

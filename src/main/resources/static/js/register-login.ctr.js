@@ -17,6 +17,36 @@
                 text: "Failed"
             };
 
+            $scope.isLoggedIn = false;
+
+            $scope.buttonRegisterTest = {
+                text: "register"
+            };
+            var u = $scope.user;
+            var rButton = $scope.buttonRegisterTest;
+            var isLoggedIn = $scope.isLoggedIn;
+
+            /*$scope.rButtonFun = function () { // todo: variables don't not change their values
+             console.info("isLoggedIn: " + isLoggedIn)
+             if (isLoggedIn == true) {
+             console.info("logout function");
+             var ajax = $http.post('/login/logout', u);
+             ajax.success(function (data) {
+             console.info(data);
+             if (data.result) {        
+             console.info("successful logout")
+             }
+             rButton.text = "register";
+             $scope.message.text = data.text;
+             $scope.openToast();
+             })
+             isLoggedIn = false;
+             } else {
+             console.info("rbutton: opening sidebar")
+             $scope.openSidebar();
+             }
+             }*/
+
 
             $scope.registerFunction = function () {
                 console.info("register button clicked");
@@ -41,7 +71,6 @@
             }
 
             $scope.loginFunction = function () {
-                var u = $scope.user;
                 console.info("login button clicked");
                 console.info(u);
 
@@ -51,12 +80,15 @@
                     if (data.result) {
                         u.password = "";
                         u.repassword = "";
-                        //console.info("ok!")
+                        $scope.hideRegisterLogin = true; // todo: why does it auto swap to false?
                         $scope.myData = data;
                         console.info("Data form the server:");
                         console.info($scope.myData);
                         $scope.openToast();
-                        $scope.hideRegisterLogin = true;
+                        rButton.text = "logout";
+                        console.info("ok!")
+                        console.info("hide register/login: " + $scope.hideRegisterLogin);
+                        isLoggedIn = true;
                     } else {
                         console.error("failed to login")
                         $scope.openToast();

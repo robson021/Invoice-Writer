@@ -88,6 +88,20 @@ public class LoginController {
         }
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public BasicResponse logoutUser(@RequestBody SimpleUser user, HttpSession session) {
+        BasicResponse response = new BasicResponse();
+        logger.info("Logout request:\n\t" + session.getAttribute(session.getId()).toString());
+        if (!session.isNew()) { // still active
+            session.invalidate();
+            response.setResult(true);
+            response.setText("You are logged out.");
+        } else {
+            response.setText("Session already expired");
+        }
+        return response;
+    }
+
     private DataHolderResponse generateHolder(User dbUser) {
         DataHolderResponse holder = new DataHolderResponse();
         holder.setServices(dbUser.getSimpleServices());

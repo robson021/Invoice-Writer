@@ -1,5 +1,8 @@
-angular.module("ngApp", ['ngMaterial'])
+angular
+    .module("ngApp", ['ngMaterial']);
 
+
+//var app = module.("ngApp");
 
 // adding ui.router disables all the view
 /*
