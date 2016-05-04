@@ -17,6 +17,9 @@
         <!--<md-button ng-click="rButtonFun()"> //todo: fix it
             {{buttonRegisterTest.text}}
         </md-button>-->
+        <md-button ng-click="mainView()">
+            main view
+        </md-button>
         <md-button ng-click="aboutAppFun()">
             About application
         </md-button>
@@ -100,9 +103,10 @@
 </div>
 
 <!--APPEARS AFTER LOGIN TODO -->
-<div ng-controller="main-app-ctr">
+<!--<div ng-controller="main-app-ctr">
+</div>-->
 <ui-view></ui-view>
-</div>
+
 
 <!-- Angular Material requires Angular.js Libraries -->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>

@@ -4,6 +4,10 @@ angular
 
 
         $stateProvider
+            .state('default', {
+                url: '/',
+                template: null
+            })
             .state('t1', {
                 url: '/t1',
                 template: '<h1>test 1</h1>'
@@ -23,12 +27,12 @@ angular
             .state('about-app', {
                 url: '/about-app',
                 templateUrl: 'about-app.tpl.html',
-                controller: 'other-views-ctr'
+                controller: 'toolbar.ctr.js'
             })
             .state('about-author', {
                 url: '/about-author',
                 templateUrl: 'about-author.tpl.html',
-                controller: 'other-views-ctr'
+                controller: 'toolbar-ctr'
             }); // end of state provider
 
     }); //end of config
