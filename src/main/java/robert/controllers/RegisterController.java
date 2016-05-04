@@ -29,7 +29,12 @@ public class RegisterController {
         logger.info("New user request");
         BasicResponse response = new BasicResponse();
         User u = null;
-        u = dbService.findUserByEmail(user.getEmail());
+        try {
+            u = dbService.findUserByEmail(user.getEmail());
+        } catch (Exception e) {
+            response.setText("Invalid e-mail pattern.");
+            return response;
+        }
         if (u == null) {
             System.out.println(user.toString());
             u = new User(user);
