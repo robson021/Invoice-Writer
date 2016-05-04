@@ -5,7 +5,7 @@ package robert.controllers;
  */
 
 //@Controller
-public class HomeController {
+public class HomeController { /* no template engines are used - index.html is default view */
 
     /*@RequestMapping(value = {"/", "/home", "/start", "/index"})
     public String goHome() {

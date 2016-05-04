@@ -1,9 +1,9 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($scope, $http, $mdSidenav, $mdToast) {
+        .controller("main-app-ctr", function ($scope) {
 
-            $scope.testText = "dadsadada'";
+            $scope.testText = "test text binded to model";
 
         });
 })();
