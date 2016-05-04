@@ -22,13 +22,21 @@
                 logoutUser: logoutUser
             }
         })
-    /*.factory("toastFactory", function (msg) {
-     function showToast(msg) {
-     return $mdToast.show($mdToast.simple().textContent(msg));
-     }
-     return {
-     showToast : showToast
-     }
-     })*/;
+        .factory("logInOrLogOutFactory", function () {
+            var isLoggedIn = false;
 
+            function setLogged(tof) {
+                isLoggedIn = tof;
+            }
+
+            function isLoggedIn() {
+                if (isLoggedIn) return true;
+                return false;
+            }
+
+            return {
+                setLogged: setLogged,
+                isLoggedIn: isLoggedIn
+            }
+        });
 })();

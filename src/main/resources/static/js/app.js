@@ -1,24 +1,21 @@
 angular
-    .module("ngApp", ['ngMaterial']);
+    .module("ngApp", ['ngMaterial', 'ui.router'])
+    .config(function ($stateProvider) {
 
 
-//var app = module.("ngApp");
+        $stateProvider
+            .state('t1', {
+                url: '/t1',
+                template: '<h1>test 1</h1>'
+            })
+            .state('t2', {
+                url: '/t2',
+                template: '<h1>test 2</h1>'
+            })
+            .state('t3', {
+                url: '/t3',
+                templateUrl: 'test.tpl.html'
+            }); // end of state provider
 
-// adding ui.router disables all the view
-/*
- angular.module("ngApp", ['ngMaterial', 'ui.router'])
- .config(function ($stateProvider) {
- $stateProvider
- .state('first', {
- url: '/login-register',
- template: '<h4>Test state 1</h4>'
- })
- .state('secound', {
- url: '/test',
- template: '<h4>Test state 2</h4>'
- })
+    }); //end of config
 
-
-
- })
- */

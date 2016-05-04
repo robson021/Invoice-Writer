@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("register-login-ctr", function ($scope, $http, $mdSidenav, $mdToast) {
+        .controller("register-login-ctr", function ($scope, $http, $mdSidenav, $mdToast, logInOrLogOutFactory) {
             $scope.hideRegisterLogin = false;
             $scope.hideMainApp = true;
             $scope.myData = null;
@@ -85,6 +85,8 @@
                         rButton.text = "logout";
                         console.info("ok!")
                         console.info("hide register/login: " + $scope.hideRegisterLogin);
+                        logInOrLogOutFactory.setLogged(true);
+                        console.info("is user logged in? " + logInOrLogOutFactory.isLoggedIn())
                     } else {
                         console.error("failed to login")
                         $scope.openToast();

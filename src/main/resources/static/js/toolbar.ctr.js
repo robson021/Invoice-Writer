@@ -1,12 +1,13 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("toolbar-ctr", function ($scope, logoutFactory /*,toastFactory*/) {
+        .controller("toolbar-ctr", function ($scope, logoutFactory, logInOrLogOutFactory /*,toastFactory*/) {
 
 
-            $scope.logout = function () {
+            $scope.logout = function () { //todo: watcher - enabled/disabled button
                 console.info("logout button clicked");
                 logoutFactory.logoutUser();
+                logInOrLogOutFactory.setLogged(false);
             }
 
         });
