@@ -29,4 +29,12 @@ public class BasicResponse /*implements Serializable*/ {
     public void setResult(boolean result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "BasicResponse{" +
+                "text='" + text + '\'' +
+                ", result=" + result +
+                '}';
+    }
 }

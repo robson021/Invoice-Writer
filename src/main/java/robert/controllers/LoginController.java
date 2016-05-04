@@ -88,17 +88,24 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public BasicResponse logoutUser(@RequestBody SimpleUser user, HttpSession session) {
+    @RequestMapping(value = "/logout"   /*, method = RequestMethod.POST*/)
+    public BasicResponse logoutUser(/*@RequestBody SimpleUser user,*/ HttpSession session) {
         BasicResponse response = new BasicResponse();
         logger.info("Logout request:\n\t" + session.getAttribute(session.getId()).toString());
-        if (!session.isNew()) { // still active
+        String id = session.getId();
+        if (session.getAttribute(id) != null) { // still active
             session.invalidate();
             response.setResult(true);
             response.setText("You are logged out.");
+            try {
+                logger.info("After calling invalidate method:\n\t" + session.getAttribute(id).toString());
+            } catch (Exception e) {
+                logger.info("exception: could not get session attribute");
+            }
         } else {
             response.setText("Session already expired");
         }
+        logger.info("Returning: " + response.toString());
         return response;
     }
 

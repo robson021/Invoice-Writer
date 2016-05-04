@@ -17,14 +17,11 @@
                 text: "Failed"
             };
 
-            $scope.isLoggedIn = false;
-
             $scope.buttonRegisterTest = {
                 text: "register"
             };
             var u = $scope.user;
             var rButton = $scope.buttonRegisterTest;
-            var isLoggedIn = $scope.isLoggedIn;
 
             /*$scope.rButtonFun = function () { // todo: variables don't not change their values
              console.info("isLoggedIn: " + isLoggedIn)
@@ -88,7 +85,6 @@
                         rButton.text = "logout";
                         console.info("ok!")
                         console.info("hide register/login: " + $scope.hideRegisterLogin);
-                        isLoggedIn = true;
                     } else {
                         console.error("failed to login")
                         $scope.openToast();
