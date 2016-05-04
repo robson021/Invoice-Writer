@@ -31,12 +31,43 @@
 
             function isLoggedIn() {
                 if (isLoggedIn) return true;
-                return false;
+                else return false;
             }
 
             return {
                 setLogged: setLogged,
                 isLoggedIn: isLoggedIn
             }
-        });
+        })
+        .factory("mainInfoFactory", function ($http) {
+            /*return {
+             get:  function(){
+             $http.get('datafiles/text.json'); // this will return a promise to controller
+             }
+             }*/
+
+            function getAppInfo(toDisplay) {
+                var ajax = $http.get('data/about/app');
+                ajax.success(function (data) {
+                    console.info("about app: " + data.title + "\n" + data.text);
+                    toDisplay.title = data.title;
+                    toDisplay.text = data.text;
+                })
+            }
+
+            function getAuthorInfo(toDisplay) {
+                var ajax = $http.get('data/about/author');
+                ajax.success(function (data) {
+                    console.info("about author: " + data.title + "\n" + data.text);
+                    toDisplay.title = data.title;
+                    toDisplay.text = data.text;
+                })
+            }
+
+            return {
+                getAppInfo: getAppInfo,
+                getAuthorInfo: getAuthorInfo
+            }
+
+        }); // factory end
 })();

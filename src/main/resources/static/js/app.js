@@ -15,6 +15,20 @@ angular
             .state('t3', {
                 url: '/t3',
                 templateUrl: 'test.tpl.html'
+            })
+            .state('logged-in', {
+                url: '/logged-in',
+                templateUrl: 'mainapp.tpl.html'
+            })
+            .state('about-app', {
+                url: '/about-app',
+                templateUrl: 'about-app.tpl.html',
+                controller: 'other-views-ctr'
+            })
+            .state('about-author', {
+                url: '/about-author',
+                templateUrl: 'about-author.tpl.html',
+                controller: 'other-views-ctr'
             }); // end of state provider
 
     }); //end of config

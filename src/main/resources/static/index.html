@@ -10,8 +10,6 @@
 </head>
 <body ng-app="ngApp" ng-cloak="">
 
-
-
 <!-- md toolbar -->
 <md-toolbar ng-controller="toolbar-ctr">
     <div class="md-toolbar-tools">
@@ -19,10 +17,10 @@
         <!--<md-button ng-click="rButtonFun()"> //todo: fix it
             {{buttonRegisterTest.text}}
         </md-button>-->
-        <md-button ng-click="">
+        <md-button ng-click="aboutAppFun()">
             About application
         </md-button>
-        <md-button ng-click="">
+        <md-button ng-click="aboutAuthorFun()">
             Author
         </md-button>
         <md-button ng-disabled="" class="md-raised md-warn" ng-click="logout()">Logout</md-button>

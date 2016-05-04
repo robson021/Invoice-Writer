@@ -8,7 +8,16 @@
                 console.info("logout button clicked");
                 logoutFactory.logoutUser();
                 logInOrLogOutFactory.setLogged(false);
+                $scope.hideRegisterLogin = false; // todo
+            }
+            
+            $scope.aboutAppFun = function () {
+
             }
 
-        });
+            $scope.aboutAuthorFun = function () {
+
+            }
+
+        }); // end of ctrl
 })();

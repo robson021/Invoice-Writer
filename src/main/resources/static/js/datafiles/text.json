@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "title": "About author",
+      "text": "Robert Nowak, AGH, 2016"
+    },
+    {
+      "title": "About application",
+      "text": "This is the application for writing invoices.\\n\\nAfter registration you can store your data in the application's database.\\n\\nThat means you have access to it anywhere you have internet connection!"
+    }
+  ]
+}
