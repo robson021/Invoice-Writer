@@ -98,9 +98,10 @@ public class LoginController {
             response.setResult(true);
             response.setText("You are logged out.");
             try {
-                logger.info("After calling invalidate method:\n\t" + session.getAttribute(id).toString());
+                logger.info("After calling invalidate method:");
+                logger.info(session.getAttribute(id).toString());
             } catch (Exception e) {
-                logger.info("exception: could not get session attribute");
+                logger.info("exception: could not get session attribute - session destroyed");
             }
         } else {
             response.setText("Session already expired");
