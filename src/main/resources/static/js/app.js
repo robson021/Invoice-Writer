@@ -22,16 +22,16 @@ angular
             })
             .state('logged-in', {
                 url: '/logged-in',
-                templateUrl: 'mainapp.tpl.html'
+                templateUrl: '/partials/mainapp.tpl.html'
             })
             .state('about-app', {
                 url: '/about-app',
-                templateUrl: 'about-app.tpl.html',
+                templateUrl: '/partials/about-app.tpl.html',
                 controller: 'toolbar.ctr.js'
             })
             .state('about-author', {
                 url: '/about-author',
-                templateUrl: 'about-author.tpl.html',
+                templateUrl: '/partials/about-author.tpl.html',
                 controller: 'toolbar-ctr'
             }); // end of state provider
 
