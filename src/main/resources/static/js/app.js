@@ -1,5 +1,5 @@
 angular
-    .module("ngApp", ['ngMaterial', 'ui.router'])
+    .module("ngApp", ['ngMaterial', 'ui.router', 'ngMessages'])
     .config(function ($stateProvider) {
 
 
@@ -21,6 +21,11 @@ angular
             .state('t3', {
                 url: '/t3',
                 templateUrl: 'test.tpl.html'
+            })
+            .state('test', {  // todo disable on production
+                url: '/test',
+                templateUrl: '/partials/mainapp.tpl.html',
+                controller: 'main-app-ctr'
             })
             .state('logged-in', {
                 url: '/logged-in',
@@ -49,4 +54,5 @@ angular.module('ngApp')
         r.dbData = null;
         //r.isMainViewHidden = true;
         r.isLoggedIn = false;
+        r.loginButtonEnabled = true;
     });

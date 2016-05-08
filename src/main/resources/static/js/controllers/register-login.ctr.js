@@ -71,6 +71,7 @@
                         console.info("ok!")
                         console.info("hide register/login: " + $rootScope.hideRegisterLogin);
                         r.isLoggedIn = true;
+                        r.loginButtonEnabled = false;
                         $state.go('logged-in');
                     } else {
                         console.error("failed to login")

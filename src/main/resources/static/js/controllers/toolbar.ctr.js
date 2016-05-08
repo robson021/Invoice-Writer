@@ -18,7 +18,8 @@
                 console.info("logout button clicked");
                 logoutFactory.logoutUser();
                 $rootScope.isLoggedIn = false;
-                $rootScope.hideRegisterLogin = false; // todo
+                $rootScope.hideRegisterLogin = false;
+                $rootScope.loginButtonEnabled = true;                
                 $state.go('default');
             }
             
@@ -39,7 +40,6 @@
                 if ($rootScope.isLoggedIn) {
                     $state.go('logged-in');
                 } else $state.go('default');
-
             }
 
         }); // end of ctrl

@@ -1,5 +1,22 @@
 <div>
-    this is main app body
     <p>{{rootTest}}</p>
+
+    <div flex layout="row" layout-align="center" style='padding: 60px;'>
+        <md-content>
+            <h4>Date of selling</h4>
+            <md-datepicker ng-model="sellDate" md-placeholder="Enter date"></md-datepicker>
+        </md-content>
+
+        <md-content>
+            <h4>Date of deadline</h4>
+            <md-datepicker ng-model="deadDate" md-placeholder="Enter date"></md-datepicker>
+        </md-content>
+
+    </div>
+
+
+    <div class="test-area">
+        <md-button ng-click="testFun()">test</md-button>
+    </div>
 
 </div>

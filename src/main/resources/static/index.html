@@ -13,11 +13,8 @@
 
 <!-- md toolbar -->
 <md-toolbar ng-controller="toolbar-ctr">
-    <div class="md-toolbar-tools">
+    <div flex layout="row" class="md-toolbar-tools">
         <p><strong>Navigation:</strong></p>
-        <!--<md-button ng-click="rButtonFun()"> //todo: fix it
-            {{buttonRegisterTest.text}}
-        </md-button>-->
         <md-button ng-click="mainView()">
             main view
         </md-button>
@@ -27,16 +24,13 @@
         <md-button ng-click="aboutAuthorFun()">
             Author
         </md-button>
-        <md-button ng-disabled="" class="md-raised md-warn" ng-click="logout()">Logout</md-button>
+        <md-button ng-disabled="loginButtonEnabled" class="md-raised md-warn" ng-click="logout()">Logout</md-button>
     </div>
 </md-toolbar>
 
 <!-- HIDES AFRER LOGIN -->
 <div ng-controller="register-login-ctr" ng-hide="hideRegisterLogin">
 
-    <!--
-    <ui-view></ui-view>
-    -->
 
     <div class="login-register-forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
 
