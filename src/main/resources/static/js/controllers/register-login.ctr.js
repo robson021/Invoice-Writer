@@ -1,10 +1,13 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, logInOrLogOutFactory) {
-            $scope.hideRegisterLogin = false;
+        .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, $state) {
+            $rootScope.hideRegisterLogin = false;
             $scope.hideMainApp = true;
             //$scope.myData = null;
+
+            var r = $rootScope;
+
             $scope.user = {
                 firstname: "",
                 surname: "",
@@ -22,27 +25,6 @@
             };
             var u = $scope.user;
             var rButton = $scope.buttonRegisterTest;
-
-            /*$scope.rButtonFun = function () { // todo: variables don't not change their values
-             console.info("isLoggedIn: " + isLoggedIn)
-             if (isLoggedIn == true) {
-             console.info("logout function");
-             var ajax = $http.post('/login/logout', u);
-             ajax.success(function (data) {
-             console.info(data);
-             if (data.result) {        
-             console.info("successful logout")
-             }
-             rButton.text = "register";
-             $scope.message.text = data.text;
-             $scope.openToast();
-             })
-             isLoggedIn = false;
-             } else {
-             console.info("rbutton: opening sidebar")
-             $scope.openSidebar();
-             }
-             }*/
 
 
             $scope.registerFunction = function () {
@@ -77,7 +59,7 @@
                     if (data.result) {
                         u.password = "";
                         u.repassword = "";
-                        $scope.hideRegisterLogin = true; // todo: why does it auto swap to false?
+                        $rootScope.hideRegisterLogin = true; // todo: why does it auto swap to false?
                         //$scope.myData = data;
 
                         $rootScope.dbData = data;
@@ -87,12 +69,13 @@
                         $scope.openToast();
                         rButton.text = "logout";
                         console.info("ok!")
-                        console.info("hide register/login: " + $scope.hideRegisterLogin);
-                        logInOrLogOutFactory.setLogged(true);
-                        console.info("is user logged in? " + logInOrLogOutFactory.isLoggedIn())
+                        console.info("hide register/login: " + $rootScope.hideRegisterLogin);
+                        r.isLoggedIn = true;
+                        $state.go('logged-in');
                     } else {
                         console.error("failed to login")
                         $scope.openToast();
+                        r.isLoggedIn = false;
                     }
                 });
             }

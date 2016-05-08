@@ -6,8 +6,9 @@ angular
         $stateProvider
             .state('default', {
                 url: '/',
-                templateUrl: '/partials/mainapp.tpl.html',
-                controller: 'main-app-ctr'
+                template: null
+                //templateUrl: '/partials/mainapp.tpl.html',
+                //controller: 'main-app-ctr'
             })
             .state('t1', {
                 url: '/t1',
@@ -23,7 +24,8 @@ angular
             })
             .state('logged-in', {
                 url: '/logged-in',
-                templateUrl: '/partials/mainapp.tpl.html'
+                templateUrl: '/partials/mainapp.tpl.html',
+                controller: 'main-app-ctr'
             })
             .state('about-app', {
                 url: '/about-app',
@@ -42,6 +44,9 @@ angular
 // global data
 angular.module('ngApp')
     .run(function ($rootScope) {
-        $rootScope.rootTest = new Date();
-        $rootScope.dbData = null;
+        var r = $rootScope;
+        r.rootTest = new Date();
+        r.dbData = null;
+        //r.isMainViewHidden = true;
+        r.isLoggedIn = false;
     });

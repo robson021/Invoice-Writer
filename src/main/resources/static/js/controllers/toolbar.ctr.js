@@ -1,9 +1,9 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("toolbar-ctr", function ($scope, $state, logoutFactory, logInOrLogOutFactory, mainInfoFactory /*,toastFactory*/) {
+        .controller("toolbar-ctr", function ($rootScope, $scope, $state, logoutFactory, mainInfoFactory /*,toastFactory*/) {
 
-            $scope.basicInfo = {
+            $rootScope.basicInfo = {
                 appInfo: {
                     title: null, text: null
                 },
@@ -12,13 +12,14 @@
                 }
             };
 
-            var info = $scope.basicInfo;
+            var info = $rootScope.basicInfo;
             
             $scope.logout = function () { //todo: watcher - enabled/disabled button
                 console.info("logout button clicked");
                 logoutFactory.logoutUser();
-                logInOrLogOutFactory.setLogged(false);
-                $scope.hideRegisterLogin = false; // todo
+                $rootScope.isLoggedIn = false;
+                $rootScope.hideRegisterLogin = false; // todo
+                $state.go('default');
             }
             
             $scope.aboutAppFun = function () {
@@ -34,7 +35,11 @@
             }
 
             $scope.mainView = function () {
-                $state.go('default');
+                console.info($rootScope.isLoggedIn);
+                if ($rootScope.isLoggedIn) {
+                    $state.go('logged-in');
+                } else $state.go('default');
+
             }
 
         }); // end of ctrl

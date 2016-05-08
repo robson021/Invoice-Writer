@@ -22,24 +22,7 @@
                 logoutUser: logoutUser
             }
         })
-        .factory("logInOrLogOutFactory", function () {
-            var isLoggedIn = false;
-
-            function setLogged(tof) {
-                isLoggedIn = tof;
-            }
-
-            function isLoggedIn() {
-                if (isLoggedIn) return true;
-                else return false;
-            }
-
-            return {
-                setLogged: setLogged,
-                isLoggedIn: isLoggedIn
-            }
-        })
-        .factory("mainInfoFactory", function ($http) {
+        .factory("mainInfoFactory", function ($http, $rootScope) {
             /*return {
              get:  function(){
              $http.get('datafiles/text.json'); // this will return a promise to controller
@@ -52,6 +35,8 @@
                     console.info("about app: " + data.title + "\n" + data.text);
                     toDisplay.title = data.title;
                     toDisplay.text = data.text;
+                    $rootScope.basicInfo.appInfo.title = data.title;
+                    $rootScope.basicInfo.appInfo.text = data.text;
                 })
             }
 
@@ -61,6 +46,8 @@
                     console.info("about author: " + data.title + "\n" + data.text);
                     toDisplay.title = data.title;
                     toDisplay.text = data.text;
+                    $rootScope.basicInfo.authorInfo.title = data.title;
+                    $rootScope.basicInfo.authorInfo.text = data.text;
                 })
             }
 
