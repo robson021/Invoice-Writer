@@ -18,7 +18,7 @@
              return day === 0 || day === 6;
              }*/
 
-            // day of performance
+            // the day when job was done
             $scope.deadDate = new Date();
             $scope.minDateDead = new Date(
                 $scope.deadDate.getFullYear(),
