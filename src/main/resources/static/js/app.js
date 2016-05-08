@@ -6,7 +6,8 @@ angular
         $stateProvider
             .state('default', {
                 url: '/',
-                template: null
+                templateUrl: '/partials/mainapp.tpl.html',
+                controller: 'main-app-ctr'
             })
             .state('t1', {
                 url: '/t1',
@@ -27,7 +28,7 @@ angular
             .state('about-app', {
                 url: '/about-app',
                 templateUrl: '/partials/about-app.tpl.html',
-                controller: 'toolbar.ctr.js'
+                controller: 'toolbar-ctr'
             })
             .state('about-author', {
                 url: '/about-author',
@@ -37,3 +38,10 @@ angular
 
     }); //end of config
 
+
+// global data
+angular.module('ngApp')
+    .run(function ($rootScope) {
+        $rootScope.rootTest = new Date();
+        $rootScope.dbData = null;
+    });

@@ -1,10 +1,10 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("register-login-ctr", function ($scope, $http, $mdSidenav, $mdToast, logInOrLogOutFactory) {
+        .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, logInOrLogOutFactory) {
             $scope.hideRegisterLogin = false;
             $scope.hideMainApp = true;
-            $scope.myData = null;
+            //$scope.myData = null;
             $scope.user = {
                 firstname: "",
                 surname: "",
@@ -78,9 +78,12 @@
                         u.password = "";
                         u.repassword = "";
                         $scope.hideRegisterLogin = true; // todo: why does it auto swap to false?
-                        $scope.myData = data;
+                        //$scope.myData = data;
+
+                        $rootScope.dbData = data;
+
                         console.info("Data form the server:");
-                        console.info($scope.myData);
+                        console.info($rootScope.dbData);
                         $scope.openToast();
                         rButton.text = "logout";
                         console.info("ok!")
