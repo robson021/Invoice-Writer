@@ -50,7 +50,7 @@ public class DbService {
         userRepository.save(user);
 
         // COMPLETE USER
-        email = "robert_nowak@gmail.com";
+        email = "test@t.pl";
         passwd = new char[]{'p', 'a', 's', 's', 'w', 'd',};
         User user1 = new User("Robert", "Nowak", new EmailAddress(email), passwd);
 
@@ -88,7 +88,7 @@ public class DbService {
 
         userRepository.save(user1);
         logger.info("Example user has been added.\n" + user1.toString());
-        exampleUserId = user1.getId();
+        exampleUserId = user1.getId().longValue();
         exampleUserEmail = user1.getEmail();
 
         passwd = new char[]{'a', 'a'};

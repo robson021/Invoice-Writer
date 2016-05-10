@@ -5,9 +5,12 @@ import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 import robert.responses.simpleentities.SimpleUser;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -156,18 +159,6 @@ public class User extends AbstractEntity {
         return contractors;
     }
 
-    public String getContractorsAsString() {
-        int i = 0;
-        System.out.println("Contractors list size: " + this.contractors.size());
-        StringBuilder sb = new StringBuilder();
-        for (Contractor c : this.contractors) {
-            sb.append(c.toString());
-            sb.append("\n");
-            i++;
-        }
-        sb.append("iterations: " + i);
-        return sb.toString();
-    }
 
     public void setContractors(List<Contractor> contractors) {
         this.contractors = contractors;
@@ -183,6 +174,25 @@ public class User extends AbstractEntity {
 
     public void setServices(List<TheService> services) {
         this.services = services;
+    }
+
+
+    // TODO: 10.05.16 passwd encode/decode
+    public char[] encode(String str) {
+        BASE64Encoder encoder = new BASE64Encoder();
+        str = new String(encoder.encodeBuffer(str.getBytes()));
+        return str.toCharArray();
+    }
+
+    public char[] decode(String password) {
+        BASE64Decoder decoder = new BASE64Decoder();
+        String decodedPassword = null;
+        try {
+            decodedPassword = new String(decoder.decodeBuffer(password));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return decodedPassword.toCharArray();
     }
 
     @Override

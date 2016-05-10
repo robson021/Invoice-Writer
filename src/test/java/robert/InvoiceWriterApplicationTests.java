@@ -159,6 +159,30 @@ public class InvoiceWriterApplicationTests {
             System.out.println(theService.toString());
         }*/
 
+
+        System.out.println("before encoding: " + testUser.getPassword());
+        char[] p = testUser.encode(testUser.getPasswdAsString());
+        System.out.println("encoded: " + p);
+
+        String str = "";
+        for (char c1 : p) {
+            str += c1;
+        }
+
+        p = testUser.decode(str);
+        System.out.println("decoded: " + p);
+
+        str = "";
+        for (char c1 : p) {
+            str += c1;
+        }
+
+        System.out.println("oryginal: " + testUser.getPasswdAsString() + "\nencoded: " + str);
+
+        assertEquals(testUser.getPasswdAsString(), str);
+
+
+
         System.out.println("DB test finish ******");
     }
 
