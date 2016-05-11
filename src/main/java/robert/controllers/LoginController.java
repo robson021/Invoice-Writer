@@ -2,7 +2,6 @@ package robert.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,12 +24,14 @@ public class LoginController {
 
     private static final Logger logger = Logger.getLogger(LoginController.class);
 
-    @Autowired
-    private ApplicationContext ctx;
-
-    @Autowired
     private DbService dbService;
+    private SessionData data;
 
+    @Autowired
+    public LoginController(DbService dbService, SessionData data) {
+        this.dbService = dbService;
+        this.data = data;
+    }
 
     @RequestMapping(value = "/loguser", method = RequestMethod.POST)
     public BasicResponse logUserIn(@RequestBody SimpleUser user, HttpSession session) {
@@ -68,7 +69,6 @@ public class LoginController {
                 logger.info("passwords ok!");
 
                 // session bean
-                SessionData data = ctx.getBean("sessionData", SessionData.class);
                 data.setEmail(dbUser.getEmail());
                 session.setAttribute(session.getId(), data);
                 logger.info("Session info: " + data.toString());
