@@ -17,8 +17,6 @@ public class TheService extends AbstractEntity {
     private String symbol;
     private int vatPercentage;
     private double nettoValue;
-    private double bruttoValue;
-    private double vatValue;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -30,8 +28,6 @@ public class TheService extends AbstractEntity {
         this.symbol = symbol;
         this.vatPercentage = vatPercentage;
         this.nettoValue = nettoValue;
-        this.vatValue = nettoValue * vatPercentage / 100.;
-        this.bruttoValue = nettoValue + vatValue;
 
     }
 
@@ -78,23 +74,8 @@ public class TheService extends AbstractEntity {
         this.nettoValue = nettoValue;
     }
 
-    public double getBruttoValue() {
-        return bruttoValue;
-    }
 
-    private void calculateBruttoValue() {
-        //this.calculatetVatAndBruttoValue();
-        this.bruttoValue = nettoValue + vatValue;
-    }
 
-    public double getVatValue() {
-        return vatValue;
-    }
-
-    public void calculatetVatAndBruttoValue() {
-        this.vatValue = nettoValue * vatPercentage;
-        this.calculateBruttoValue();
-    }
 
     @Override
     public String toString() {
@@ -103,8 +84,6 @@ public class TheService extends AbstractEntity {
                 ", symbol='" + symbol + '\'' +
                 ", vatPercentage=" + vatPercentage +
                 ", nettoValue=" + nettoValue +
-                ", bruttoValue=" + bruttoValue +
-                ", vatValue=" + vatValue +
                 '}';
     }
 

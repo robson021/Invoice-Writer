@@ -65,7 +65,6 @@ public class InvoiceWriterApplicationTests {
         service.setName("Test service");
         service.setNettoValue(567.43);
         service.setVatPercentage(23);
-        service.calculatetVatAndBruttoValue();
         String symbol = "dsada-jneqwrt";
         service.setSymbol(symbol);
 

@@ -6,6 +6,8 @@
             var data = $rootScope.dbData;
             //var json = JSON.parse(data);
 
+            $scope.contractors = data.contractors;
+
 
             $scope.test1 = function () {
                 console.info("test clicked");
