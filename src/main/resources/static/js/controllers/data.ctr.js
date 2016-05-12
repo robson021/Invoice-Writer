@@ -7,6 +7,8 @@
             //var json = JSON.parse(data);
 
             $scope.contractors = data.contractors;
+            $scope.salesmen = data.salesmen;
+            $scope.services = data.services;
 
 
             $scope.test1 = function () {

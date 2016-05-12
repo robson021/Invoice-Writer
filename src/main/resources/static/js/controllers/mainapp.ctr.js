@@ -37,9 +37,17 @@
 
 
             $scope.goContractors = function () {
-                console.info("contractors cliced");
+                //console.info("contractors cliced");
                 $state.go('contractors');
-                console.info($rootScope.dbData);
+                //console.info($rootScope.dbData);
+            }
+
+            $scope.goSalesmen = function () {
+                $state.go('salesmen');
+            }
+
+            $scope.goServices = function () {
+                $state.go('services');
             }
 
         }); // end of ctrl

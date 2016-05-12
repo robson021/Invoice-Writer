@@ -44,6 +44,16 @@ angular
                 url: '/contractors',
                 templateUrl: '/partials/data/contractors.tpl.html',
                 controller: 'data-ctr'
+            })
+            .state('salesmen', {
+                url: '/salesmen',
+                templateUrl: '/partials/data/salesmen.tpl.html',
+                controller: 'data-ctr'
+            })
+            .state('services', {
+                url: '/services',
+                templateUrl: '/partials/data/services.tpl.html',
+                controller: 'data-ctr'
             }); // end of state provider
 
         $urlRouterProvider.otherwise("/");

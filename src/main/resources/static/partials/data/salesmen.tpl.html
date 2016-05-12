@@ -1,0 +1,22 @@
+<div align="center">
+
+    <md-content>
+        <md-list>
+            <md-subheader class="md-no-sticky">Salesmen:</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="c in salesmen" ng-click="setValue(c)">
+                <div class="md-list-item-text">
+                    <h3> {{ c.name + " " + c.surname}} </h3>
+                    <p> {{ c.companyName }} </p>
+                    <p> {{ c.streetName + " " + c.homeNo }} </p>
+                    <p> {{ c.postCode + ", " + c.city }} </p>
+                    <p> {{ c.regon }} </p>
+                    <p> {{ c.nipNo }} </p>
+                    <p> {{ c.phoneNo }} </p>
+                    <p> {{ c.bankName + ": " + bankAccNo }} </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+
+
+</div>
