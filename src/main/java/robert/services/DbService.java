@@ -68,6 +68,16 @@ public class DbService {
         List<Salesman> salesmens = new ArrayList<>();
         nip1 = "597632109";
         Salesman salesman1 = new Salesman("Rachel", "Goswell", nip1);
+        salesman1.setBankAccNo("313139218302");
+        salesman1.setBankName("PKO BP");
+        salesman1.setPhoneNo("323-323-543");
+        salesman1.setRegon("13134243");
+        salesman1.setCity("Warsaw");
+        salesman1.setCompanyName("Rachel Soft");
+        salesman1.setHomeNo("32");
+        salesman1.setStreetName("Woronicza");
+        salesman1.setPostCode("55-555");
+        salesman1.setUser(user1);
         nip2 = "974532999";
         Salesman salesman2 = new Salesman("Kevin", "Shields", nip2);
         salesmens.add(salesman1);

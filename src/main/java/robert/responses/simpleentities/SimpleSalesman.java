@@ -27,7 +27,7 @@ public class SimpleSalesman {
         this.surname = salesman.getSurname();
         this.streetName = salesman.getStreetName();
         this.homeNo = salesman.getHomeNo();
-        this.postCode = salesman.getHomeNo();
+        this.postCode = salesman.getPostCode();
         this.city = salesman.getCity();
         this.regon = salesman.getRegon();
         this.phoneNo = salesman.getPhoneNo();
