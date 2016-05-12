@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state) {
 
             // day of selling
             $scope.sellDate = new Date();
@@ -33,6 +33,13 @@
             $scope.testFun = function () {
                 console.info($scope.sellDate);
                 console.info($scope.deadDate);
+            }
+
+
+            $scope.goContractors = function () {
+                console.info("contractors cliced");
+                $state.go('contractors');
+                console.info($rootScope.dbData);
             }
 
         }); // end of ctrl

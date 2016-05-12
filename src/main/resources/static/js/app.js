@@ -1,14 +1,12 @@
 angular
     .module("ngApp", ['ngMaterial', 'ui.router', 'ngMessages'])
-    .config(function ($stateProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
 
 
         $stateProvider
             .state('default', {
                 url: '/',
                 template: null
-                //templateUrl: '/partials/mainapp.tpl.html',
-                //controller: 'main-app-ctr'
             })
             .state('t1', {
                 url: '/t1',
@@ -41,7 +39,14 @@ angular
                 url: '/about-author',
                 templateUrl: '/partials/about-author.tpl.html',
                 controller: 'toolbar-ctr'
+            })
+            .state('contractors', {
+                url: '/contractors',
+                templateUrl: '/partials/data/contractors.tpl.html',
+                controller: 'data-ctr'
             }); // end of state provider
+
+        $urlRouterProvider.otherwise("/");
 
     }); //end of config
 

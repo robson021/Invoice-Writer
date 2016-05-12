@@ -1,0 +1,22 @@
+<div>
+
+    <h>Table:</h>
+    <table>
+        <!--<thead>
+        <tr ng-repeat="item in dbData | limitTo:1">
+            <th ng-repeat="(key, val) in item">
+                {{key}}
+            </th>
+        </tr>
+        </thead>-->
+        <tbody>
+        <tr ng-repeat="item in dbData">
+            <td ng-repeat="(key, val) in item">
+                {{val.name}}
+                {{val.surname}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

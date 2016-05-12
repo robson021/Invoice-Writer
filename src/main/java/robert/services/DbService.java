@@ -51,7 +51,7 @@ public class DbService {
 
         // COMPLETE USER
         email = "test@t.pl";
-        passwd = new char[]{'p', 'a', 's', 's', 'w', 'd',};
+        passwd = new char[]{'t', 't'};
         User user1 = new User("Robert", "Nowak", new EmailAddress(email), passwd);
 
         String nip1 = "123450987";
