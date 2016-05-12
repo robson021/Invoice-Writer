@@ -55,7 +55,8 @@ public class DbService {
         User user1 = new User("Robert", "Nowak", new EmailAddress(email), passwd);
 
         String nip1 = "123450987";
-        Contractor contractor1 = new Contractor("Mark", "Morgan", null, null, null, null, null, nip1);
+        Contractor contractor1 = new Contractor("Mark", "Morgan", "Mark & Friends Inc.",
+                "Wallstreet", "32", "00-001", "New York", nip1);
         String nip2 = "456927400";
         Contractor contractor2 = new Contractor("John", "Coltrane", null, null, null, null, null, nip2);
         List<Contractor> contractors = new ArrayList<>();
