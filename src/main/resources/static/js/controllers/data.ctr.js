@@ -15,5 +15,9 @@
                 //console.info("data:\n" + data.contractors[0].surname);
             }
 
+            $scope.setValue = function (item) {
+                console.info("item clicked: " + item);
+            }
+
         })
 })();
