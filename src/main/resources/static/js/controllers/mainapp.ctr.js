@@ -37,7 +37,6 @@
 
 
             $scope.goContractors = function () {
-                //console.info("contractors cliced");
                 $state.go('contractors');
                 //console.info($rootScope.dbData);
             }
