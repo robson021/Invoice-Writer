@@ -8,7 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by robert on 30.04.16.
  */
 
-//@Component
 public class SessionData {
     private static final AtomicInteger idCounter = new AtomicInteger(0);
     private final int id = idCounter.incrementAndGet();
