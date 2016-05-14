@@ -91,7 +91,7 @@
 
 
         <!-- WebJars -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
             <version>1.3.8</version>
@@ -100,7 +100,7 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.1</version>
-        </dependency>
+        </dependency>-->
 
 
     </dependencies>
