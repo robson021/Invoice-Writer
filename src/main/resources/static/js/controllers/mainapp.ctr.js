@@ -11,8 +11,17 @@
 
             // local arrays
             $scope.salesmen = null;
-            $scope.contractors = null;
+            $scope.contractors = $rootScope.dbData.contractors;
             $scope.services = null;
+
+            $scope.getSelectedText = function () {
+                if ($scope.contractor !== undefined) {
+                    return "selected: " + $scope.contractor.name + " " + $scope.contractor.surname;
+                } else {
+                    return "Please select someone";
+                }
+            };
+
 
             $scope.loadSalesmen = function () {
                 return $timeout(function () {
