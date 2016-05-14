@@ -34,9 +34,10 @@
     <!--selection-->
     <div class="md-padding" flex layout="row" layout-align="center" ng-cloack>
         <div layout="row">
+        <div layout="row">
             <md-input-container>
-                <label>Contractors</label>
-                <md-select ng-model="contractor" md-selected-text="getSelectedText()">
+                <label>Contractor</label>
+                <md-select ng-model="contractor" md-selected-text="getSelectedC()">
                     <md-optgroup label="items">
                         <md-option ng-value="contractor" ng-repeat="contractor in contractors">
                             {{contractor.name}} {{contractor.surname}}
@@ -46,9 +47,34 @@
             </md-input-container>
         </div>
 
+            <div layout="row">
+                <md-input-container>
+                    <label>Salesman</label>
+                    <md-select ng-model="salesman" md-selected-text="getSelectedS()">
+                        <md-optgroup label="items">
+                            <md-option ng-value="salesman" ng-repeat="salesman in salesmen">
+                                {{salesman.name}} {{salesman.surname}}
+                            </md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <br>
 
 
     </div>
+
+    <!--services selection todo-->
+    <md-input-container layout="column" layout-align="center center">
+        <label layout-align="center center">Services / trade goods</label>
+        <md-select ng-model="selectedServices" multiple>
+            <md-option ng-value="service" ng-repeat="service in services">
+                {{service.name}}; {{service.nettoValue | currency}}
+            </md-option>
+            </md-optgroup>
+        </md-select>
+    </md-input-container>
 
 
     <div class="test-area">

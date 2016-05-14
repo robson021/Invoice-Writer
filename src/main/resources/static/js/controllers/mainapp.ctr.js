@@ -7,16 +7,24 @@
             // selected right now
             $scope.salesman = null;
             $scope.contractor = null;
+            $scope.selectedServices = [];
             $scope.service = null;
 
             // local arrays
-            $scope.salesmen = null;
+            $scope.salesmen = $rootScope.dbData.salesmen;
             $scope.contractors = $rootScope.dbData.contractors;
-            $scope.services = null;
+            $scope.services = $rootScope.dbData.services;
 
-            $scope.getSelectedText = function () {
+            $scope.getSelectedC = function () {
                 if ($scope.contractor !== undefined) {
                     return "selected: " + $scope.contractor.name + " " + $scope.contractor.surname;
+                } else {
+                    return "Please select someone";
+                }
+            };
+            $scope.getSelectedS = function () {
+                if ($scope.salesman !== undefined) {
+                    return "selected: " + $scope.salesman.name + " " + $scope.salesman.surname;
                 } else {
                     return "Please select someone";
                 }
@@ -80,7 +88,7 @@
                 console.info("3 selected items:")
                 console.info($scope.contractor);
                 console.info($scope.salesman);
-                console.info($scope.service);
+                console.info($scope.service + $scope.selectedServices);
 
             };
 
