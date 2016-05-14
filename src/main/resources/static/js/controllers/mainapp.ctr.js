@@ -60,11 +60,23 @@
                 $scope.deadDate.getFullYear(),
                 $scope.deadDate.getMonth() + 2,
                 $scope.deadDate.getDate());
+            //exposure
+            $scope.exposureDate = new Date();
+            $scope.minExposureDate = new Date(
+                $scope.exposureDate.getFullYear(),
+                $scope.exposureDate.getMonth() - 2,
+                $scope.exposureDate.getDate());
+            $scope.maxExposureDate = new Date(
+                $scope.exposureDate.getFullYear(),
+                $scope.exposureDate.getMonth() + 2,
+                $scope.exposureDate.getDate());
 
 
             $scope.testFun = function () {
+                console.info("callendars:");
                 console.info($scope.sellDate);
                 console.info($scope.deadDate);
+                console.info($scope.exposureDate);
                 console.info("3 selected items:")
                 console.info($scope.contractor);
                 console.info($scope.salesman);
