@@ -41,7 +41,7 @@
             <md-input-container>
                 <label>Contractor</label>
                 <md-select ng-model="contractor" md-selected-text="getSelectedC()">
-                    <md-optgroup label="items">
+                    <md-optgroup label="contractors">
                         <md-option ng-value="contractor" ng-repeat="contractor in contractors">
                             {{contractor.name}} {{contractor.surname}}
                         </md-option>
@@ -54,7 +54,7 @@
                 <md-input-container>
                     <label>Salesman</label>
                     <md-select ng-model="salesman" md-selected-text="getSelectedS()">
-                        <md-optgroup label="items">
+                        <md-optgroup label="salesmen">
                             <md-option ng-value="salesman" ng-repeat="salesman in salesmen">
                                 {{salesman.name}} {{salesman.surname}}
                             </md-option>
@@ -70,8 +70,9 @@
 
     <!--services selection todo-->
     <md-input-container layout="column" layout-align="center center">
-        <label layout-align="center center">Services / trade goods</label>
+        <!--<label layout-align="center center">Services / trade goods</label>-->
         <md-select ng-model="selectedServices" multiple>
+            <md-optgroup label="services">
             <md-option ng-value="service" ng-repeat="service in services">
                 {{service.name}}; {{service.nettoValue | currency}}
             </md-option>
@@ -79,6 +80,7 @@
         </md-select>
     </md-input-container>
 
+    <p>{{selectedServices}}</p>
 
     <div class="test-area">
         <md-button ng-click="testFun()">test</md-button>

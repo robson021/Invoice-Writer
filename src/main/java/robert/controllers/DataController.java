@@ -25,6 +25,7 @@ import java.io.IOException;
 @RequestMapping("/data")
 public class DataController {
 
+    private static final int MAX_FILE_SIZE = 150_000;
     private DefaultLogger logger;
     private SessionData data;
     private DbService dbService;
@@ -44,7 +45,7 @@ public class DataController {
         logger.info("\n\tFile uplad request: " + data.toString() + " File name: " + file.getName() + " " + name);
         BasicResponse response = new BasicResponse();
         if (!file.isEmpty() && data.getEmail() != null &&
-                file.getSize() <= 150_000 && dbService.updateUserImg(data.getEmail(), file)) {
+                file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(data.getEmail(), file)) {
             response.setText("File was successfully uploaded");
             response.setResult(true);
             servletResponse.sendRedirect("/");
