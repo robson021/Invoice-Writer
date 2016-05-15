@@ -39,7 +39,8 @@ public class DataController {
                                       @RequestParam("file") MultipartFile file) {
         logger.info("\n\tFile uplad request: " + data.toString() + " File name: " + file.getName() + " " + name);
         BasicResponse response = new BasicResponse();
-        if (!file.isEmpty() && data.getEmail() != null && dbService.updateUserImg(data.getEmail(), file)) {
+        if (!file.isEmpty() && data.getEmail() != null &&
+                file.getSize() <= 150_000 && dbService.updateUserImg(data.getEmail(), file)) {
             response.setText("File was successfully uploaded");
             response.setResult(true);
         } else {
