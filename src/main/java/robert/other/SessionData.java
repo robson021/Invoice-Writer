@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SessionData {
     private static final AtomicInteger idCounter = new AtomicInteger(0);
     private final int id = idCounter.incrementAndGet();
-    private String email; // TODO: 30.04.16 make email final and make proper bean constructor
+    private String email = null;
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
 
@@ -30,10 +30,10 @@ public class SessionData {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) { // set once
         if (emailSetted) throw new RuntimeException("Email already setted!");
-        emailSetted = true;
         this.email = email;
+        emailSetted = true;
     }
 
     public int getId() {

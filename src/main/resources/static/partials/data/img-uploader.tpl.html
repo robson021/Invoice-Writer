@@ -1,0 +1,29 @@
+<div align="center" layout-align="center center">
+
+    <p>You can upload your complany logo here.
+        <br>
+        It will be visible in the top left corner of PDF invoice.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data" action="/data/uplad/img">
+        <table>
+            <tr>
+                <td>File to upload:</td>
+                <td><input type="file" name="file"/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Upload"/>
+                </td>
+            </tr>
+        </table>
+        <!--
+                <md-button>Upload</md-button>
+        -->
+    </form>
+</div>

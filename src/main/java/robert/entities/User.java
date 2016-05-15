@@ -35,6 +35,8 @@ public class User extends AbstractEntity {
     @NotNull
     private char[] password;
 
+    private byte[] image;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<TheService> services = new ArrayList<>();
@@ -176,6 +178,13 @@ public class User extends AbstractEntity {
         this.services = services;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     // TODO: 10.05.16 passwd encode/decode
     public char[] encode(String str) {

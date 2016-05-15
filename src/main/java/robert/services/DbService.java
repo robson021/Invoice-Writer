@@ -3,6 +3,7 @@ package robert.services;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
 import robert.repositories.UserRepository;
 
@@ -133,6 +134,14 @@ public class DbService {
 
     public User findUserById(Long id) {
         return userRepository.findOne(id);
+    }
+
+    public boolean updateUserImg(String email, MultipartFile file) {
+        User user = userRepository.findByEmail(new EmailAddress(email));
+        if (user == null) return false;
+
+
+        return true;
     }
 
 
