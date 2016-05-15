@@ -9,6 +9,7 @@ import robert.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,7 +142,24 @@ public class DbService {
         if (user == null) return false;
 
 
-        return true;
+        byte[] bFile;
+        try {
+            bFile = file.getBytes();
+        } catch (IOException e) {
+            logger.error("getBytes() exception");
+            return false;
+        }
+        boolean result = false;
+
+        try {
+            user.setImage(bFile);
+            if (userRepository.save(user) != null) {
+                result = true; // successfull save
+            }
+        } catch (Exception e) {
+            logger.error("Exception - file update attempt of user: " + email);
+        }
+        return result;
     }
 
 

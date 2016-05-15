@@ -35,6 +35,8 @@ public class User extends AbstractEntity {
     @NotNull
     private char[] password;
 
+    @Lob
+    @Column(name = "USER_IMAGE", columnDefinition = "mediumblob")
     private byte[] image;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -88,6 +90,14 @@ public class User extends AbstractEntity {
         this.salesmen.add(salesman);
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public void addService(TheService service) {
         Assert.notNull(service);
         this.services.add(service);
@@ -96,6 +106,7 @@ public class User extends AbstractEntity {
     public String getSurname() {
         return surname;
     }
+
 
     public void setSurname(String surname) {
         this.surname = surname;
@@ -178,13 +189,6 @@ public class User extends AbstractEntity {
         this.services = services;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     // TODO: 10.05.16 passwd encode/decode
     public char[] encode(String str) {
