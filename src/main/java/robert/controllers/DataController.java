@@ -15,6 +15,9 @@ import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.services.DbService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * Created by robert on 04.05.16.
  */
@@ -36,16 +39,20 @@ public class DataController {
 
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
     public ResponseEntity<?> upladImg(@RequestParam("name") String name,
-                                      @RequestParam("file") MultipartFile file) {
+                                      @RequestParam("file") MultipartFile file,
+                                      HttpServletResponse servletResponse) throws IOException {
         logger.info("\n\tFile uplad request: " + data.toString() + " File name: " + file.getName() + " " + name);
         BasicResponse response = new BasicResponse();
         if (!file.isEmpty() && data.getEmail() != null &&
                 file.getSize() <= 150_000 && dbService.updateUserImg(data.getEmail(), file)) {
             response.setText("File was successfully uploaded");
             response.setResult(true);
+            servletResponse.sendRedirect("/");
         } else {
             response.setText("Could not upload the file");
+            //servletResponse.sendRedirect("/#/upload");
         }
+        logger.info("upload status: " + response.isResult());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -105,6 +105,9 @@
             $scope.goServices = function () {
                 $state.go('services');
             };
+            $scope.goUpload = function () {
+                $state.go('uplad');
+            };
 
         }); // end of ctrl
 })();
