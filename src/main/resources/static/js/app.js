@@ -57,8 +57,8 @@ angular
             })
             .state('uplad', {
                 url: '/upload',
-                templateUrl: '/partials/data/img-uploader.tpl.html'
-                //controller: 'data-ctr'
+                templateUrl: '/partials/data/img-uploader.tpl.html',
+                controller: 'data-ctr'
             }); // end of state provider
 
         $urlRouterProvider.otherwise("/");
