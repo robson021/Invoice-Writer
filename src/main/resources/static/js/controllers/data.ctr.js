@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller('data-ctr', function ($rootScope, $scope) {
+        .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state) {
 
             var data = $rootScope.dbData;
             //var json = JSON.parse(data);
@@ -20,6 +20,25 @@
             $scope.setValue = function (item) {
                 console.info("item clicked: " + item);
             }
+
+            $scope.uploadFile = function (files) {
+                var fd = new FormData();
+                //Take the first selected file
+                fd.append("file", files[0]);
+
+                $http.post(uploadUrl, fd, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                }).success(function (data) { // todo: fix
+                    console.info("upload complete");
+                    $mdToast.show($mdToast.simple().textContent(data.text));
+                    $state.go('default');
+                }).error(function (data) {
+                    console.info("upload error");
+                    $mdToast.show($mdToast.simple().textContent(data.text));
+                })
+            };
 
         })
 })();

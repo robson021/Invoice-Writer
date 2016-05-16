@@ -11,7 +11,8 @@
         <table>
             <tr>
                 <td>File to upload:</td>
-                <td><input type="file" name="file"/></td>
+                <!--<td><input type="file" name="file"/></td>-->
+                <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
             </tr>
             <tr>
                 <td>Name:</td>
