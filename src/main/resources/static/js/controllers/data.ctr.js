@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state) {
+        .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state, $http) {
 
             var data = $rootScope.dbData;
             //var json = JSON.parse(data);
@@ -22,11 +22,12 @@
             }
 
             $scope.uploadFile = function (files) {
+                console.info("upload starterd...")
                 var fd = new FormData();
                 //Take the first selected file
                 fd.append("file", files[0]);
 
-                $http.post(uploadUrl, fd, {
+                $http.post("/data/uplad/img", fd, {
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
