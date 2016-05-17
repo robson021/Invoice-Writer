@@ -4,14 +4,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
 import robert.repositories.ContractorRepository;
 import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
 import robert.services.DbService;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -42,7 +46,7 @@ public class InvoiceWriterApplicationTests {
     }
 
     @Test
-    public void dbTests() {
+    public void dbTests() throws IOException {
         System.out.println("\nDB test start ******");
 
         String email = "test_email@example.com";
@@ -181,6 +185,26 @@ public class InvoiceWriterApplicationTests {
         assertEquals(testUser.getPasswdAsString(), str);
 
 
+        dbUser = dataBaseService.findUserByEmail(DbService.getExampleUserEmail());
+        assertNotNull(dbUser);
+
+        String filename = "test_file";
+        byte[] bFile = "test text".getBytes();
+        MultipartFile multipartFile = new MockMultipartFile(filename, bFile);
+        bFile = multipartFile.getBytes();
+        System.out.println("File save test");
+        dataBaseService.updateUserImg(dbUser.getEmail(), multipartFile);
+
+        dbUser = dataBaseService.findUserByEmail(DbService.getExampleUserEmail());
+        byte[] dbBytes = dbUser.getImage();
+
+
+        String s1 = new String(bFile);
+        String s2 = new String(dbBytes);
+
+        System.out.println("String comparsion: " + "\n" + s1 + " - " + s2);
+
+        assertEquals(s1, s2);
 
         System.out.println("DB test finish ******");
     }
