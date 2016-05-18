@@ -175,10 +175,10 @@ public class DbService {
         user.getContractors().clear();
         user.getSalesmen().clear();
         user.getServices().clear();
-        saveUser(user);
+        //saveUser(user);
         logger.info("clear done");
 
-        user = findUserByEmail(email);
+        //user = findUserByEmail(email);
         updateData(dataHolder, user);
         saveUser(user);
         return true;
