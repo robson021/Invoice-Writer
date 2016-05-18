@@ -12,8 +12,9 @@ public class SimpleContractor {
     private String homeNo;
     private String postCode;
     private String city;
+    private String nipNo = "1111";
 
-    public SimpleContractor(String name, String surname, String companyName, String streetName, String homeNo, String postCode, String city) {
+    public SimpleContractor(String name, String surname, String companyName, String streetName, String homeNo, String postCode, String city, String nipNo) {
         this.name = name;
         this.surname = surname;
         this.companyName = companyName;
@@ -21,6 +22,7 @@ public class SimpleContractor {
         this.homeNo = homeNo;
         this.postCode = postCode;
         this.city = city;
+        this.nipNo = nipNo;
     }
 
     public SimpleContractor() {
@@ -39,6 +41,14 @@ public class SimpleContractor {
 
     public String getName() {
         return name;
+    }
+
+    public String getNipNo() {
+        return nipNo;
+    }
+
+    public void setNipNo(String nipNo) {
+        this.nipNo = nipNo;
     }
 
     public void setName(String name) {

@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http) {
 
 
             // selected right now
@@ -93,7 +93,12 @@
             };
 
             $scope.saveData = function () {
-                console.info($rootScope.dbData);
+                console.info("data to send:\n" + $rootScope.dbData);
+                var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
+                ajax.success(function (data) {
+                    $mdToast.show($mdToast.simple().textContent(data.text));
+                    console.info("done");
+                });
             };
 
 

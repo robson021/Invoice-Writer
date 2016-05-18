@@ -27,6 +27,7 @@ public class Contractor extends AbstractPerson {
     public Contractor(SimpleContractor c) {
         super(c.getName(), c.getSurname(), c.getCompanyName(), c.getStreetName(), c.getHomeNo(),
                 c.getPostCode(), c.getCity(), c.getHomeNo());
+        this.setNipNo(c.getNipNo());
     }
 
     public User getUser() {

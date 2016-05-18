@@ -61,7 +61,7 @@ public class DataController {
             response.setText("Your database records have been updated!");
             response.setResult(true);
         } catch (Exception e) {
-            logger.error("Error occoured while sending data");
+            logger.error("Error occoured while saving data");
             response.setText("Error");
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
