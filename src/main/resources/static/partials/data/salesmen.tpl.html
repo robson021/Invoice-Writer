@@ -1,9 +1,78 @@
 <div align="center">
 
+    <!-- edit panel -->
+    <div class="forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">add/edit</h1>
+            </md-toolbar>
+            <md-content layount-padding>
+                <form>
+                    <md-input-container>
+                        <label for="firstname">Name</label>
+                        <input type="text" id="firstname" ng-model="selectedSalesman.name" md-autofocus>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" ng-model="selectedSalesman.surname">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="companyName">Company name</label>
+                        <input type="text" id="companyName" ng-model="selectedSalesman.companyName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="streetName">Street</label>
+                        <input type="text" id="streetName" ng-model="selectedSalesman.streetName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="homeNo">Home number</label>
+                        <input type="text" id="homeNo" ng-model="selectedSalesman.homeNo">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="postCode">Post code</label>
+                        <input type="text" id="postCode" ng-model="selectedSalesman.postCode">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="city">City</label>
+                        <input type="text" id="city" ng-model="selectedSalesman.city">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="regon">Regon</label>
+                        <input type="text" id="regon" ng-model="selectedSalesman.regon">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="city">Phone number</label>
+                        <input type="text" id="phoneNo" ng-model="selectedSalesman.phoneNo">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="bankName">Bank name</label>
+                        <input type="text" id="bankName" ng-model="selectedSalesman.bankName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="bankAccNo">Account number</label>
+                        <input type="text" id="bankAccNo" ng-model="selectedSalesman.bankAccNo">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="nipNo">Nip</label>
+                        <input type="text" id="nipNo" ng-model="selectedSalesman.nipNo">
+                    </md-input-container>
+                    <br>
+                    <md-button class="md-primary" ng-click="updateSalesman()">
+                        Submit
+                    </md-button>
+                    <md-button class="md-warn" ng-click="closeSidebar()">
+                        Cancel
+                    </md-button>
+                </form>
+            </md-content>
+
+        </md-sidenav>
+    </div>
+
     <md-content>
         <md-list>
             <md-subheader class="md-no-sticky">Salesmen:</md-subheader>
-            <md-list-item class="md-2-line" ng-repeat="c in salesmen" ng-click="setValue(c)">
+            <md-list-item class="md-2-line" ng-repeat="c in salesmen" ng-click="setValueSalesman(c)">
                 <div class="md-list-item-text">
                     <h3> {{ c.name + " " + c.surname}} </h3>
                     <p> {{ c.companyName }} </p>

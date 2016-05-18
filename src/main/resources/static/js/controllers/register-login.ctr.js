@@ -74,7 +74,7 @@
                         r.loginButtonEnabled = false;
                         $state.go('logged-in');
                     } else {
-                        console.error("failed to login")
+                        console.error("failed to login");
                         $scope.openToast();
                         r.isLoggedIn = false;
                     }
@@ -88,9 +88,9 @@
 
             $scope.openSidebar = function () {
                 $mdSidenav('left').open();
-            }
+            };
             $scope.closeSidebar = function () {
                 $mdSidenav('left').close();
-            }
+            };
         });
 })();

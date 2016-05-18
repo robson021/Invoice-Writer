@@ -1,16 +1,58 @@
 <div align="center">
 
-    <!--<ul>
-        <li ng-repeat="c in contractors">
-            <span>{{c.name }}</span>
-            <span>{{c.surname}}</span>
-        </li>
-    </ul>-->
+    <!-- edit panel -->
+    <div class="forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">add/edit</h1>
+            </md-toolbar>
+            <md-content layount-padding>
+                <form>
+                    <md-input-container>
+                        <label for="firstname">Name</label>
+                        <input type="text" id="firstname" ng-model="selectedContractor.name" md-autofocus>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" ng-model="selectedContractor.surname">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="companyName">Company name</label>
+                        <input type="text" id="companyName" ng-model="selectedContractor.companyName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="streetName">Street</label>
+                        <input type="text" id="streetName" ng-model="selectedContractor.streetName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="homeNo">Home number</label>
+                        <input type="text" id="homeNo" ng-model="selectedContractor.homeNo">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="postCode">Post code</label>
+                        <input type="text" id="postCode" ng-model="selectedContractor.postCode">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="city">City</label>
+                        <input type="text" id="city" ng-model="selectedContractor.city">
+                    </md-input-container>
+                    <br>
+                    <md-button class="md-primary" ng-click="updateContractor()">
+                        Submit
+                    </md-button>
+                    <md-button class="md-warn" ng-click="closeSidebar()">
+                        Cancel
+                    </md-button>
+                </form>
+            </md-content>
+
+        </md-sidenav>
+    </div>
 
     <md-content>
         <md-list>
             <md-subheader class="md-no-sticky">Contractors:</md-subheader>
-            <md-list-item class="md-2-line" ng-repeat="c in contractors" ng-click="setValue(c)">
+            <md-list-item class="md-2-line" ng-repeat="c in contractors" ng-click="setValueContractor(c)">
                 <div class="md-list-item-text">
                     <h3> {{ c.name + " " + c.surname}} </h3>
                     <p> {{ c.companyName }} </p>
@@ -20,6 +62,10 @@
             </md-list-item>
         </md-list>
     </md-content>
+
+    <div layout="row">
+        <md-button class="md-rised" ng-click="addNewContractor()">Add new</md-button>
+    </div>
 
 
 </div>
