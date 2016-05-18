@@ -13,9 +13,14 @@ import robert.repositories.ContractorRepository;
 import robert.repositories.SalesmanRepository;
 import robert.repositories.ServiceRepository;
 import robert.repositories.UserRepository;
+import robert.responses.simpleentities.DataHolderResponse;
+import robert.responses.simpleentities.SimpleContractor;
+import robert.responses.simpleentities.SimpleSalesman;
+import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -214,6 +219,14 @@ public class InvoiceWriterApplicationTests {
 
         assertEquals(contractorsNum, dbUser.getContractors().size());
 
+        List<SimpleContractor> simpleContractorList = dbUser.getSimpleContractors();
+        List<SimpleService> simpleServices = dbUser.getSimpleServices();
+        List<SimpleSalesman> simpleSalesmen = dbUser.getSimpleSalesmen();
+        DataHolderResponse dataHolder = new DataHolderResponse();
+        dataHolder.setContractors(simpleContractorList);
+        dataHolder.setServices(simpleServices);
+        dataHolder.setSalesmen(simpleSalesmen);
+
         dbUser.getContractors().clear();
         dbUser.getSalesmen().clear();
         dbUser.getServices().clear();
@@ -224,6 +237,14 @@ public class InvoiceWriterApplicationTests {
         assertEquals(0, dbUser.getContractors().size());
         assertEquals(0, dbUser.getSalesmen().size());
         assertEquals(0, dbUser.getServices().size());
+
+        dbUser.updateData(dataHolder);
+
+        dataBaseService.saveUser(dbUser);
+
+        dbUser = dataBaseService.findUserByEmail(DbService.getExampleUserEmail());
+        assertEquals(contractorsNum, dbUser.getContractors().size());
+        System.out.println(dbUser);
 
         System.out.println("DB test finish ******");
     }
