@@ -1,5 +1,6 @@
 package robert.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import robert.other.AboutAppInfo;
 import robert.other.AboutAuthorInfo;
-import robert.other.DefaultLogger;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.DataHolderResponse;
@@ -21,13 +21,13 @@ import robert.services.DbService;
 public class DataController {
 
     private static final int MAX_FILE_SIZE = 150_000;
-    private DefaultLogger logger;
+    private Logger logger = Logger.getLogger(DataController.class);
     private SessionData sessionData;
     private DbService dbService;
 
     @Autowired
-    public DataController(DefaultLogger logger, SessionData sessionData, DbService dbService) {
-        this.logger = logger;
+    public DataController(SessionData sessionData, DbService dbService) {
+        //this.logger = logger;
         this.sessionData = sessionData;
         this.dbService = dbService;
     }
@@ -54,7 +54,7 @@ public class DataController {
     @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)
     public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder) {
         BasicResponse response = new BasicResponse();
-        logger.info("save sessionData request: " + sessionData.getEmail() + "\n\t" + dataHolder.toString());
+        logger.info("update user's db request: " + sessionData.getEmail() + "\n\t" + dataHolder.toString());
 
         try {
             dbService.updateUserData(dataHolder, sessionData.getEmail());
