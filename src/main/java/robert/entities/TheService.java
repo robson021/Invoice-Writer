@@ -31,6 +31,13 @@ public class TheService extends AbstractEntity {
 
     }
 
+    public TheService(SimpleService service) {
+        this.name = service.getName();
+        this.symbol = service.getSymbol();
+        this.vatPercentage = Integer.parseInt(service.getVatPercentage());
+        this.nettoValue = Double.parseDouble(service.getNettoValue());
+    }
+
     public TheService() {
     }
 

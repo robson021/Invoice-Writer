@@ -29,6 +29,11 @@ public class Salesman extends AbstractPerson {
         super(name, surname, nipNo);
     }
 
+    public Salesman(SimpleSalesman s) {
+        super(s.getName(), s.getSurname(), s.getCompanyName(), s.getStreetName(), s.getHomeNo(),
+                s.getPostCode(), s.getCity(), s.getNipNo());
+    }
+
     public String getRegon() {
         return regon;
     }

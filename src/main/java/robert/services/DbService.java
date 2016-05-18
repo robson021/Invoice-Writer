@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
 import robert.repositories.UserRepository;
+import robert.responses.simpleentities.DataHolderResponse;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -160,6 +161,18 @@ public class DbService {
             logger.error("Exception - file update attempt of user: " + email);
         }
         return result;
+    }
+
+    public boolean updateUserData(DataHolderResponse dataHolder, String email) {
+        User user = findUserByEmail(email);
+        if (user == null) {
+            logger.error("Can not find user");
+            return false;
+        }
+
+        user.updateData(dataHolder);
+        saveUser(user);
+        return true;
     }
 
 

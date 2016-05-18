@@ -61,4 +61,13 @@ public class SimpleService {
         this.nettoValue = nettoValue;
     }
 
+    @Override
+    public String toString() {
+        return "SimpleService{" +
+                "name='" + name + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", vatPercentage='" + vatPercentage + '\'' +
+                ", nettoValue='" + nettoValue + '\'' +
+                '}';
+    }
 }

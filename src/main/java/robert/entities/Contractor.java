@@ -24,6 +24,11 @@ public class Contractor extends AbstractPerson {
         super(name, surname, companyName, streetName, homeNo, postCode, city, nipNo);
     }
 
+    public Contractor(SimpleContractor c) {
+        super(c.getName(), c.getSurname(), c.getCompanyName(), c.getStreetName(), c.getHomeNo(),
+                c.getPostCode(), c.getCity(), c.getHomeNo());
+    }
+
     public User getUser() {
         return user;
     }

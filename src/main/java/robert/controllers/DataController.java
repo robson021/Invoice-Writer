@@ -22,13 +22,13 @@ public class DataController {
 
     private static final int MAX_FILE_SIZE = 150_000;
     private DefaultLogger logger;
-    private SessionData data;
+    private SessionData sessionData;
     private DbService dbService;
 
     @Autowired
-    public DataController(DefaultLogger logger, SessionData data, DbService dbService) {
+    public DataController(DefaultLogger logger, SessionData sessionData, DbService dbService) {
         this.logger = logger;
-        this.data = data;
+        this.sessionData = sessionData;
         this.dbService = dbService;
     }
 
@@ -36,10 +36,10 @@ public class DataController {
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
     public ResponseEntity<?> upladImg(@RequestParam("name") String name,
                                       @RequestParam("file") MultipartFile file) {
-        logger.info("\n\tFile uplad request: " + data.toString() + " File name: " + file.getName() + " " + name);
+        logger.info("\n\tFile uplad request: " + sessionData.toString() + " File name: " + file.getName() + " " + name);
         BasicResponse response = new BasicResponse();
-        if (!file.isEmpty() && data.getEmail() != null &&
-                file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(data.getEmail(), file)) {
+        if (!file.isEmpty() && sessionData.getEmail() != null &&
+                file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(sessionData.getEmail(), file)) {
             response.setText("File was successfully uploaded");
             response.setResult(true);
             //servletResponse.sendRedirect("/");
@@ -54,8 +54,16 @@ public class DataController {
     @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)
     public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder) {
         BasicResponse response = new BasicResponse();
-        logger.info("save data request: " + data.getEmail());
-        // TODO: 18.05.16  save in DB
+        logger.info("save sessionData request: " + sessionData.getEmail() + "\n\t" + dataHolder.toString());
+
+        try {
+            dbService.updateUserData(dataHolder, sessionData.getEmail());
+            response.setText("Your database records have been updated!");
+            response.setResult(true);
+        } catch (Exception e) {
+            logger.error("Error occoured while sending data");
+            response.setText("Error");
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

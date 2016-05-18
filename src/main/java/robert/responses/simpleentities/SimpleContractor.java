@@ -92,4 +92,17 @@ public class SimpleContractor {
     public void setCity(String city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        return "SimpleContractor{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", homeNo='" + homeNo + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

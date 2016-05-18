@@ -153,4 +153,22 @@ public class SimpleSalesman {
     public void setNipNo(String nipNo) {
         this.nipNo = nipNo;
     }
+
+    @Override
+    public String toString() {
+        return "SimpleSalesman{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", homeNo='" + homeNo + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                ", regon='" + regon + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", bankName='" + bankName + '\'' +
+                ", bankAccNo='" + bankAccNo + '\'' +
+                ", nipNo='" + nipNo + '\'' +
+                '}';
+    }
 }
