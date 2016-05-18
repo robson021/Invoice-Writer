@@ -18,7 +18,7 @@ public abstract class AbstractPerson extends AbstractEntity {
 
     //@Column(unique = true) //TODO uniqe nip number causes sql exception
     @NotNull
-    private String nipNo;
+    private String nipNo = "0000000";
 
     public AbstractPerson() {
         super();

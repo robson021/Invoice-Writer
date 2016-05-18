@@ -170,6 +170,7 @@ public class DbService {
             return false;
         }
 
+        // TODO: 18.05.16 cascade delete?
         user.updateData(dataHolder);
         saveUser(user);
         return true;

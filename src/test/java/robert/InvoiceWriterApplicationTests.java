@@ -206,6 +206,14 @@ public class InvoiceWriterApplicationTests {
 
         assertEquals(s1, s2);
 
+        dbUser.addContractor(new Contractor());
+        int contractorsNum = dbUser.getContractors().size();
+        dataBaseService.saveUser(dbUser);
+
+        dbUser = dataBaseService.findUserByEmail(DbService.getExampleUserEmail());
+
+        assertEquals(contractorsNum, dbUser.getContractors().size());
+
         System.out.println("DB test finish ******");
     }
 
