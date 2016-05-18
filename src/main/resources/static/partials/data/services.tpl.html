@@ -1,18 +1,66 @@
 <div align="center">
 
+    <!-- edit panel -->
+    <div class="forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">add/edit</h1>
+            </md-toolbar>
+            <md-content layount-padding>
+                <form>
+                    <md-input-container>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" ng-model="selectedService.name" md-autofocus>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="symbol">Symbol</label>
+                        <input type="text" id="symbol" ng-model="selectedService.symbol">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="nettoValue">Netto value</label>
+                        <input type="number" id="nettoValue" ng-model="selectedService.nettoValue">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="vatPercentage">Vat (%)</label>
+                        <input type="number" id="vatPercentage" ng-model="selectedService.vatPercentage">
+                    </md-input-container>
+                    <!--<md-input-container>
+                        <label>Vat value: {{selectedService.nettoValue * selectedService.vatPercentage}}</label>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Brutto: {{selectedService.nettoValue + selectedService.nettoValue * selectedService.vatPercentage}}</label>
+                    </md-input-container>-->
+                    <br>
+                    <md-button class="md-primary" ng-click="updateService()">
+                        Submit
+                    </md-button>
+                    <md-button class="md-warn" ng-click="closeSidebar()">
+                        Cancel
+                    </md-button>
+                </form>
+            </md-content>
+
+        </md-sidenav>
+    </div>
+
     <md-content>
         <md-list>
             <md-subheader class="md-no-sticky">Services:</md-subheader>
-            <md-list-item class="md-2-line" ng-repeat="c in services" ng-click="setValue(c)">
+            <md-list-item class="md-2-line" ng-repeat="c in services" ng-click="setServiceValue(c)">
                 <div class="md-list-item-text">
                     <h3> {{ c.name }} </h3>
                     <p> symbol: {{ c.symbol }} </p>
                     <p> netto: {{ c.nettoValue | currency }} </p>
                     <p> vat(%): {{ c.vatPercentage }} </p>
+                    <p>vat value: {{(c.nettoValue * c.vatPercentage / 100) | currency}}</p>
+                    <p>Brutto: {{(c.nettoValue + c.nettoValue * c.vatPercentage/100) | currency}}</p>
                 </div>
             </md-list-item>
         </md-list>
     </md-content>
 
+    <div layout="row">
+        <md-button class="md-raised" ng-click="addNewService()">Add new</md-button>
+    </div>
 
 </div>

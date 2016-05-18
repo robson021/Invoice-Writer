@@ -92,6 +92,10 @@
 
             };
 
+            $scope.saveData = function () {
+                console.info($rootScope.dbData);
+            };
+
 
             $scope.goContractors = function () {
                 $state.go('contractors');

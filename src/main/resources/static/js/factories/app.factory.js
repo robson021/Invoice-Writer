@@ -5,6 +5,7 @@
         .module("ngApp")
         .factory("logoutFactory", function ($http, $mdToast) {
             function logoutUser() {
+                //todo update db before logout
                 var ajax = $http.get('login/logout');
                 ajax.success(function (data) {
                     console.info("logout called: " + data.text);

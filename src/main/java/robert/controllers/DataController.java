@@ -3,16 +3,14 @@ package robert.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import robert.other.AboutAppInfo;
 import robert.other.AboutAuthorInfo;
 import robert.other.DefaultLogger;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
+import robert.responses.simpleentities.DataHolderResponse;
 import robert.services.DbService;
 
 /**
@@ -50,6 +48,14 @@ public class DataController {
             //servletResponse.sendRedirect("/#/upload");
         }
         logger.info("upload status: " + response.isResult());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)
+    public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder) {
+        BasicResponse response = new BasicResponse();
+        logger.info("save data request: " + data.getEmail());
+        // TODO: 18.05.16  save in DB
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

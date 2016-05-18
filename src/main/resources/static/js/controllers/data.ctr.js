@@ -33,7 +33,7 @@
                 console.info("item clicked: " + $scope.selectedSalesman.surname);
                 $mdSidenav('right').open();
             };
-            $scope.setValueService = function (item) {
+            $scope.setServiceValue = function (item) {
                 $scope.selectedService = item;
                 console.info("item clicked: " + $scope.selectedService.name);
                 $mdSidenav('right').open();
