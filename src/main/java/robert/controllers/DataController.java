@@ -65,8 +65,6 @@ public class DataController {
             response.setText("Error");
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
-        // fixed
-        // TODO: 18.05.16 A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance
     }
 
     @RequestMapping("/about/app")

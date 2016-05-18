@@ -172,13 +172,8 @@ public class DbService {
             logger.error("Can not find user");
             return false;
         }
-        user.getContractors().clear();
-        user.getSalesmen().clear();
-        user.getServices().clear();
-        //saveUser(user);
-        logger.info("clear done");
 
-        //user = findUserByEmail(email);
+
         updateData(dataHolder, user);
         saveUser(user);
         return true;
@@ -197,10 +192,18 @@ public class DbService {
         for (SimpleSalesman s : dataHolder.getSalesmen()) {
             newSalesmen.add(new Salesman(s));
         }
-        /*user.setServices(newServices);
-        user.setSalesmen(newSalesmen);
-        user.setContractors(newContractors);*/
 
+        /*
+        error: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance
+        user.setServices(newServices);
+        user.setSalesmen(newSalesmen);
+        user.setContractors(newContractors);
+        */
+
+        user.getContractors().clear();
+        user.getSalesmen().clear();
+        user.getServices().clear();
+        logger.info("clear done");
         user.getContractors().addAll(newContractors);
         user.getServices().addAll(newServices);
         user.getSalesmen().addAll(newSalesmen);
