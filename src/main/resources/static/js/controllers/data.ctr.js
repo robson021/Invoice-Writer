@@ -29,12 +29,12 @@
                 $mdSidenav('right').open();
             };
             $scope.setValueSalesman = function (item) {
-                $scope.selectedContractor = item;
+                $scope.selectedSalesman = item;
                 console.info("item clicked: " + $scope.selectedSalesman.surname);
                 $mdSidenav('right').open();
             };
             $scope.setValueService = function (item) {
-                $scope.selectedContractor = item;
+                $scope.selectedService = item;
                 console.info("item clicked: " + $scope.selectedService.name);
                 $mdSidenav('right').open();
             };
@@ -49,6 +49,30 @@
                     console.info("updated old");
                 }
                 $scope.selectedContractor = null;
+            };
+
+            $scope.updateSalesman = function () {
+                $scope.closeSidebar();
+                if (addNew) {
+                    addNew = false;
+                    $scope.salesmen.push($scope.selectedSalesman);
+                    console.info("added new");
+                } else {
+                    console.info("updated old");
+                }
+                $scope.selectedSalesman = null;
+            };
+
+            $scope.updateService = function () {
+                $scope.closeSidebar();
+                if (addNew) {
+                    addNew = false;
+                    $scope.services.push($scope.selectedService);
+                    console.info("added new");
+                } else {
+                    console.info("updated old");
+                }
+                $scope.selectedService = null;
             };
 
             $scope.addNewContractor = function () {
