@@ -169,8 +169,14 @@ public class DbService {
             logger.error("Can not find user");
             return false;
         }
+        user.getContractors().clear();
+        user.getSalesmen().clear();
+        user.getServices().clear();
+        saveUser(user);
+        logger.info("clear done");
 
-        // TODO: 18.05.16 cascade delete?
+        // TODO: 18.05.16
+        user = findUserByEmail(email);
         user.updateData(dataHolder);
         saveUser(user);
         return true;

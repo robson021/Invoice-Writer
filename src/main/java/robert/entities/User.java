@@ -234,5 +234,10 @@ public class User extends AbstractEntity {
         this.setServices(newServices);
         this.setSalesmen(newSalesmen);
         this.setContractors(newContractors);
+
+        // for test
+        /*this.setServices(null);
+        this.setSalesmen(null);
+        this.setContractors(null);*/
     }
 }

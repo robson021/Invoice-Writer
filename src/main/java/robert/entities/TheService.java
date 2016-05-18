@@ -2,7 +2,6 @@ package robert.entities;
 
 import robert.responses.simpleentities.SimpleService;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,7 +12,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class TheService extends AbstractEntity {
     private String name;
-    @Column(unique = true)
+    //@Column(unique = true)
     private String symbol;
     private int vatPercentage;
     private double nettoValue;
