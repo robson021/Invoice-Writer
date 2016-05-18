@@ -238,7 +238,7 @@ public class InvoiceWriterApplicationTests {
         assertEquals(0, dbUser.getSalesmen().size());
         assertEquals(0, dbUser.getServices().size());
 
-        dbUser.updateData(dataHolder);
+        dataBaseService.updateData(dataHolder, dbUser);
 
         dataBaseService.saveUser(dbUser);
 

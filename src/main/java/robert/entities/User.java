@@ -1,7 +1,10 @@
 package robert.entities;
 
 import org.springframework.util.Assert;
-import robert.responses.simpleentities.*;
+import robert.responses.simpleentities.SimpleContractor;
+import robert.responses.simpleentities.SimpleSalesman;
+import robert.responses.simpleentities.SimpleService;
+import robert.responses.simpleentities.SimpleUser;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -218,26 +221,5 @@ public class User extends AbstractEntity {
                 '}';
     }
 
-    public void updateData(DataHolderResponse dataHolder) {
-        List<TheService> newServices = new ArrayList<>();
-        for (SimpleService s : dataHolder.getServices()) {
-            newServices.add(new TheService(s));
-        }
-        List<Contractor> newContractors = new ArrayList<>();
-        for (SimpleContractor c : dataHolder.getContractors()) {
-            newContractors.add(new Contractor(c));
-        }
-        List<Salesman> newSalesmen = new ArrayList<>();
-        for (SimpleSalesman s : dataHolder.getSalesmen()) {
-            newSalesmen.add(new Salesman(s));
-        }
-        this.setServices(newServices);
-        this.setSalesmen(newSalesmen);
-        this.setContractors(newContractors);
 
-        // for test
-        /*this.setServices(null);
-        this.setSalesmen(null);
-        this.setContractors(null);*/
-    }
 }

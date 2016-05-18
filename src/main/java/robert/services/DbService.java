@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
 import robert.repositories.UserRepository;
 import robert.responses.simpleentities.DataHolderResponse;
+import robert.responses.simpleentities.SimpleContractor;
+import robert.responses.simpleentities.SimpleSalesman;
+import robert.responses.simpleentities.SimpleService;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -175,11 +178,37 @@ public class DbService {
         saveUser(user);
         logger.info("clear done");
 
-        // TODO: 18.05.16
         user = findUserByEmail(email);
-        user.updateData(dataHolder);
+        updateData(dataHolder, user);
         saveUser(user);
         return true;
+    }
+
+    public void updateData(DataHolderResponse dataHolder, User user) {
+        List<TheService> newServices = new ArrayList<>();
+        for (SimpleService s : dataHolder.getServices()) {
+            newServices.add(new TheService(s));
+        }
+        List<Contractor> newContractors = new ArrayList<>();
+        for (SimpleContractor c : dataHolder.getContractors()) {
+            newContractors.add(new Contractor(c));
+        }
+        List<Salesman> newSalesmen = new ArrayList<>();
+        for (SimpleSalesman s : dataHolder.getSalesmen()) {
+            newSalesmen.add(new Salesman(s));
+        }
+        /*user.setServices(newServices);
+        user.setSalesmen(newSalesmen);
+        user.setContractors(newContractors);*/
+
+        user.getContractors().addAll(newContractors);
+        user.getServices().addAll(newServices);
+        user.getSalesmen().addAll(newSalesmen);
+
+        // for test
+        /*this.setServices(null);
+        this.setSalesmen(null);
+        this.setContractors(null);*/
     }
 
 
