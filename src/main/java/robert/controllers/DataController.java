@@ -27,28 +27,27 @@ public class DataController {
 
     @Autowired
     public DataController(SessionData sessionData, DbService dbService) {
-        //this.logger = logger;
         this.sessionData = sessionData;
         this.dbService = dbService;
     }
 
 
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
-    public ResponseEntity<?> upladImg(@RequestParam("name") String name,
+    public ResponseEntity<?> upladImg(/*@RequestParam("name") String name,*/
                                       @RequestParam("file") MultipartFile file) {
-        logger.info("\n\tFile uplad request: " + sessionData.toString() + " File name: " + file.getName() + " " + name);
+        logger.info("\n\tFile uplad request: " + sessionData.toString() + " File name: " + file.getName() /*+ " " + name*/);
         BasicResponse response = new BasicResponse();
+        HttpStatus status = HttpStatus.OK;
         if (!file.isEmpty() && sessionData.getEmail() != null &&
                 file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(sessionData.getEmail(), file)) {
-            response.setText("File was successfully uploaded");
+            response.setText("File has been successfully uploaded");
             response.setResult(true);
-            //servletResponse.sendRedirect("/");
         } else {
             response.setText("Could not upload the file");
-            //servletResponse.sendRedirect("/#/upload");
+            status = HttpStatus.NOT_ACCEPTABLE;
         }
-        logger.info("upload status: " + response.isResult());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        logger.info("upload status: " + status);
+        return new ResponseEntity<>(response, status);
     }
 
     @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)

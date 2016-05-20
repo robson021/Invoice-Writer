@@ -1,6 +1,6 @@
 <div align="center" layout-align="center center">
 
-    <p>You can upload your complany logo here.
+    <p>You can upload your company logo here.
         <br>
         It will be visible in the top left corner of PDF invoice.
         <br>
@@ -12,10 +12,11 @@
             <tr>
                 <td>File to upload:</td>
                 <!--<td><input type="file" name="file"/></td>-->
-                <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/></tr>
+                <input type="file" name="file" accept="image/*"
+                       onchange="angular.element(this).scope().uploadFile(this.files)"/></tr>
             <tr>
-                <td>Name:</td>
-                <td><input type="text" name="name"/></td>
+                <!--<td>Name:</td>
+                <td><input type="text" name="name"/></td>-->
             </tr>
             <tr>
                 <td></td>

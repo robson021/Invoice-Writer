@@ -108,10 +108,10 @@
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
-                }).success(function (data) { // todo: fix
+                }).success(function (data) {
                     console.info("upload complete");
+                    $state.go('logged-in');
                     $mdToast.show($mdToast.simple().textContent(data.text));
-                    $state.go('default');
                 }).error(function (data) {
                     console.info("upload error");
                     $mdToast.show($mdToast.simple().textContent(data.text));
