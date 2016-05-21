@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import robert.entities.User;
+import robert.other.Mailer;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
@@ -21,8 +22,14 @@ public class RegisterController {
 
     private static final Logger logger = Logger.getLogger(RegisterController.class);
 
-    @Autowired
     private DbService dbService;
+    private Mailer mailer;
+
+    @Autowired
+    public RegisterController(DbService dbService, Mailer mailer) {
+        this.dbService = dbService;
+        this.mailer = mailer;
+    }
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     public BasicResponse registerNewUser(@RequestBody SimpleUser user) {

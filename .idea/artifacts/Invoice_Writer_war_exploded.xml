@@ -39,7 +39,6 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:1.9.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.11.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.2.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-rest:1.3.3.RELEASE" />
@@ -85,6 +84,11 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.3.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-actuator:1.3.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-mail:1.3.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.5" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

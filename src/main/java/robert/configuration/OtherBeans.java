@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
 import robert.other.DefaultLogger;
+import robert.other.Mailer;
+import robert.other.MailerImpl;
 import robert.other.SessionData;
 
 /**
@@ -23,5 +25,10 @@ public class OtherBeans {
     public SessionData sessionData() {
         logger.info("Session bean init");
         return new SessionData();
+    }
+
+    @Bean
+    public Mailer mailer() {
+        return new MailerImpl();
     }
 }
