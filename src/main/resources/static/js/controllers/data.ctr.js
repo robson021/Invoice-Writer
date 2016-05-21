@@ -16,6 +16,16 @@
             $scope.selectedService = null;
             $scope.selectedSalesman = null;
 
+            if ($scope.contractors == null) {
+                $scope.contractors = [];
+            }
+            if ($scope.salesmen == null) {
+                $scope.salesmen = [];
+            }
+            if ($scope.services == null) {
+                $scope.services = [];
+            }
+
 
             $scope.test1 = function () {
                 console.info("test clicked");
