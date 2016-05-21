@@ -117,6 +117,7 @@ public class LoginController {
         holder.setSalesmen(dbUser.getSimpleSalesmen());
         holder.setResult(true);
         holder.setText("You are logged in!");
+        holder.checkNulls();
         return holder;
     }
 

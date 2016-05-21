@@ -1,5 +1,6 @@
 package robert.responses.simpleentities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,5 +42,29 @@ public class DataHolderResponse extends SimpleUserData {
                 ", salesmen=" + salesmen +
                 ", services=" + services +
                 '}';
+    }
+
+    public void checkNulls() {
+        if (contractors == null || contractors.size() == 0) {
+            contractors = new ArrayList<>();
+            SimpleContractor sc = new SimpleContractor();
+            sc.setName("Example");
+            sc.setSurname("Contractor");
+            contractors.add(sc);
+        }
+        if (salesmen == null || salesmen.size() == 0) {
+            salesmen = new ArrayList<>();
+            SimpleSalesman ss = new SimpleSalesman();
+            ss.setName("Example");
+            ss.setSurname("Salesman");
+            salesmen.add(ss);
+        }
+        if (services == null || services.size() == 0) {
+            services = new ArrayList<>();
+            SimpleService se = new SimpleService();
+            se.setName("Example");
+            se.setSymbol("e");
+            services.add(se);
+        }
     }
 }
