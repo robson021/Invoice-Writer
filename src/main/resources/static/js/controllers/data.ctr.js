@@ -108,6 +108,10 @@
                 $mdSidenav('right').close();
             };
 
+            $scope.downloadImage = function () {
+                window.open("/data/get-image", '_blank');
+            };
+
             $scope.uploadFile = function (files) {
                 console.info("upload starterd...")
                 var fd = new FormData();

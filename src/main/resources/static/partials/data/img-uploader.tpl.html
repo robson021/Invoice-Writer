@@ -10,23 +10,29 @@
     <form method="POST" enctype="multipart/form-data" action="/data/uplad/img">
         <table>
             <tr>
-                <td>File to upload:</td>
+                <!--<td>File to upload:</td>-->
                 <!--<td><input type="file" name="file"/></td>-->
                 <input type="file" name="file" accept="image/*"
-                       onchange="angular.element(this).scope().uploadFile(this.files)"/></tr>
+                       onchange="angular.element(this).scope().uploadFile(this.files)"/>
+            </tr>
             <tr>
                 <!--<td>Name:</td>
                 <td><input type="text" name="name"/></td>-->
             </tr>
-            <tr>
-                <td></td>
+            <!--<tr>
                 <td>
                     <input type="submit" value="Upload"/>
                 </td>
-            </tr>
+            </tr>-->
         </table>
         <!--
                 <md-button>Upload</md-button>
         -->
     </form>
+
+    <div>
+        <p>You can download your current image here:</p>
+        <button type="button" class="btn btn-success" ng-click="downloadImage()">Download</button>
+    </div>
+
 </div>
