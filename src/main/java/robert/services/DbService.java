@@ -215,4 +215,12 @@ public class DbService {
     }
 
 
+    public byte[] getUserImage(String email) {
+        byte[] bytes = null;
+        try {
+            bytes = findUserByEmail(email).getImage();
+        } finally {
+            return bytes;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package robert.controllers;
 
+import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,5 +85,25 @@ public class TestController {
     public ResponseEntity<?> postDataToUpdate(@RequestBody DataHolderResponse holder) {
         logger.info(holder.toString());
         return new ResponseEntity<>("updated", HttpStatus.OK);
+    }
+
+    @SuppressWarnings("Duplicates")
+    @RequestMapping(value = "/get-image", method = RequestMethod.GET)
+    public void getImageFile(HttpServletResponse response) {
+        logger.info("Download file request: " + DbService.getExampleUserEmail());
+        byte[] imageBytes = dbService.getUserImage(DbService.getExampleUserEmail());
+        InputStream in = new ByteArrayInputStream(imageBytes);
+        response.addHeader("Content-disposition", "attachment;filename="
+                + "img");
+        response.setContentType("txt/plain");
+
+        try {
+            IOUtils.copy(in, response.getOutputStream());
+            logger.info("Ready to send");
+            response.flushBuffer();
+            logger.info("Sending done");
+        } catch (Exception e) {
+            logger.error("exception: IOUtils.copy(...)");
+        }
     }
 }

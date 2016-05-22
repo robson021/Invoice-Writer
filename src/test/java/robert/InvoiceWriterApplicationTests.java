@@ -302,6 +302,8 @@ public class InvoiceWriterApplicationTests {
 
         mvc.perform(get("/test/dataholder")).andExpect(status().isOk());
 
+        //mvc.perform(get("/test/get-image"));
+
         System.out.println("MVC TEST FINISH ******************");
     }
 

@@ -1,6 +1,7 @@
 package robert.controllers;
 
 import org.apache.log4j.Logger;
+import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,10 @@ import robert.responses.BasicResponse;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.services.DbService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 /**
  * Created by robert on 04.05.16.
  */
@@ -21,6 +26,7 @@ import robert.services.DbService;
 public class DataController {
 
     private static final int MAX_FILE_SIZE = 150_000;
+    private static final String IMAGE_NAME = "your_logo";
     private Logger logger = Logger.getLogger(DataController.class);
     private SessionData sessionData;
     private DbService dbService;
@@ -64,6 +70,26 @@ public class DataController {
             response.setText("Error");
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @SuppressWarnings("Duplicates")
+    @RequestMapping(value = "/get-image", method = RequestMethod.GET)
+    public void getImageFile(HttpServletResponse response) {
+        logger.info("Download file request: " + sessionData.getEmail());
+        byte[] imageBytes = dbService.getUserImage(sessionData.getEmail());
+        InputStream in = new ByteArrayInputStream(imageBytes);
+        response.addHeader("Content-disposition", "attachment;filename="
+                + IMAGE_NAME);
+        response.setContentType("txt/plain");
+
+        try {
+            IOUtils.copy(in, response.getOutputStream());
+            logger.info("Ready to send");
+            response.flushBuffer();
+            logger.info("Sending done");
+        } catch (Exception e) {
+            logger.error("exception: IOUtils.copy(...)");
+        }
     }
 
     @RequestMapping("/about/app")
