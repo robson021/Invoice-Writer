@@ -59,6 +59,11 @@ angular
                 url: '/upload',
                 templateUrl: '/partials/data/img-uploader.tpl.html',
                 controller: 'data-ctr'
+            })
+            .state('before-use', {
+                url: '/before-use',
+                templateUrl: '/partials/before-use.tpl.html',
+                controller: 'other-views-ctr'
             }); // end of state provider
 
         $urlRouterProvider.otherwise("/");

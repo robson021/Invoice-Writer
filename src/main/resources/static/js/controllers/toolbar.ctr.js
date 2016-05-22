@@ -21,19 +21,23 @@
                 $rootScope.hideRegisterLogin = false;
                 $rootScope.loginButtonEnabled = true;                
                 $state.go('default');
-            }
+            };
             
             $scope.aboutAppFun = function () {
                 mainInfoFactory.getAppInfo(info.appInfo);
                 console.info("about app (controller): " + info.appInfo.title + "\n" + info.appInfo.text);
                 $state.go('about-app');
-            }
+            };
 
             $scope.aboutAuthorFun = function () {
                 mainInfoFactory.getAuthorInfo(info.authorInfo);
                 console.info("about author (controller): " + info.authorInfo.title + "\n" + info.authorInfo.text);
                 $state.go('about-author');
-            }
+            };
+
+            $scope.beforeUseFun = function () {
+                $state.go('before-use');
+            };
 
             $scope.mainView = function () {
                 console.info($rootScope.isLoggedIn);
