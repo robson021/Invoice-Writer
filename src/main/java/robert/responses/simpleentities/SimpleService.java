@@ -10,6 +10,7 @@ public class SimpleService {
     private String symbol;
     private String vatPercentage;
     private String nettoValue;
+    private int count;
 
     public SimpleService(TheService service) {
         name = service.getName();
@@ -59,6 +60,14 @@ public class SimpleService {
 
     public void setNettoValue(String nettoValue) {
         this.nettoValue = nettoValue;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override
