@@ -129,7 +129,7 @@
                     <input class="col-sm-12" placeholder="number" type="number" ng-model="x.count"/>
                 </td>
                 <td>
-                    {{ (x.nettoValue + x.nettoValue * x.vatPercentage/100) * x.count |currency }}
+                    {{ (x.brutto * x.count) |currency }}
                 </td>
             </tr>
             </tbody>
