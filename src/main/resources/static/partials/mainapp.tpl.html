@@ -84,7 +84,7 @@
 
     </div>
 
-    </div>
+
 
     <!--services selection-->
     <div class="border1">
@@ -99,8 +99,10 @@
         </md-select>
     </md-input-container>
     </div>
-
+    </div>
     <br><br>
+
+
     <!--selected content of invoice-->
     <div>
         <table class="table">
@@ -108,22 +110,18 @@
             <br>
             <thead>
             <tr>
-                <th>City</th>
-                <th>Pin</th>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Netto</th>
+                <th>Vat (%)</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Hydrabad</td>
-                <td>500001</td>
-            </tr>
-            <tr>
-                <td>Bangalore</td>
-                <td>560002</td>
-            </tr>
-            <tr>
-                <td>Kolkata</td>
-                <td>700001</td>
+            <tr ng-repeat="x in selectedServices">
+                <td>{{ x.name }}</td>
+                <td>{{ x.symbol }}</td>
+                <td>{{ x.nettoValue | currency}}</td>
+                <td>{{ x.vatPercentage }}</td>
             </tr>
             </tbody>
         </table>
