@@ -7,7 +7,7 @@
     outline: none;
     height: 100%;
     width: 100%;
-    padding: 0;
+    padding: 10px;
 }
 
 .selectdemoSelectHeader .demo-select-header {
@@ -25,12 +25,12 @@
     max-height: 240px;
 }
 
-/*
+
 .btn {
     color: rgb(49, 46, 46);
     background-color: rgba(255, 222, 121, 0.96);
     border-radius: 10px 0 0 10px;
     font-size: 16px;
-}*/
+}
 
 

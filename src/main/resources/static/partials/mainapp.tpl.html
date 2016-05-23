@@ -37,15 +37,15 @@
     <!--in row div-->
     <div class="padded flex-display" layout="row">
 
-        <!--payment/time-->
+        <!--payment-->
     <div class="payment border1" layout="row" ng-cloak layout-align="center center">
         <md-input-container>
             <label for="formOfPayment">Form of payment</label>
             <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
         </md-input-container>
         <md-input-container>
-            <label for="deadlineOfPayment">Deadline of payment</label>
-            <input type="text" id="deadlineOfPayment" ng-model="deadlineOfPayment" md-autofocus>
+            <label for="placeOfPayment">Place of payment(town)</label>
+            <input type="text" id="placeOfPayment" ng-model="placeOfPayment" md-autofocus>
         </md-input-container>
 
     </div>
@@ -137,7 +137,7 @@
 
 
     <div layout="row" layout-align="center center">
-        <md-button class="btn" ng-click="saveData()">Save data</md-button>
+        <md-button class="btn btn-success" ng-click="saveData()">Save data</md-button>
     </div>
 
 

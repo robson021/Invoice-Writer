@@ -10,8 +10,8 @@
             $scope.selectedServices = [];
             $scope.service = null;
 
-            $scope.formOfPayment = '';
-            $scope.deadlineOfPayment = '';
+            $scope.formOfPayment = 'cash';
+            $scope.placeOfPayment = 'Cracow';
 
             // local arrays
             $scope.salesmen = $rootScope.dbData.salesmen;
