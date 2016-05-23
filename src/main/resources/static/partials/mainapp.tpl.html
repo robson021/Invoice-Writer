@@ -1,4 +1,5 @@
-<div layout-align="center center" class="maxWidth">
+<!--in case of prblems delete jumbotron and enter "maxWidth"-->
+<div layout-align="center center" class="jumbotron">
     <!-- nav buttons -->
     <div layout="row" layout-align="space-around center">
         <md-button class="md-raised" ng-click="goSalesmen()">
@@ -52,8 +53,8 @@
 
     <!--selection of contractor & salesman-->
     <div class="md-padding border1" flex layout="row" layout-align="center" ng-cloack>
-        <div layout="row">
-        <div layout="row">
+        <div layout="column">
+            <div layout="column">
             <md-input-container>
                 <label>Contractor</label>
                 <md-select ng-model="contractor" md-selected-text="getSelectedC()">
