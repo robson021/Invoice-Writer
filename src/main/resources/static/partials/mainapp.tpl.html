@@ -35,7 +35,7 @@
     </div>
 
     <!--in row div-->
-    <div class="padded" layout="row">
+    <div class="padded flex-display" layout="row">
 
         <!--payment/time-->
     <div class="payment border1" layout="row" ng-cloak layout-align="center center">
@@ -105,10 +105,8 @@
         <md-button class="btn" ng-click="saveData()">Save data</md-button>
     </div>
 
-    <!--<div class="test-area">
-        <md-button class="btn" ng-click="testFun()">test</md-button>
-    </div>-->
 
+    <!--todo flex displaying-->
     <style>
         .border1 {
             padding: 15px;
@@ -118,6 +116,10 @@
 
         .padded {
             padding: 30px;
+        }
+
+        .flex-display {
+            display: flex; /* or inline-flex */
         }
     </style>
 
