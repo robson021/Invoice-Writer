@@ -71,6 +71,7 @@ public class LoginController {
                 // session bean
                 data.setEmail(dbUser.getEmail());
                 session.setAttribute(session.getId(), data);
+                session.setMaxInactiveInterval(30 * 60); // 30min session timeout
                 logger.info("Session info: " + data.toString());
                 return this.generateHolder(dbUser);
             } else {

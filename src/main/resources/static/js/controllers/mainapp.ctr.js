@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $q, $log) {
 
 
             // selected right now
@@ -9,6 +9,9 @@
             $scope.contractor = null;
             $scope.selectedServices = [];
             $scope.service = null;
+
+            $scope.formOfPayment = '';
+            $scope.deadlineOfPayment = '';
 
             // local arrays
             $scope.salesmen = $rootScope.dbData.salesmen;
@@ -117,6 +120,8 @@
             $scope.goUpload = function () {
                 $state.go('uplad');
             };
+
+            //time & payment
 
         }); // end of ctrl
 })();

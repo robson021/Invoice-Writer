@@ -34,6 +34,19 @@
 
     </div>
 
+    <!--payment/time-->
+    <div class="payment" layout="row" ng-cloak layout-align="center center">
+        <md-input-container>
+            <label for="formOfPayment">Form of payment</label>
+            <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
+        </md-input-container>
+        <md-input-container>
+            <label for="deadlineOfPayment">Deadline of payment (e.g. 21 days)</label>
+            <input type="text" id="deadlineOfPayment" ng-model="deadlineOfPayment" md-autofocus>
+        </md-input-container>
+
+    </div>
+
     <!--selection-->
     <div class="md-padding" flex layout="row" layout-align="center" ng-cloack>
         <div layout="row">
@@ -81,6 +94,7 @@
     </md-input-container>
 
     <p>{{selectedServices}}</p>
+    <p>{{formOfPayment}}</p>
 
 
     <div layout="row" layout-align="center center">
