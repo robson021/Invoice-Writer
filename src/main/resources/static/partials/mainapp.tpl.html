@@ -112,8 +112,10 @@
             <tr>
                 <th>Name</th>
                 <th>Symbol</th>
-                <th>Netto</th>
+                <th>Netto (per item)</th>
                 <th>Vat (%)</th>
+                <th>Count</th>
+                <th>Brutto (total)</th>
             </tr>
             </thead>
             <tbody>
@@ -122,6 +124,12 @@
                 <td>{{ x.symbol }}</td>
                 <td>{{ x.nettoValue | currency}}</td>
                 <td>{{ x.vatPercentage }}</td>
+                <td class="col-sm-1">
+                    <input class="col-sm-12" placeholder="number" type="number" ng-model="x.count"/>
+                </td>
+                <td>
+                    {{ (x.nettoValue + x.nettoValue * x.vatPercentage/100) * x.count |currency }}
+                </td>
             </tr>
             </tbody>
         </table>

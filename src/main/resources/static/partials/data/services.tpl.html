@@ -53,7 +53,7 @@
                     <p> netto: {{ c.nettoValue | currency }} </p>
                     <p> vat(%): {{ c.vatPercentage }} </p>
                     <p>vat value: {{(c.nettoValue * c.vatPercentage / 100) | currency}}</p>
-                    <p>Brutto: {{(c.nettoValue + c.nettoValue * c.vatPercentage/100) | currency}}</p>
+                    <p>Brutto: {{(c.nettoValue + c.nettoValue * c.vatPercentage / 100) | currency}}</p>
                 </div>
             </md-list-item>
         </md-list>
