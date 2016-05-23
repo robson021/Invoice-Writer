@@ -48,18 +48,33 @@ public class RegisterController {
             u = new User(user);
             dbService.saveUser(u);
             response.setResult(true);
-            logger.info("User registered");
             response.setText("You can login now.");
-            try {
-                mailer.sendEmail(u.getEmail(), "Registration - Invoice-Writer app", "Registration complete!", null);
-            } catch (Exception e) {
-                logger.error("Send email after user's registration error");
-            }
 
+            // sending via thread for better performance. Waiting for mailer takes too long
+            new Thread(new MailerTaskRunnable(u.getEmail())).start();
+            logger.info("User registered");
         } else {
             logger.error("Given e-mail is already taken!");
             response.setText("That e-mail is already used!");
         }
         return response;
+    }
+
+    private class MailerTaskRunnable implements Runnable {
+        private final String email;
+
+        public MailerTaskRunnable(String email) {
+            this.email = email;
+        }
+
+        @Override
+        public void run() {
+            try {
+                mailer.sendEmail(email, "Registration - Invoice-Writer app", "Registration complete!", null);
+                logger.info("Mail has been sent");
+            } catch (Exception e) {
+                logger.error("Email sender thread exception");
+            }
+        }
     }
 }
