@@ -34,7 +34,9 @@
 }
 
 .maxWidth {
-    max-width: 1100px;
+    max-width: 1150px;
+    margin: auto;
+    position: relative;
 }
 
 
