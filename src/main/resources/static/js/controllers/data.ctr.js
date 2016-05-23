@@ -73,6 +73,8 @@
 
             $scope.updateService = function () {
                 $scope.closeSidebar();
+                var s = $scope.selectedService;
+                s.brutto = s.nettoValue + s.nettoValue * s.vatPercentage / 100;
                 if ($scope.addNew) {
                     $scope.addNew = false;
                     $scope.services.push($scope.selectedService);
@@ -137,7 +139,6 @@
 
             $scope.closeSidebar = function () {
                 $mdSidenav('right').close();
-                $scope.addNew = false;
                 // todo add watcher for this variable
             };
 

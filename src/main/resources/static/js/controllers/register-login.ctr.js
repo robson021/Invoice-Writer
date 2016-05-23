@@ -59,7 +59,7 @@
                     if (data.result) {
                         u.password = "";
                         u.repassword = "";
-                        $rootScope.hideRegisterLogin = true; // todo: why does it auto swap to false?
+                        $rootScope.hideRegisterLogin = true;
                         //$scope.myData = data;
 
                         $rootScope.dbData = data;
@@ -72,6 +72,11 @@
                         console.info("hide register/login: " + $rootScope.hideRegisterLogin);
                         r.isLoggedIn = true;
                         r.loginButtonEnabled = false;
+
+                        for (var i = 0; i < $rootScope.dbData.services.length; i++) {
+                            var s = $rootScope.dbData.services[i];
+                            s.brutto = s.nettoValue + s.nettoValue * s.vatPercentage / 100;
+                        }
                         $state.go('logged-in');
                     } else {
                         console.error("failed to login");
