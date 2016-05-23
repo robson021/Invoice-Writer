@@ -34,14 +34,17 @@
 
     </div>
 
-    <!--payment/time-->
+    <!--in row div-->
+    <div class="padded" layout="row">
+
+        <!--payment/time-->
     <div class="payment border1" layout="row" ng-cloak layout-align="center center">
         <md-input-container>
             <label for="formOfPayment">Form of payment</label>
             <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
         </md-input-container>
         <md-input-container>
-            <label for="deadlineOfPayment">Deadline of payment (e.g. 21 days)</label>
+            <label for="deadlineOfPayment">Deadline of payment</label>
             <input type="text" id="deadlineOfPayment" ng-model="deadlineOfPayment" md-autofocus>
         </md-input-container>
 
@@ -81,6 +84,8 @@
 
     </div>
 
+    </div>
+
     <!--services selection-->
     <div class="border1">
     <md-input-container layout="column" layout-align="center center">
@@ -105,11 +110,14 @@
     </div>-->
 
     <style>
-
         .border1 {
             padding: 15px;
             border-style: outset;
             border-top-width: 9px;
+        }
+
+        .padded {
+            padding: 30px;
         }
     </style>
 
