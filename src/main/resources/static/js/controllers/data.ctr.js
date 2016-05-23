@@ -4,9 +4,7 @@
         .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state, $http, $mdSidenav) {
 
             var data = $rootScope.dbData;
-            //var json = JSON.parse(data);
-
-            var addNew = false;
+            $scope.addNew = false;
 
             $scope.contractors = data.contractors;
             $scope.salesmen = data.salesmen;
@@ -51,8 +49,8 @@
 
             $scope.updateContractor = function () {
                 $scope.closeSidebar();
-                if (addNew) {
-                    addNew = false;
+                if ($scope.addNew) {
+                    $scope.addNew = false;
                     $scope.contractors.push($scope.selectedContractor);
                     console.info("added new");
                 } else {
@@ -63,8 +61,8 @@
 
             $scope.updateSalesman = function () {
                 $scope.closeSidebar();
-                if (addNew) {
-                    addNew = false;
+                if ($scope.addNew) {
+                    $scope.addNew = false;
                     $scope.salesmen.push($scope.selectedSalesman);
                     console.info("added new");
                 } else {
@@ -75,8 +73,8 @@
 
             $scope.updateService = function () {
                 $scope.closeSidebar();
-                if (addNew) {
-                    addNew = false;
+                if ($scope.addNew) {
+                    $scope.addNew = false;
                     $scope.services.push($scope.selectedService);
                     console.info("added new");
                 } else {
@@ -85,27 +83,62 @@
                 $scope.selectedService = null;
             };
 
+            // adding
             $scope.addNewContractor = function () {
-                addNew = true;
+                $scope.addNew = true;
                 $scope.selectedContractor = null;
                 $mdSidenav('right').open();
             };
 
             $scope.addNewSalesman = function () {
-                addNew = true;
+                $scope.addNew = true;
                 $scope.selectedSalesman = null;
                 $mdSidenav('right').open();
             };
 
             $scope.addNewService = function () {
-                addNew = true;
+                $scope.addNew = true;
                 $scope.selectedService = null;
                 $mdSidenav('right').open();
+            };
+
+            // deleting
+            $scope.deleteService = function () {
+                console.info("deleting: " + $scope.selectedService)
+                if (!$scope.addNew) {
+                    var index = $scope.services.indexOf($scope.selectedService);
+                    if (index !== -1) {
+                        $scope.services.splice(index, 1);
+                    }
+                }
+                $scope.closeSidebar();
+            };
+            $scope.deleteSalesman = function () {
+                console.info("deleting: " + $scope.selectedSalesman)
+                if (!$scope.addNew) {
+                    var index = $scope.salesmen.indexOf($scope.selectedSalesman);
+                    if (index !== -1) {
+                        $scope.salesmen.splice(index, 1);
+                    }
+                }
+                $scope.closeSidebar();
+            };
+            $scope.deleteContractor = function () {
+                console.info("deleting: " + $scope.selectedContractor)
+                if (!$scope.addNew) {
+                    var index = $scope.contractors.indexOf($scope.selectedContractor);
+                    if (index !== -1) {
+                        $scope.contractors.splice(index, 1);
+                    }
+                }
+                $scope.closeSidebar();
             };
 
 
             $scope.closeSidebar = function () {
                 $mdSidenav('right').close();
+                $scope.addNew = false;
+                // todo add watcher for this variable
             };
 
             $scope.downloadImage = function () {

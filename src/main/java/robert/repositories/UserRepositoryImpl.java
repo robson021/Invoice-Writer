@@ -41,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
         } catch (Exception e) {
             logger.error("User save exception");
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }
