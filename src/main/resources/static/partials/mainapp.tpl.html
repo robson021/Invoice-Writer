@@ -35,7 +35,7 @@
     </div>
 
     <!--payment/time-->
-    <div class="payment" layout="row" ng-cloak layout-align="center center">
+    <div class="payment border1" layout="row" ng-cloak layout-align="center center">
         <md-input-container>
             <label for="formOfPayment">Form of payment</label>
             <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
@@ -47,8 +47,8 @@
 
     </div>
 
-    <!--selection-->
-    <div class="md-padding" flex layout="row" layout-align="center" ng-cloack>
+    <!--selection of contractor & salesman-->
+    <div class="md-padding border1" flex layout="row" layout-align="center" ng-cloack>
         <div layout="row">
         <div layout="row">
             <md-input-container>
@@ -82,6 +82,7 @@
     </div>
 
     <!--services selection-->
+    <div class="border1">
     <md-input-container layout="column" layout-align="center center">
         <!--<label layout-align="center center">Services / trade goods</label>-->
         <md-select ng-model="selectedServices" multiple>
@@ -92,9 +93,7 @@
             </md-optgroup>
         </md-select>
     </md-input-container>
-
-    <p>{{selectedServices}}</p>
-    <p>{{formOfPayment}}</p>
+    </div>
 
 
     <div layout="row" layout-align="center center">
@@ -104,5 +103,14 @@
     <!--<div class="test-area">
         <md-button class="btn" ng-click="testFun()">test</md-button>
     </div>-->
+
+    <style>
+
+        .border1 {
+            padding: 15px;
+            border-style: outset;
+            border-top-width: 9px;
+        }
+    </style>
 
 </div>
