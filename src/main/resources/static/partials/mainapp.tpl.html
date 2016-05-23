@@ -1,4 +1,4 @@
-<div>
+<div layout-align="center center">
     <!-- nav buttons -->
     <div layout="row" layout-align="space-around center">
         <md-button class="md-raised" ng-click="goSalesmen()">
@@ -104,7 +104,7 @@
 
 
     <!--selected content of invoice-->
-    <div>
+    <div layout-align="center center">
         <table class="table">
             <caption>Selected services:</caption>
             <br>
@@ -136,13 +136,15 @@
     </div>
 
 
-    <div layout="row" layout-align="center center">
-        <md-button class="btn btn-success" ng-click="saveData()">Save data</md-button>
+    <div class="padded" layout="row" layout-align="space-around center">
+        <md-button class="btn btn-success" ng-click="saveData()">
+            Save data
+        </md-button>
     </div>
 
 
-    <!--todo flex displaying-->
-    <style>
+    <!--todo flex display-->
+    <style type="text/css">
         .border1 {
             padding: 15px;
             border-style: outset;
@@ -155,6 +157,10 @@
 
         .flex-display {
             display: flex; /* or inline-flex */
+        }
+
+        .customWidth {
+            max-width: 900px;
         }
     </style>
 

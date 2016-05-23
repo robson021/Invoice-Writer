@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/info.css">
     <link rel="stylesheet" href="css/mainApp.css">
 </head>
-<body ng-app="ngApp" ng-cloak="">
+<body ng-app="ngApp" ng-cloak flex>
 
 <!-- md toolbar -->
 <md-toolbar ng-controller="toolbar-ctr">
@@ -117,16 +117,17 @@
 
 
 <!--APPEARS AFTER LOGIN -->
-<ui-view></ui-view>
+<div>
+    <ui-view></ui-view>
+</div>
 
-
-<style>
+<style type="text/css">
     footer {
         background-color: #ccc;
-        padding: 15px;
+        padding: 5px;
     }
 </style>
-<footer>
+<footer layout-align="center end">
     <div layout="row" layout-align="center center">
         <h2>Invoice Writer</h2>
     </div>
