@@ -37,6 +37,7 @@ public class SimpleContractor {
         this.homeNo = contractor.getHomeNo();
         this.postCode = contractor.getPostCode();
         this.city = contractor.getCity();
+        this.nipNo = contractor.getNipNo();
     }
 
     public String getName() {

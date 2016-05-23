@@ -64,6 +64,9 @@ public class DataHolderResponse extends SimpleUserData {
             SimpleService se = new SimpleService();
             se.setName("Example");
             se.setSymbol("e");
+            se.setNettoValue("100");
+            se.setVatPercentage("8");
+            se.setCount(1);
             services.add(se);
         }
     }

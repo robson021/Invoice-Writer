@@ -65,7 +65,7 @@ public class DataController {
             response.setResult(true);
         } catch (Exception e) {
             logger.error("Error occoured while saving data");
-            response.setText("Error");
+            response.setText("Error - check for empty fields in data");
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
