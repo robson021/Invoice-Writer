@@ -1,9 +1,12 @@
 package robert.other;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.transaction.NotSupportedException;
 import java.io.File;
 
@@ -14,25 +17,27 @@ import java.io.File;
 public class MailerImpl implements Mailer {
 
     @Autowired
-    private DefaultLogger logger;
-    private MailSender mailSender;
-
-
-    // TODO: 21.05.16 mail service
+    private JavaMailSender javaMailSender;
 
 
     @Override
-    public void sendEmail(String address, String title, String text, File file) throws NotSupportedException {
-        throw new NotSupportedException();
+    public void sendEmail(String to, String subject, String body, File file) throws NotSupportedException, MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper;
+
+        helper = new MimeMessageHelper(message, true);
+        helper.setSubject(subject);
+        helper.setTo(to);
+        body += "\n\n(This is an auto-generated message).";
+        helper.setText(body, true);
+        if (file != null) {
+            // TODO: 23.05.16 file attachment
+        }
+        javaMailSender.send(message);
     }
 
     @Override
-    public void sendEmail(SimpleMailMessage templateMessage) {
-        try {
-            mailSender.send(templateMessage);
-            logger.info("Mail has been sent to: " + templateMessage.getFrom());
-        } catch (Exception e) {
-            logger.error("Mail sender error");
-        }
+    public void sendEmail(SimpleMailMessage templateMessage) throws NotSupportedException {
+        throw new NotSupportedException("Not yet supported");
     }
 }

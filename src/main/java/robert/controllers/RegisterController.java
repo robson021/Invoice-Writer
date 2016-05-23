@@ -35,6 +35,7 @@ public class RegisterController {
     public BasicResponse registerNewUser(@RequestBody SimpleUser user) {
         logger.info("New user request");
         BasicResponse response = new BasicResponse();
+        user.setEmail(user.getEmail().trim());
         User u = null;
         try {
             u = dbService.findUserByEmail(user.getEmail());
@@ -49,6 +50,12 @@ public class RegisterController {
             response.setResult(true);
             logger.info("User registered");
             response.setText("You can login now.");
+            try {
+                mailer.sendEmail(u.getEmail(), "Registration - Invoice-Writer app", "Registration complete!", null);
+            } catch (Exception e) {
+                logger.error("Send email after user's registration error");
+            }
+
         } else {
             logger.error("Given e-mail is already taken!");
             response.setText("That e-mail is already used!");

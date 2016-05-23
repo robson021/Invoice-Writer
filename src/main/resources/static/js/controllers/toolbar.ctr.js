@@ -24,14 +24,14 @@
             };
             
             $scope.aboutAppFun = function () {
-                mainInfoFactory.getAppInfo(info.appInfo);
-                console.info("about app (controller): " + info.appInfo.title + "\n" + info.appInfo.text);
+                //mainInfoFactory.getAppInfo(info.appInfo);
+                //console.info("about app (controller): " + info.appInfo.title + "\n" + info.appInfo.text);
                 $state.go('about-app');
             };
 
             $scope.aboutAuthorFun = function () {
-                mainInfoFactory.getAuthorInfo(info.authorInfo);
-                console.info("about author (controller): " + info.authorInfo.title + "\n" + info.authorInfo.text);
+                //mainInfoFactory.getAuthorInfo(info.authorInfo);
+                //console.info("about author (controller): " + info.authorInfo.title + "\n" + info.authorInfo.text);
                 $state.go('about-author');
             };
 

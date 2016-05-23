@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import robert.other.AboutAppInfo;
-import robert.other.AboutAuthorInfo;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.DataHolderResponse;
@@ -92,15 +90,4 @@ public class DataController {
         }
     }
 
-    @RequestMapping("/about/app")
-    public ResponseEntity<?> getAboutAppInfo() {
-        logger.info("About app get request.");
-        return new ResponseEntity<>(new AboutAppInfo(), HttpStatus.OK);
-    }
-
-    @RequestMapping("/about/author")
-    public ResponseEntity<?> getAboutAuthorInfo() {
-        logger.info("About author get request.");
-        return new ResponseEntity<>(new AboutAuthorInfo(), HttpStatus.OK);
-    }
 }
