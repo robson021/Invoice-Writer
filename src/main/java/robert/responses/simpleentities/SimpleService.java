@@ -8,15 +8,16 @@ import robert.entities.TheService;
 public class SimpleService {
     private String name;
     private String symbol;
-    private String vatPercentage;
-    private String nettoValue;
+    private int vatPercentage;
+    private double nettoValue;
     private int count;
 
     public SimpleService(TheService service) {
         name = service.getName();
         symbol = service.getSymbol();
-        vatPercentage = String.valueOf(service.getVatPercentage());
-        nettoValue = String.valueOf(service.getNettoValue());
+        vatPercentage = service.getVatPercentage();
+        nettoValue = service.getNettoValue();
+        count = 1;
     }
 
     public SimpleService() {
@@ -26,8 +27,8 @@ public class SimpleService {
     public SimpleService(String name, String symbol, String vatPercentage, String nettoValue) {
         this.name = name;
         this.symbol = symbol;
-        this.vatPercentage = vatPercentage;
-        this.nettoValue = nettoValue;
+        this.vatPercentage = Integer.parseInt(vatPercentage);
+        this.nettoValue = Double.parseDouble(nettoValue);
     }
 
     public String getName() {
@@ -46,19 +47,19 @@ public class SimpleService {
         this.symbol = symbol;
     }
 
-    public String getVatPercentage() {
+    public int getVatPercentage() {
         return vatPercentage;
     }
 
-    public void setVatPercentage(String vatPercentage) {
+    public void setVatPercentage(int vatPercentage) {
         this.vatPercentage = vatPercentage;
     }
 
-    public String getNettoValue() {
+    public double getNettoValue() {
         return nettoValue;
     }
 
-    public void setNettoValue(String nettoValue) {
+    public void setNettoValue(double nettoValue) {
         this.nettoValue = nettoValue;
     }
 
