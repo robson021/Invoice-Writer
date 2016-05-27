@@ -93,7 +93,14 @@ public class DataController {
 
     @RequestMapping(value = "/submit-invoice", method = RequestMethod.POST)
     public ResponseEntity<?> submitInvoice(@RequestBody InvoiceTemplate invoiceTemplate) {
+        logger.info("Invoice submit from: " + sessionData.getEmail());
         BasicResponse response = new BasicResponse();
+        if (!invoiceTemplate.validate()) {
+            response.setText("Error - some fields are missing.");
+        } else {
+            response.setText("Ok. Invoice is ready.");
+            response.setResult(true);
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

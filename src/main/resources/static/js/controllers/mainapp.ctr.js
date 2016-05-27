@@ -9,7 +9,7 @@
             $scope.contractor = null;
             $scope.selectedServices = [];
             $scope.service = null;
-            $scope.copyOnMail = false;
+            $scope.copyOnMail = true;
 
             $scope.formOfPayment = 'cash';
             $scope.placeOfPayment = 'Cracow';
@@ -130,12 +130,17 @@
                     $window.scrollTo(0, 0);
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
-                    //console.info("done");
                 });
             };
 
             $scope.submitInvoice = function () {
-                var ajax = $http.post('/data/submit-invoice', $rootScope.dbData);
+                var invoiceTemplate = {
+                    'copyOnMail': $scope.copyOnMail,
+                    'salesman': $scope.salesman,
+                    'contractor': $scope.contractor,
+                    'selectedServices': $scope.selectedServices
+                };
+                var ajax = $http.post('/data/submit-invoice', invoiceTemplate);
                 ajax.success(function (data) {
                     $window.scrollTo(0, 0);
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
@@ -146,7 +151,6 @@
 
             $scope.goContractors = function () {
                 $state.go('contractors');
-                //console.info($rootScope.dbData);
             };
 
             $scope.goSalesmen = function () {
@@ -159,8 +163,6 @@
             $scope.goUpload = function () {
                 $state.go('uplad');
             };
-
-            //time & payment
 
         }); // end of ctrl
 })();
