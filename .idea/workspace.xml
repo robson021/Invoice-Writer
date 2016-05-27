@@ -32,11 +32,10 @@
       <file leaf-file-name="mainapp.tpl.html" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="179" column="26" selection-start-line="179" selection-start-column="26" selection-end-line="179" selection-end-column="26" />
+            <state relative-caret-position="946">
+              <caret line="124" column="49" selection-start-line="124" selection-start-column="49" selection-end-line="124" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1151,14 +1150,7 @@
       <workItem from="1464203182426" duration="374000" />
       <workItem from="1464206010589" duration="230000" />
       <workItem from="1464265232544" duration="815000" />
-      <workItem from="1464351512528" duration="2932000" />
-    </task>
-    <task id="LOCAL-00019" summary=".">
-      <created>1462368859138</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1462368859138</updated>
+      <workItem from="1464351512528" duration="3525000" />
     </task>
     <task id="LOCAL-00020" summary=".">
       <created>1462372447459</created>
@@ -1496,7 +1488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464351978518</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary=".">
+      <created>1464355807131</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1464355807131</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1517,7 +1516,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145253000" />
+    <option name="totallyTimeSpent" value="145846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="875" extended-state="6" />
@@ -1970,11 +1969,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="179" column="26" selection-start-line="179" selection-start-column="26" selection-end-line="179" selection-end-column="26" />
+        <state relative-caret-position="946">
+          <caret line="124" column="49" selection-start-line="124" selection-start-column="49" selection-end-line="124" selection-end-column="49" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
