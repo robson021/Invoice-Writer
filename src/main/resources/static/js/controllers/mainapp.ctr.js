@@ -95,12 +95,38 @@
 
             };
 
+            // md-toast config
+            var last = {
+                bottom: true,
+                top: false,
+                left: true,
+                right: false
+            };
+            $scope.toastPosition = angular.extend({}, last);
+            $scope.getToastPosition = function () {
+                sanitizePosition();
+                return Object.keys($scope.toastPosition)
+                    .filter(function (pos) {
+                        return $scope.toastPosition[pos];
+                    })
+                    .join(' ');
+            };
+            function sanitizePosition() {
+                var current = $scope.toastPosition;
+                if (current.bottom && last.top) current.top = false;
+                if (current.top && last.bottom) current.bottom = false;
+                if (current.right && last.left) current.left = false;
+                if (current.left && last.right) current.right = false;
+                last = angular.extend({}, current);
+            }
+
             $scope.saveData = function () {
                 console.info("data to send:\n" + $rootScope.dbData);
                 var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
                 ajax.success(function (data) {
-                    $mdToast.show($mdToast.simple().textContent(data.text));
-                    console.info("done");
+                    $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
+                        .hideDelay(3000));
+                    //console.info("done");
                 });
             };
 
