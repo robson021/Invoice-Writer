@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
+import robert.responses.InvoiceTemplate;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.services.DbService;
 
@@ -88,6 +89,12 @@ public class DataController {
         } catch (Exception e) {
             logger.error("exception: IOUtils.copy(...)");
         }
+    }
+
+    @RequestMapping(value = "/submit-invoice", method = RequestMethod.POST)
+    public ResponseEntity<?> submitInvoice(@RequestBody InvoiceTemplate invoiceTemplate) {
+        BasicResponse response = new BasicResponse();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

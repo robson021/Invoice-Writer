@@ -9,6 +9,7 @@
             $scope.contractor = null;
             $scope.selectedServices = [];
             $scope.service = null;
+            $scope.copyOnMail = false;
 
             $scope.formOfPayment = 'cash';
             $scope.placeOfPayment = 'Cracow';
@@ -120,6 +121,8 @@
                 last = angular.extend({}, current);
             }
 
+
+            // bottom buttons
             $scope.saveData = function () {
                 console.info("data to send:\n" + $rootScope.dbData);
                 var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
@@ -128,6 +131,15 @@
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
                     //console.info("done");
+                });
+            };
+
+            $scope.submitInvoice = function () {
+                var ajax = $http.post('/data/submit-invoice', $rootScope.dbData);
+                ajax.success(function (data) {
+                    $window.scrollTo(0, 0);
+                    $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
+                        .hideDelay(3000));
                 });
             };
 

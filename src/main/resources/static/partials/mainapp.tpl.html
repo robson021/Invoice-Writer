@@ -115,8 +115,12 @@
         <div class="contractor padded border2">
             <p>{{contractor.name + " " + contractor.surname}}</p>
             <p>{{contractor.companyName}}</p>
+            <p>{{contractor.streetName + " " + contractor.homeNo + ", " + contractor.postCode +" " +
+                contractor.city}}</p>
+            <p>Nip: {{contractor.nipNo}}</p>
         </div>
     </div>
+
 
     <!--services table-->
     <div layout-align="center center" ng-show="selectedServices.length > 0">
@@ -143,17 +147,25 @@
                     <input class="col-sm-12" placeholder="number" type="number" min="1" ng-model="x.count"/>
                 </td>
                 <td>
-                    {{ (x.brutto * x.count) |currency }}
+                    {{ (x.brutto * x.count) | currency }}
                 </td>
             </tr>
             </tbody>
         </table>
+
+        <md-switch ng-model="copyOnMail" aria-label="Switch 1" ng-true-value="'yes'" ng-false-value="'no'">
+            Send copy on mail: {{ copyOnMail }}
+        </md-switch>
     </div>
 
 
+    <!--bottom buttons-->
     <div class="padded" layout="row" layout-align="space-around center">
         <md-button class="btn btn-success" ng-click="saveData()">
             Save data
+        </md-button>
+        <md-button class="btn btn-success" ng-click="submitInvoice()">
+            Submit invoice
         </md-button>
     </div>
 
@@ -172,8 +184,8 @@
 
         .border2 {
             padding: 15px;
-            min-height: 400px;
-            min-width: 250px;
+            min-height: 380px;
+            min-width: 200px;
             margin-left: 20px;
             margin-right: 20px;
             border-style: outset;
