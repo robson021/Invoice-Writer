@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $q, $log) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window) {
 
 
             // selected right now
@@ -97,10 +97,10 @@
 
             // md-toast config
             var last = {
-                bottom: true,
-                top: false,
-                left: true,
-                right: false
+                bottom: false,
+                top: true,
+                left: false,
+                right: true
             };
             $scope.toastPosition = angular.extend({}, last);
             $scope.getToastPosition = function () {
@@ -124,6 +124,7 @@
                 console.info("data to send:\n" + $rootScope.dbData);
                 var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
                 ajax.success(function (data) {
+                    $window.scrollTo(0, 0);
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
                     //console.info("done");

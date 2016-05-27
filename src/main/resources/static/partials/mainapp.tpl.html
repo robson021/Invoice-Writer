@@ -101,9 +101,8 @@
     </div>
 
     <!--selected content of invoice-->
-
     <!--selected contractor & salesman-->
-    <div layout="row" layout-align="center center" class="padded">
+    <div layout="row" layout-align="center center" class="padded" ng-show="salesman != null && contractor != null">
         <div class="salesman padded border2">
             <p>{{salesman.name + " " + salesman.surname}}</p>
             <p>{{salesman.companyName}}</p>
@@ -120,7 +119,7 @@
     </div>
 
     <!--services table-->
-    <div layout-align="center center">
+    <div layout-align="center center" ng-show="selectedServices.length > 0">
         <table class="table">
             <caption>Selected services:</caption>
             <br>
