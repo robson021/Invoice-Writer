@@ -105,6 +105,7 @@
 
 
     <!--selected content of invoice-->
+    <!--services table-->
     <div layout-align="center center">
         <table class="table">
             <caption>Selected services:</caption>
@@ -112,7 +113,7 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Symbol</th>
+                <th>Description</th>
                 <th>Netto (per item)</th>
                 <th>Vat (%)</th>
                 <th>Count</th>
@@ -126,7 +127,7 @@
                 <td>{{ x.nettoValue | currency}}</td>
                 <td>{{ x.vatPercentage }}</td>
                 <td class="col-sm-1">
-                    <input class="col-sm-12" placeholder="number" type="number" ng-model="x.count"/>
+                    <input class="col-sm-12" placeholder="number" type="number" min="1" ng-model="x.count"/>
                 </td>
                 <td>
                     {{ (x.brutto * x.count) |currency }}
