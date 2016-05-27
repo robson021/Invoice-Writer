@@ -9,7 +9,7 @@
             $scope.contractor = null;
             $scope.selectedServices = [];
             $scope.service = null;
-            $scope.copyOnMail = true;
+            $scope.copyOnMail = false;
 
             $scope.formOfPayment = 'cash';
             $scope.placeOfPayment = 'Cracow';

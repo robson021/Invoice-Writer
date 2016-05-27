@@ -35,8 +35,11 @@
 
     </div>
 
-    <!--in row div-->
-    <div class="padded flex-display" layout="row">
+    <!--container div-->
+    <div layout="row" layout-align="center center" class="padded">
+
+        <!--3 borders-->
+        <div class="padded flex-display" layout="column">
 
         <!--payment-->
     <div class="payment border1" layout="row" ng-cloak layout-align="center center">
@@ -120,7 +123,7 @@
             <p>Nip: {{contractor.nipNo}}</p>
         </div>
     </div>
-
+    </div>
 
     <!--services table-->
     <div layout-align="center center" ng-show="selectedServices.length > 0">
@@ -185,7 +188,7 @@
 
         .border2 {
             padding: 15px;
-            min-height: 380px;
+            min-height: 450px;
             min-width: 200px;
             margin-left: 20px;
             margin-right: 20px;
