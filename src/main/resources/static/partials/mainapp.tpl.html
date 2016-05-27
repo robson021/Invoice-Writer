@@ -105,6 +105,24 @@
 
 
     <!--selected content of invoice-->
+
+    <!--selected contractor & salesman-->
+    <div layout="row" layout-align="center center" class="padded">
+        <div class="salesman padded border2">
+            <p>{{salesman.name + " " + salesman.surname}}</p>
+            <p>{{salesman.companyName}}</p>
+            <p>{{salesman.streetName + " " + salesman.homeNo + ", " + salesman.postCode +" " + salesman.city}}</p>
+            <p>Regon: {{salesman.regon}}</p>
+            <p>Nip: {{salesman.nipNo}}</p>
+            <p>Phone: {{salesman.phoneNo}}</p>
+            <p>Bank: {{salesman.bankName + " " + salesman.bankAccNo}}</p>
+        </div>
+        <div class="contractor padded border2">
+            <p>{{contractor.name + " " + contractor.surname}}</p>
+            <p>{{contractor.companyName}}</p>
+        </div>
+    </div>
+
     <!--services table-->
     <div layout-align="center center">
         <table class="table">
@@ -151,6 +169,20 @@
             padding: 15px;
             border-style: outset;
             border-top-width: 9px;
+            -moz-box-shadow: 0 0 2px black;
+            -webkit-box-shadow: 0 0 2px black;
+            box-shadow: 0 0 2px black;
+        }
+
+        .border2 {
+            padding: 15px;
+            min-height: 400px;
+            min-width: 250px;
+            border-style: outset;
+            border-top-width: 9px;
+            -moz-box-shadow: 0 0 2px black;
+            -webkit-box-shadow: 0 0 2px black;
+            box-shadow: 0 0 2px black;
         }
 
         .padded {
