@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import robert.other.Mailer;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.InvoiceTemplate;
@@ -29,11 +30,13 @@ public class DataController {
     private static final Logger logger = Logger.getLogger(DataController.class);
     private SessionData sessionData;
     private DbService dbService;
+    private Mailer mailer;
 
     @Autowired
-    public DataController(SessionData sessionData, DbService dbService) {
+    public DataController(SessionData sessionData, DbService dbService, Mailer mailer) {
         this.sessionData = sessionData;
         this.dbService = dbService;
+        this.mailer = mailer;
     }
 
 
@@ -98,6 +101,7 @@ public class DataController {
         if (!invoiceTemplate.validate()) {
             response.setText("Error - some fields are missing.");
         } else {
+            // TODO: 27.05.16 invoice generation
             response.setText("Ok. Invoice is ready.");
             response.setResult(true);
         }
