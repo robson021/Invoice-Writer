@@ -17,53 +17,70 @@
     </div>
 
 
-
     <!--container div-->
     <div layout="row" layout-align="center center" class="padded">
 
         <!--3 borders-->
         <div class="padded flex-display" layout="column">
 
-        <!--payment-->
+            <!--payment-->
             <div class="payment border1" layout="column" ng-cloak layout-align="center center">
-        <md-input-container>
-            <label for="formOfPayment">Form of payment</label>
-            <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
-        </md-input-container>
-        <md-input-container>
-            <label for="placeOfexposure">Place of exposure</label>
-            <input type="text" id="placeOfexposure" ng-model="placeOfexposure" md-autofocus>
-        </md-input-container>
+                <md-input-container>
+                    <label for="formOfPayment">Form of payment</label>
+                    <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
+                </md-input-container>
+                <md-input-container>
+                    <label for="placeOfexposure">Place of exposure</label>
+                    <input type="text" id="placeOfexposure" ng-model="placeOfexposure" md-autofocus>
+                </md-input-container>
                 <md-container>
                     <input type="text" id="invoiceNumber" placeholder="Invoice number" ng-model="invoiceNumber"
                            md-autofocus>
                 </md-container>
 
-    </div>
+            </div>
 
-    <!--selection of contractor & salesman-->
-    <div class="md-padding border1" flex layout="row" layout-align="center" ng-cloack>
-        <div layout="column">
-            <div layout="column">
-            <md-input-container>
-                <label>Contractor</label>
-                <md-select ng-model="contractor" md-selected-text="getSelectedC()">
-                    <md-optgroup label="contractors">
-                        <md-option ng-value="contractor" ng-repeat="contractor in contractors">
-                            {{contractor.name}} {{contractor.surname}}
-                        </md-option>
-                    </md-optgroup>
-                </md-select>
-            </md-input-container>
-        </div>
+            <!--selection of contractor & salesman-->
+            <div class="md-padding border1" flex layout="row" layout-align="center" ng-cloack>
+                <div layout="column">
+                    <div layout="column">
+                        <md-input-container>
+                            <label>Contractor</label>
+                            <md-select ng-model="contractor" md-selected-text="getSelectedC()">
+                                <md-optgroup label="contractors">
+                                    <md-option ng-value="contractor" ng-repeat="contractor in contractors">
+                                        {{contractor.name}} {{contractor.surname}}
+                                    </md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+                    </div>
 
-            <div layout="row">
-                <md-input-container>
-                    <label>Salesman</label>
-                    <md-select ng-model="salesman" md-selected-text="getSelectedS()">
-                        <md-optgroup label="salesmen">
-                            <md-option ng-value="salesman" ng-repeat="salesman in salesmen">
-                                {{salesman.name}} {{salesman.surname}}
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Salesman</label>
+                            <md-select ng-model="salesman" md-selected-text="getSelectedS()">
+                                <md-optgroup label="salesmen">
+                                    <md-option ng-value="salesman" ng-repeat="salesman in salesmen">
+                                        {{salesman.name}} {{salesman.surname}}
+                                    </md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--services selection-->
+            <div class="border1">
+                <md-input-container layout="column" layout-align="center center">
+                    <!--<label layout-align="center center">Services / trade goods</label>-->
+                    <md-select ng-model="selectedServices" multiple>
+                        <md-optgroup label="services">
+                            <md-option ng-value="service" ng-repeat="service in services">
+                                {{service.name}}; {{service.nettoValue | currency}}
                             </md-option>
                         </md-optgroup>
                     </md-select>
@@ -71,27 +88,8 @@
             </div>
         </div>
 
-    </div>
-
-
-
-    <!--services selection-->
-    <div class="border1">
-    <md-input-container layout="column" layout-align="center center">
-        <!--<label layout-align="center center">Services / trade goods</label>-->
-        <md-select ng-model="selectedServices" multiple>
-            <md-optgroup label="services">
-            <md-option ng-value="service" ng-repeat="service in services">
-                {{service.name}}; {{service.nettoValue | currency}}
-            </md-option>
-            </md-optgroup>
-        </md-select>
-    </md-input-container>
-    </div>
-    </div>
-
-    <!--selected content of invoice-->
-    <!--selected contractor & salesman-->
+        <!--selected content of invoice-->
+        <!--selected contractor & salesman-->
         <div layout="column" layout-align="center center" class="padded"
              ng-show="salesman != null && contractor != null">
 
@@ -115,23 +113,24 @@
 
 
             <div layout="row">
-        <div class="salesman padded border2">
-            <p>{{salesman.name + " " + salesman.surname}}</p>
-            <p>{{salesman.companyName}}</p>
-            <p>{{salesman.streetName + " " + salesman.homeNo + ", " + salesman.postCode +" " + salesman.city}}</p>
-            <p>Regon: {{salesman.regon}}</p>
-            <p>Nip: {{salesman.nipNo}}</p>
-            <p>Phone: {{salesman.phoneNo}}</p>
-            <p>Bank: {{salesman.bankName + " " + salesman.bankAccNo}}</p>
-        </div>
-        <div class="contractor padded border2">
-            <p>{{contractor.name + " " + contractor.surname}}</p>
-            <p>{{contractor.companyName}}</p>
-            <p>{{contractor.streetName + " " + contractor.homeNo + ", " + contractor.postCode +" " +
-                contractor.city}}</p>
-            <p>Nip: {{contractor.nipNo}}</p>
-        </div>
-    </div>
+                <div class="salesman padded border2">
+                    <p>{{salesman.name + " " + salesman.surname}}</p>
+                    <p>{{salesman.companyName}}</p>
+                    <p>{{salesman.streetName + " " + salesman.homeNo + ", " + salesman.postCode +" " +
+                        salesman.city}}</p>
+                    <p>Regon: {{salesman.regon}}</p>
+                    <p>Nip: {{salesman.nipNo}}</p>
+                    <p>Phone: {{salesman.phoneNo}}</p>
+                    <p>Bank: {{salesman.bankName + " " + salesman.bankAccNo}}</p>
+                </div>
+                <div class="contractor padded border2">
+                    <p>{{contractor.name + " " + contractor.surname}}</p>
+                    <p>{{contractor.companyName}}</p>
+                    <p>{{contractor.streetName + " " + contractor.homeNo + ", " + contractor.postCode +" " +
+                        contractor.city}}</p>
+                    <p>Nip: {{contractor.nipNo}}</p>
+                </div>
+            </div>
         </div>
     </div>
 

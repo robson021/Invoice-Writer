@@ -52,67 +52,67 @@
 
     <div class="forms" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
 
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-    <md-toolbar>
-        <h1 class="md-toolbar-tools">Register new user</h1>
-    </md-toolbar>
-    <md-content layount-padding>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">Register new user</h1>
+            </md-toolbar>
+            <md-content layount-padding>
+                <form>
+                    <md-input-container>
+                        <label for="firstname">Name</label>
+                        <input type="text" id="firstname" ng-model="user.firstname" md-autofocus>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" ng-model="user.surname">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" ng-model="user.email">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" ng-model="user.password">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="repassword">Retype passwd</label>
+                        <input type="password" id="repassword" ng-model="user.repassword">
+                    </md-input-container>
+                    <br>
+                    <md-button class="md-primary" ng-click="registerFunction()">
+                        Submit
+                    </md-button>
+                    <md-button class="md-warn" ng-click="closeSidebar()">
+                        Cancel
+                    </md-button>
+                </form>
+            </md-content>
+
+            <!--<p>{{ user | json }}</p>-->
+
+        </md-sidenav>
+
+
         <form>
             <md-input-container>
-                <label for="firstname">Name</label>
-                <input type="text" id="firstname" ng-model="user.firstname" md-autofocus>
-            </md-input-container>
-            <md-input-container>
-                <label for="surname">Surname</label>
-                <input type="text" id="surname" ng-model="user.surname">
-            </md-input-container>
-            <md-input-container>
-                <label for="email">E-mail</label>
-                <input type="email" id="email" ng-model="user.email">
-            </md-input-container>
-            <md-input-container>
-                <label for="password">Password</label>
-                <input type="password" id="password" ng-model="user.password">
-            </md-input-container>
-            <md-input-container>
-                <label for="repassword">Retype passwd</label>
-                <input type="password" id="repassword" ng-model="user.repassword">
+                <label for="email1">E-mail</label>
+                <input type="email" id="email1" ng-model="user.email" md-autofocus>
             </md-input-container>
             <br>
-            <md-button class="md-primary" ng-click="registerFunction()">
-                Submit
+            <md-input-container>
+                <label for="passwd1">Password</label>
+                <input type="password" id="passwd1" ng-model="user.password">
+            </md-input-container>
+            <br>
+            <md-button class="md-primary" ng-click="loginFunction()">
+                Login
             </md-button>
-            <md-button class="md-warn" ng-click="closeSidebar()">
-                Cancel
+            <md-button class="md-primary" ng-click="openSidebar()">
+                Register
             </md-button>
         </form>
-    </md-content>
 
-    <!--<p>{{ user | json }}</p>-->
-
-</md-sidenav>
-
-
-<form>
-    <md-input-container>
-        <label for="email1">E-mail</label>
-        <input type="email" id="email1" ng-model="user.email" md-autofocus>
-    </md-input-container>
-    <br>
-    <md-input-container>
-        <label for="passwd1">Password</label>
-        <input type="password" id="passwd1" ng-model="user.password">
-    </md-input-container>
-    <br>
-    <md-button class="md-primary" ng-click="loginFunction()">
-        Login
-    </md-button>
-    <md-button class="md-primary" ng-click="openSidebar()">
-        Register
-    </md-button>
-</form>
-
-</div>
+    </div>
 </div>
 
 

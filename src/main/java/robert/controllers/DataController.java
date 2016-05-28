@@ -36,6 +36,7 @@ public class DataController {
     private static final int MAX_FILE_SIZE = 150_000;
     private static final String IMAGE_NAME = "your_logo";
     private static final Logger logger = Logger.getLogger(DataController.class);
+
     private SessionData sessionData;
     private DbService dbService;
     private Mailer mailer;

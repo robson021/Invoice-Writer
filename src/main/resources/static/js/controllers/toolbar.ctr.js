@@ -13,16 +13,16 @@
             };
 
             var info = $rootScope.basicInfo;
-            
+
             $scope.logout = function () { //todo: watcher - enabled/disabled button
                 console.info("logout button clicked");
                 logoutFactory.logoutUser();
                 $rootScope.isLoggedIn = false;
                 $rootScope.hideRegisterLogin = false;
-                $rootScope.loginButtonEnabled = true;                
+                $rootScope.loginButtonEnabled = true;
                 $state.go('default');
             };
-            
+
             $scope.aboutAppFun = function () {
                 //mainInfoFactory.getAppInfo(info.appInfo);
                 //console.info("about app (controller): " + info.appInfo.title + "\n" + info.appInfo.text);
