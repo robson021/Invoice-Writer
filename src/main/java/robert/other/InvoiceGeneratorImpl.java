@@ -61,6 +61,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             dateContentTable.addCell(pSellDate);
 
 
+
             PdfPTable topTable = generateTopTable(template, image);
             document.add(topTable);
 
@@ -70,6 +71,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             document.add(dateContentTable);
 
 
+            // MAIN TABLE WITH SERVICES
             double bruttoSum = 0;
             PdfPTable table = generateTableStructure();
             for (SimpleService s : template.getSelectedServices()) {
@@ -82,12 +84,12 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 bruttoSum += s.calculateBrutto();
             }
             PdfPTable invisibleTable = new PdfPTable(TABLE_SIZE);
-            invisibleTable.getDefaultCell().setBorder(0);
             for (int i = 0; i < TABLE_SIZE - 2; i++) {
                 invisibleTable.addCell(new PdfPCell(new Paragraph("")));
             }
             invisibleTable.addCell(new PdfPCell(new Paragraph("Total:")));
             invisibleTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", bruttoSum) + "$")));
+            invisibleTable.getDefaultCell().setBorder(0);
 
             document.add(new Chunk(" "));
             document.add(new Chunk(" "));
@@ -124,10 +126,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         salesmanTable.addCell(new Paragraph(s.getName() + " " + s.getSurname()));
         salesmanTable.addCell(new Paragraph(s.getCompanyName()));
         salesmanTable.addCell(new Paragraph(s.getStreetName() + " " + s.getHomeNo() + ", " + s.getPostCode() + " " + s.getCity()));
-        salesmanTable.addCell(new Paragraph(s.getRegon()));
-        salesmanTable.addCell(new Paragraph(s.getRegon()));
-        salesmanTable.addCell(new Paragraph(s.getNipNo()));
-        salesmanTable.addCell(new Paragraph(s.getPhoneNo()));
+        salesmanTable.addCell(new Paragraph("Regon: " + s.getRegon()));
+        salesmanTable.addCell(new Paragraph("Nip: " + s.getNipNo()));
+        salesmanTable.addCell(new Paragraph("Phone: " + s.getPhoneNo()));
 
         SimpleContractor c = t.getContractor();
         PdfPTable contractorTable = new PdfPTable(1);
@@ -136,7 +137,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         contractorTable.addCell(new Paragraph(c.getName() + " " + c.getSurname()));
         contractorTable.addCell(new Paragraph(c.getCompanyName()));
         contractorTable.addCell(new Paragraph(c.getStreetName() + " " + c.getHomeNo() + ", " + c.getPostCode() + " " + c.getCity()));
-        contractorTable.addCell(new Paragraph(c.getNipNo()));
+        contractorTable.addCell(new Paragraph("Nip: " + c.getNipNo()));
 
         PdfPTable mainTable = new PdfPTable(3);
         mainTable.getDefaultCell().setBorder(0);
