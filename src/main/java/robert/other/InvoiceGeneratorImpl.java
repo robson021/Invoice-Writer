@@ -1,7 +1,6 @@
 package robert.other;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -11,8 +10,8 @@ import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by robert on 28.05.16.
@@ -28,7 +27,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     new FileOutputStream(fileName));
             document.open();
 
-            Chunk underline = new Chunk("Invoice");
+            Chunk underline = new Chunk("Invoice " + template.getInvoiceNumber());
             Paragraph element = new Paragraph(underline);
             element.setAlignment(Element.ALIGN_CENTER);
             underline.setUnderline(0.1f, -2f); //0.1 thick, -2 y-location
@@ -36,12 +35,40 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             document.add(new Chunk(" "));
             document.add(new Chunk(" "));
 
-            Date exposureDate = template.getExposureDate();
-            Date sellDate = template.getSellDate();
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+
+            c.setTime(template.getDeadDate());
+            String dead = formater.format(c.getTime());
+            Paragraph pDeadline = new Paragraph("Payment deadline: " + dead);
+
+            c.setTime(template.getSellDate());
+            String sellDate = formater.format(c.getTime());
+            Paragraph pSellDate = new Paragraph("Sell date: " + sellDate + ", " + template.getPlaceOfexposure());
+
+            c.setTime(template.getExposureDate());
+            String expDate = formater.format(c.getTime());
+            Paragraph pExpDate = new Paragraph("Invoice date: " + expDate);
+
+            Paragraph pFormOfPayment = new Paragraph("Form of payment: " + template.getFormOfPayment());
+
+            // top data
+            PdfPTable dateContentTable = new PdfPTable(2);
+            dateContentTable.getDefaultCell().setBorder(0);
+            dateContentTable.addCell(pDeadline);
+            dateContentTable.addCell(pExpDate);
+            dateContentTable.addCell(pFormOfPayment);
+            dateContentTable.addCell(pSellDate);
 
 
             PdfPTable topTable = generateTopTable(template, image);
             document.add(topTable);
+
+            document.add(new Chunk(" "));
+            document.add(new Chunk(" "));
+
+            document.add(dateContentTable);
+
 
             double bruttoSum = 0;
             PdfPTable table = generateTableStructure();
@@ -67,19 +94,24 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             document.add(table);
             document.add(invisibleTable);
 
-            Anchor link = new Anchor("Made with 'Invoice Writer by Robert Nowak'");
+
+            // FOOTER
+            /*Anchor link = new Anchor("Made with 'Invoice Writer by Robert Nowak'");
             link.setFont(new Font(Font.FontFamily.HELVETICA, 8f, BaseFont.CAPHEIGHT, BaseColor.BLUE));
             link.setReference("http://51.254.115.19:8080/");
+            //document.add(new Chunk(" "));
+            Paragraph footer = new Paragraph(link);
+            footer.setAlignment(Element.ALIGN_BOTTOM);
+            //footer.setAlignment(Element.ALIGN_CENTER);
             document.add(new Chunk(" "));
-            Paragraph p = new Paragraph(link);
-            p.setAlignment(Element.ALIGN_CENTER);
             document.add(new Chunk(" "));
-            document.add(new Chunk(" "));
-            document.add(p);
+            document.add(footer);*/
+
+
             document.close(); // no need to close PDFwriter?
             return document;
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
     }

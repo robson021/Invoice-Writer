@@ -12,7 +12,7 @@
             $scope.copyOnMail = false;
 
             $scope.formOfPayment = 'cash';
-            $scope.placeOfPayment = 'Cracow';
+            $scope.placeOfexposure = 'Cracow';
             $scope.invoiceNumber = '1/2016';
 
             // local arrays
@@ -138,9 +138,10 @@
             $scope.submitInvoice = function () {
                 var invoiceTemplate = {
                     'formOfPayment': $scope.formOfPayment,
-                    'placeOfPayment': $scope.placeOfPayment,
+                    "placeOfexposure": $scope.placeOfexposure,
                     'deadDate': $scope.deadDate,
                     'sellDate': $scope.sellDate,
+                    'invoiceNumber': $scope.invoiceNumber,
                     'exposureDate': $scope.exposureDate,
                     'copyOnMail': $scope.copyOnMail,
                     'salesman': $scope.salesman,
