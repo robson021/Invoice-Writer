@@ -1,6 +1,7 @@
 package robert.other;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -11,6 +12,7 @@ import robert.responses.simpleentities.SimpleService;
 
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by robert on 28.05.16.
@@ -27,13 +29,18 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             document.open();
 
             Chunk underline = new Chunk("Invoice");
+            Paragraph element = new Paragraph(underline);
+            element.setAlignment(Element.ALIGN_CENTER);
             underline.setUnderline(0.1f, -2f); //0.1 thick, -2 y-location
-            document.add(underline);
-            document.add(new Chunk(""));
-            document.add(new Chunk(""));
+            document.add(element);
+            document.add(new Chunk(" "));
+            document.add(new Chunk(" "));
+
+            Date exposureDate = template.getExposureDate();
+            Date sellDate = template.getSellDate();
+
 
             PdfPTable topTable = generateTopTable(template, image);
-
             document.add(topTable);
 
             double bruttoSum = 0;
@@ -54,13 +61,21 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             }
             invisibleTable.addCell(new PdfPCell(new Paragraph("Total:")));
             invisibleTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", bruttoSum) + "$")));
+
+            document.add(new Chunk(" "));
+            document.add(new Chunk(" "));
             document.add(table);
             document.add(invisibleTable);
 
-            Anchor link = new Anchor("Invoice Writer by Robert Nowak");
+            Anchor link = new Anchor("Made with 'Invoice Writer by Robert Nowak'");
+            link.setFont(new Font(Font.FontFamily.HELVETICA, 8f, BaseFont.CAPHEIGHT, BaseColor.BLUE));
             link.setReference("http://51.254.115.19:8080/");
-            document.add(new Chunk(""));
-            document.add(new Paragraph(link));
+            document.add(new Chunk(" "));
+            Paragraph p = new Paragraph(link);
+            p.setAlignment(Element.ALIGN_CENTER);
+            document.add(new Chunk(" "));
+            document.add(new Chunk(" "));
+            document.add(p);
             document.close(); // no need to close PDFwriter?
             return document;
         } catch (Exception e) {

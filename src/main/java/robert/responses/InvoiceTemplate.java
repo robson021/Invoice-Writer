@@ -13,8 +13,8 @@ import java.util.Date;
 public class InvoiceTemplate {
     private boolean copyOnMail = false;
     private Date sellDate;
-    private Date exposureDate;
-    private String formOfPayment, placeOfPayment;
+    private Date exposureDate, deadDate;
+    private String formOfPayment, placeOfPayment, invoiceNumber;
     private SimpleSalesman salesman;
     private SimpleContractor contractor;
     private SimpleService[] selectedServices;
@@ -22,6 +22,22 @@ public class InvoiceTemplate {
 
     public boolean isCopyOnMail() {
         return copyOnMail;
+    }
+
+    public Date getDeadDate() {
+        return deadDate;
+    }
+
+    public void setDeadDate(Date deadDate) {
+        this.deadDate = deadDate;
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
     public void setCopyOnMail(boolean copyOnMail) {

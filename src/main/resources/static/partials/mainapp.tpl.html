@@ -23,10 +23,10 @@
             <md-datepicker ng-model="sellDate" md-placeholder="Enter date"></md-datepicker>
         </md-content>
 
-        <!--<md-content>
+        <md-content>
             <h4>Date of deadline</h4>
             <md-datepicker ng-model="deadDate" md-placeholder="Enter date"></md-datepicker>
-        </md-content>-->
+        </md-content>
 
         <md-content>
             <h4>Date of invoice</h4>
@@ -42,15 +42,19 @@
         <div class="padded flex-display" layout="column">
 
         <!--payment-->
-    <div class="payment border1" layout="row" ng-cloak layout-align="center center">
+            <div class="payment border1" layout="column" ng-cloak layout-align="center center">
         <md-input-container>
             <label for="formOfPayment">Form of payment</label>
             <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>
         </md-input-container>
         <md-input-container>
-            <label for="placeOfPayment">Place of payment(town)</label>
+            <label for="placeOfPayment">Place of payment</label>
             <input type="text" id="placeOfPayment" ng-model="placeOfPayment" md-autofocus>
         </md-input-container>
+                <md-container>
+                    <input type="text" id="invoiceNumber" placeholder="Invoice number" ng-model="invoiceNumber"
+                           md-autofocus>
+                </md-container>
 
     </div>
 

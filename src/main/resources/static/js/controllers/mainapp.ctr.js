@@ -13,6 +13,7 @@
 
             $scope.formOfPayment = 'cash';
             $scope.placeOfPayment = 'Cracow';
+            $scope.invoiceNumber = '1/2016';
 
             // local arrays
             $scope.salesmen = $rootScope.dbData.salesmen;
@@ -64,7 +65,7 @@
                 $scope.sellDate.getMonth() + 2,
                 $scope.sellDate.getDate());
             // the day when job was done
-            /*$scope.deadDate = new Date();
+            $scope.deadDate = new Date();
             $scope.minDateDead = new Date(
                 $scope.deadDate.getFullYear(),
                 $scope.deadDate.getMonth() - 2,
@@ -72,7 +73,7 @@
             $scope.maxDateDead = new Date(
                 $scope.deadDate.getFullYear(),
                 $scope.deadDate.getMonth() + 2,
-             $scope.deadDate.getDate());*/
+                $scope.deadDate.getDate());
             //exposure
             $scope.exposureDate = new Date();
             $scope.minExposureDate = new Date(
@@ -138,6 +139,7 @@
                 var invoiceTemplate = {
                     'formOfPayment': $scope.formOfPayment,
                     'placeOfPayment': $scope.placeOfPayment,
+                    'deadDate': $scope.deadDate,
                     'sellDate': $scope.sellDate,
                     'exposureDate': $scope.exposureDate,
                     'copyOnMail': $scope.copyOnMail,
