@@ -36,9 +36,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getNettoValue()))));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getVatPercentage()))));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getCount()))));
-                double brutto = s.getNettoValue() * s.getCount() * s.getVatPercentage() / 100;
-                brutto += s.getNettoValue() * s.getCount();
-                table.addCell(new PdfPCell(new Paragraph(String.valueOf(brutto))));
+                table.addCell(new PdfPCell(new Paragraph(s.calculateBruttoAsString())));
             }
             document.add(table);
 

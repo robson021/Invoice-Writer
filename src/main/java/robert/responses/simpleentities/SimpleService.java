@@ -71,6 +71,17 @@ public class SimpleService {
         this.count = count;
     }
 
+    public String calculateBruttoAsString() {
+        return String.format("%.2f", calculateBrutto()) + "$";
+    }
+
+    public double calculateBrutto() {
+        double brutto = nettoValue * count * vatPercentage / 100; //vat value
+        brutto += nettoValue * count; // netto value
+        return brutto;
+    }
+
+
     @Override
     public String toString() {
         return "SimpleService{" +

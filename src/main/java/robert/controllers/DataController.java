@@ -1,6 +1,5 @@
 package robert.controllers;
 
-import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import org.apache.log4j.Logger;
@@ -20,7 +19,6 @@ import robert.services.DbService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -107,13 +105,12 @@ public class DataController {
         if (!invoiceTemplate.validate()) {
             response.setText("Error - some fields are missing.");
         } else {
-            Image image = null;
+            Image image;
             try {
                 image = Image.getInstance(dbService.getUserImage(sessionData.getEmail()));
-            } catch (BadElementException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                logger.error("Image load error");
+                image = null;
             }
             Document doc = invoiceGenerator.generateInvoice(invoiceTemplate, image);
             if (doc == null) {
