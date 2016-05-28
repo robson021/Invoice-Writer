@@ -5,12 +5,15 @@ import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by robert on 27.05.16.
  */
 public class InvoiceTemplate {
     private boolean copyOnMail = false;
+    private Date sellDate;
+    private Date exposureDate;
     private SimpleSalesman salesman;
     private SimpleContractor contractor;
     private SimpleService[] selectedServices;
@@ -36,6 +39,22 @@ public class InvoiceTemplate {
         return contractor;
     }
 
+    public Date getSellDate() {
+        return sellDate;
+    }
+
+    public void setSellDate(Date sellDate) {
+        this.sellDate = sellDate;
+    }
+
+    public Date getExposureDate() {
+        return exposureDate;
+    }
+
+    public void setExposureDate(Date exposureDate) {
+        this.exposureDate = exposureDate;
+    }
+
     public void setContractor(SimpleContractor contractor) {
         this.contractor = contractor;
     }
@@ -52,6 +71,8 @@ public class InvoiceTemplate {
     public String toString() {
         return "InvoiceTemplate{" +
                 "copyOnMail=" + copyOnMail +
+                ", sellDate=" + sellDate +
+                ", exposureDate=" + exposureDate +
                 ", salesman=" + salesman +
                 ", contractor=" + contractor +
                 ", selectedServices=" + Arrays.toString(selectedServices) +

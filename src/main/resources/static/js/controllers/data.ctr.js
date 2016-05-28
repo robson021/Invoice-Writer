@@ -25,12 +25,6 @@
             }
 
 
-            $scope.test1 = function () {
-                console.info("test clicked");
-                //console.info(json);
-                //console.info("data:\n" + data.contractors[0].surname);
-            };
-
             $scope.setValueContractor = function (item) {
                 $scope.selectedContractor = item;
                 console.info("item clicked: " + $scope.selectedContractor.surname);

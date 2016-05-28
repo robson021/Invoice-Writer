@@ -52,6 +52,7 @@
             };
 
 
+            // CALENDARS
             // day of selling
             $scope.sellDate = new Date();
             $scope.minDateSell = new Date(
@@ -63,7 +64,7 @@
                 $scope.sellDate.getMonth() + 2,
                 $scope.sellDate.getDate());
             // the day when job was done
-            $scope.deadDate = new Date();
+            /*$scope.deadDate = new Date();
             $scope.minDateDead = new Date(
                 $scope.deadDate.getFullYear(),
                 $scope.deadDate.getMonth() - 2,
@@ -71,7 +72,7 @@
             $scope.maxDateDead = new Date(
                 $scope.deadDate.getFullYear(),
                 $scope.deadDate.getMonth() + 2,
-                $scope.deadDate.getDate());
+             $scope.deadDate.getDate());*/
             //exposure
             $scope.exposureDate = new Date();
             $scope.minExposureDate = new Date(
@@ -135,6 +136,8 @@
 
             $scope.submitInvoice = function () {
                 var invoiceTemplate = {
+                    'sellDate': $scope.sellDate,
+                    'exposureDate': $scope.exposureDate,
                     'copyOnMail': $scope.copyOnMail,
                     'salesman': $scope.salesman,
                     'contractor': $scope.contractor,
