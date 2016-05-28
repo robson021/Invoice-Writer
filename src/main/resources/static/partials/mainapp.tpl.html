@@ -16,24 +16,7 @@
         </md-button>
     </div>
 
-    <!--calendars-->
-    <div flex layout="row" layout-align="center" style='padding: 60px; margin: 10px;'>
-        <md-content>
-            <h4>Date of selling</h4>
-            <md-datepicker ng-model="sellDate" md-placeholder="Enter date"></md-datepicker>
-        </md-content>
 
-        <md-content>
-            <h4>Date of deadline</h4>
-            <md-datepicker ng-model="deadDate" md-placeholder="Enter date"></md-datepicker>
-        </md-content>
-
-        <md-content>
-            <h4>Date of invoice</h4>
-            <md-datepicker ng-model="exposureDate" md-placeholder="Enter date"></md-datepicker>
-        </md-content>
-
-    </div>
 
     <!--container div-->
     <div layout="row" layout-align="center center" class="padded">
@@ -109,7 +92,29 @@
 
     <!--selected content of invoice-->
     <!--selected contractor & salesman-->
-    <div layout="row" layout-align="center center" class="padded" ng-show="salesman != null && contractor != null">
+        <div layout="column" layout-align="center center" class="padded"
+             ng-show="salesman != null && contractor != null">
+
+            <!--calendars-->
+            <div flex layout="row" layout-align="center" style='padding: 60px; margin: 10px;'>
+                <md-content>
+                    <h4>Date of selling</h4>
+                    <md-datepicker ng-model="sellDate" md-placeholder="Enter date"></md-datepicker>
+                </md-content>
+
+                <md-content>
+                    <h4>Date of deadline</h4>
+                    <md-datepicker ng-model="deadDate" md-placeholder="Enter date"></md-datepicker>
+                </md-content>
+
+                <md-content>
+                    <h4>Date of invoice</h4>
+                    <md-datepicker ng-model="exposureDate" md-placeholder="Enter date"></md-datepicker>
+                </md-content>
+            </div>
+
+
+            <div layout="row">
         <div class="salesman padded border2">
             <p>{{salesman.name + " " + salesman.surname}}</p>
             <p>{{salesman.companyName}}</p>
@@ -127,6 +132,7 @@
             <p>Nip: {{contractor.nipNo}}</p>
         </div>
     </div>
+        </div>
     </div>
 
     <!--services table-->

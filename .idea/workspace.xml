@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment=".">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/other/InvoiceGeneratorImpl.java" afterPath="$PROJECT_DIR$/src/main/java/robert/other/InvoiceGeneratorImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/responses/InvoiceTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/robert/responses/InvoiceTemplate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/controllers/mainapp.ctr.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/controllers/mainapp.ctr.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html" afterPath="$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html" />
     </list>
     <ignored path="InvoiceWriter.iws" />
@@ -35,14 +32,14 @@
       <file leaf-file-name="mainapp.tpl.html" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+            <state relative-caret-position="756">
+              <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1077,14 +1074,7 @@
       <workItem from="1464423980989" duration="3334000" />
       <workItem from="1464435425971" duration="54000" />
       <workItem from="1464436268440" duration="8702000" />
-      <workItem from="1464448746943" duration="3788000" />
-    </task>
-    <task id="LOCAL-00035" summary=".">
-      <created>1463330503015</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1463330503015</updated>
+      <workItem from="1464448746943" duration="3967000" />
     </task>
     <task id="LOCAL-00036" summary="added: file upload and it's db save">
       <created>1463333492850</created>
@@ -1422,7 +1412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464450839263</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary=".">
+      <created>1464452543228</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1464452543228</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1443,7 +1440,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168648000" />
+    <option name="totallyTimeSpent" value="168827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="875" extended-state="6" />
@@ -1909,14 +1906,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/mainapp.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+        <state relative-caret-position="756">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding>
             <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
