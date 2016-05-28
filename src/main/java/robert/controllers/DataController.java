@@ -21,8 +21,8 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by robert on 04.05.16.
@@ -31,7 +31,7 @@ import java.util.Map;
 @RequestMapping("/data")
 public class DataController {
 
-    private static final Map<String, String> documents = new HashMap<>();
+    private static final Map<String, String> documents = new ConcurrentHashMap<>();
 
     private static final int MAX_FILE_SIZE = 150_000;
     private static final String IMAGE_NAME = "your_logo";
