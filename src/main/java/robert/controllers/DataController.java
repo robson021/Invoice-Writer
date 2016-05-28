@@ -1,5 +1,6 @@
 package robert.controllers;
 
+import com.itextpdf.text.Document;
 import org.apache.log4j.Logger;
 import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import robert.other.InvoiceGenerator;
 import robert.other.Mailer;
 import robert.other.SessionData;
 import robert.responses.BasicResponse;
@@ -31,14 +33,15 @@ public class DataController {
     private SessionData sessionData;
     private DbService dbService;
     private Mailer mailer;
+    private InvoiceGenerator invoiceGenerator;
 
     @Autowired
-    public DataController(SessionData sessionData, DbService dbService, Mailer mailer) {
+    public DataController(SessionData sessionData, DbService dbService, Mailer mailer, InvoiceGenerator invoiceGenerator) {
         this.sessionData = sessionData;
         this.dbService = dbService;
         this.mailer = mailer;
+        this.invoiceGenerator = invoiceGenerator;
     }
-
 
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
     public ResponseEntity<?> upladImg(/*@RequestParam("name") String name,*/
@@ -101,9 +104,14 @@ public class DataController {
         if (!invoiceTemplate.validate()) {
             response.setText("Error - some fields are missing.");
         } else {
-            // TODO: 27.05.16 invoice generation
-            response.setText("Ok. Invoice is ready.");
-            response.setResult(true);
+            Document doc = invoiceGenerator.generateInvoice(invoiceTemplate);
+            if (doc == null) {
+                response.setText("Error - could not generate invoice file.");
+            } else {
+                response.setText("Ok. Invoice is ready.");
+                response.setResult(true);
+            }
+
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

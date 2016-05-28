@@ -14,6 +14,7 @@ public class InvoiceTemplate {
     private boolean copyOnMail = false;
     private Date sellDate;
     private Date exposureDate;
+    private String formOfPayment, placeOfPayment;
     private SimpleSalesman salesman;
     private SimpleContractor contractor;
     private SimpleService[] selectedServices;
@@ -29,6 +30,22 @@ public class InvoiceTemplate {
 
     public SimpleSalesman getSalesman() {
         return salesman;
+    }
+
+    public String getFormOfPayment() {
+        return formOfPayment;
+    }
+
+    public void setFormOfPayment(String formOfPayment) {
+        this.formOfPayment = formOfPayment;
+    }
+
+    public String getPlaceOfPayment() {
+        return placeOfPayment;
+    }
+
+    public void setPlaceOfPayment(String placeOfPayment) {
+        this.placeOfPayment = placeOfPayment;
     }
 
     public void setSalesman(SimpleSalesman salesman) {

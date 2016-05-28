@@ -136,6 +136,8 @@
 
             $scope.submitInvoice = function () {
                 var invoiceTemplate = {
+                    'formOfPayment': $scope.formOfPayment,
+                    'placeOfPayment': $scope.placeOfPayment,
                     'sellDate': $scope.sellDate,
                     'exposureDate': $scope.exposureDate,
                     'copyOnMail': $scope.copyOnMail,

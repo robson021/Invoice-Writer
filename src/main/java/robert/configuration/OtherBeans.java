@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
-import robert.other.DefaultLogger;
-import robert.other.Mailer;
-import robert.other.MailerImpl;
-import robert.other.SessionData;
+import robert.other.*;
 
 /**
  * Created by robert on 30.04.16.
@@ -30,5 +27,10 @@ public class OtherBeans {
     @Bean
     public Mailer mailer() {
         return new MailerImpl();
+    }
+
+    @Bean
+    public InvoiceGenerator invoiceGenerator() {
+        return new InvoiceGeneratorImpl();
     }
 }
