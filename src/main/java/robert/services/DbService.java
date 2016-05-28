@@ -115,6 +115,31 @@ public class DbService {
         passwd = new char[]{'b', 'b'};
         this.saveUser(new User("Bbb", "Aaa", new EmailAddress("bb@bb.pl"), passwd));
 
+
+        // PIZZA
+        passwd = new char[]{'p', 'p'};
+        User pizzaMan = new User("Robert", "Nowak", new EmailAddress("pizza@p.pl"), passwd);
+        Salesman salesman = new Salesman("Robert", "Nowak", "543535");
+        salesman.setBankName("PKO BP");
+        salesman.setBankAccNo("9837139163183685");
+        salesman.setPhoneNo("323456123");
+        salesman.setRegon("987386326");
+        salesman.setPostCode("55-555");
+        salesman.setCompanyName("Joey Pepproni Pizza");
+        salesman.setStreetName("Broadway");
+        salesman.setHomeNo("43");
+        salesman.setCity("New York");
+
+        pizzaMan.addSalesman(salesman);
+
+        Contractor contractor = new Contractor("Jane", "Doe", "N/A", "Fulton Street", "21", "33-333", "New York", "443255664");
+        pizzaMan.addContractor(contractor);
+
+        TheService service = new TheService("Hawaiian pizza", "cheese, tomato, pieces of ham, pineapple, bacon", 8, 20);
+        pizzaMan.addService(service);
+        pizzaMan.addService(new TheService("Vege pizza", "cheese, onion, tomato, mushroom, cucumber, garlic, corn", 8, 18));
+
+        saveUser(pizzaMan);
     }
 
     public static long getExampleUserId() {

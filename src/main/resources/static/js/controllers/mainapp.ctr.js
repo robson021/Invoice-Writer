@@ -12,7 +12,7 @@
             $scope.copyOnMail = false;
 
             $scope.formOfPayment = 'cash';
-            $scope.placeOfexposure = 'Cracow';
+            $scope.placeOfexposure = 'New York';
             $scope.invoiceNumber = '1/2016';
 
             // local arrays

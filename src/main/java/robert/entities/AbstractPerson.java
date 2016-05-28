@@ -1,7 +1,6 @@
 package robert.entities;
 
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by robert on 29.03.16.
@@ -17,7 +16,7 @@ public abstract class AbstractPerson extends AbstractEntity {
     private String city;
 
     //@Column(unique = true) //TODO uniqe nip number causes sql exception
-    @NotNull
+    //@NotNull
     private String nipNo = "0000000";
 
     public AbstractPerson() {
