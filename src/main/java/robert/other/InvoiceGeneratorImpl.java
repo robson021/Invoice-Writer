@@ -1,6 +1,7 @@
 package robert.other;
 
 import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -25,18 +26,18 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     new FileOutputStream(fileName));
             document.open();
             Paragraph paragraph1 = new Paragraph("Invoice");
+            PdfPTable table = generateTableStructure();
 
-            PdfPTable table = new PdfPTable(5);
             for (SimpleService s : template.getSelectedServices()) {
                 table.addCell(new PdfPCell(new Paragraph(s.getName())));
                 table.addCell(new PdfPCell(new Paragraph(s.getSymbol())));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getNettoValue()))));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getVatPercentage()))));
+                table.addCell(new PdfPCell(new Paragraph(String.valueOf(s.getCount()))));
                 double brutto = s.getNettoValue() * s.getCount() * s.getVatPercentage() / 100;
                 brutto += s.getNettoValue() * s.getCount();
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(brutto))));
             }
-
             document.add(table);
 
             Anchor link = new Anchor("Invoice Writer by Robert Nowak");
@@ -49,5 +50,33 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private PdfPTable generateTableStructure() {
+        PdfPTable table = new PdfPTable(6);
+        PdfPCell cell1 = new PdfPCell(new Paragraph("Name"));
+        cell1.setBackgroundColor(BaseColor.GRAY);
+
+        PdfPCell cell2 = new PdfPCell(new Paragraph("Description"));
+        cell2.setBackgroundColor(BaseColor.GRAY);
+
+        PdfPCell cell3 = new PdfPCell(new Paragraph("Netto"));
+        cell3.setBackgroundColor(BaseColor.GRAY);
+
+        PdfPCell cell4 = new PdfPCell(new Paragraph("Vat (%)"));
+        cell4.setBackgroundColor(BaseColor.GRAY);
+
+        PdfPCell cell6 = new PdfPCell(new Paragraph("Quantity"));
+        cell6.setBackgroundColor(BaseColor.GRAY);
+
+        PdfPCell cell5 = new PdfPCell(new Paragraph("Brutto"));
+        cell5.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell1);
+        table.addCell(cell2);
+        table.addCell(cell3);
+        table.addCell(cell4);
+        table.addCell(cell6);
+        table.addCell(cell5);
+        return table;
     }
 }

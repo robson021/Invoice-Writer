@@ -68,8 +68,8 @@
       <file leaf-file-name="InvoiceGeneratorImpl.java" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/robert/other/InvoiceGeneratorImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="41" column="71" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
+            <state relative-caret-position="-197">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1108,14 +1108,7 @@
       <workItem from="1464374887531" duration="4302000" />
       <workItem from="1464423980989" duration="3334000" />
       <workItem from="1464435425971" duration="54000" />
-      <workItem from="1464436268440" duration="3842000" />
-    </task>
-    <task id="LOCAL-00030" summary=".">
-      <created>1463239587611</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1463239587611</updated>
+      <workItem from="1464436268440" duration="4691000" />
     </task>
     <task id="LOCAL-00031" summary=".">
       <created>1463241369962</created>
@@ -1453,7 +1446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464437332655</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary=".">
+      <created>1464440114131</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1464440114132</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1474,7 +1474,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160000000" />
+    <option name="totallyTimeSpent" value="160849000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="875" extended-state="6" />
@@ -1940,8 +1940,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/robert/other/InvoiceGeneratorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="41" column="71" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
+        <state relative-caret-position="-197">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
