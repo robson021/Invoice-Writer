@@ -1,9 +1,6 @@
 package robert.other;
 
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -18,7 +15,7 @@ import java.util.Calendar;
  */
 public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Override
-    public Document generateInvoice(InvoiceTemplate template) {
+    public Document generateInvoice(InvoiceTemplate template, Image image) {
         Document document = new Document();
         String fileName = "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf";
         try {
@@ -26,8 +23,13 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     new FileOutputStream(fileName));
             document.open();
             Paragraph paragraph1 = new Paragraph("Invoice");
-            PdfPTable table = generateTableStructure();
 
+            if (image != null) {
+                image.scaleAbsolute(150f, 150f);
+                document.add(image);
+            }
+
+            PdfPTable table = generateTableStructure();
             for (SimpleService s : template.getSelectedServices()) {
                 table.addCell(new PdfPCell(new Paragraph(s.getName())));
                 table.addCell(new PdfPCell(new Paragraph(s.getSymbol())));

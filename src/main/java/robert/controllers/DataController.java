@@ -1,6 +1,8 @@
 package robert.controllers;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
 import org.apache.log4j.Logger;
 import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import robert.services.DbService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -104,7 +107,15 @@ public class DataController {
         if (!invoiceTemplate.validate()) {
             response.setText("Error - some fields are missing.");
         } else {
-            Document doc = invoiceGenerator.generateInvoice(invoiceTemplate);
+            Image image = null;
+            try {
+                image = Image.getInstance(dbService.getUserImage(sessionData.getEmail()));
+            } catch (BadElementException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Document doc = invoiceGenerator.generateInvoice(invoiceTemplate, image);
             if (doc == null) {
                 response.setText("Error - could not generate invoice file.");
             } else {
