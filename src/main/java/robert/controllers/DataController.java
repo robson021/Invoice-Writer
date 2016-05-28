@@ -1,6 +1,5 @@
 package robert.controllers;
 
-import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import org.apache.log4j.Logger;
 import org.h2.util.IOUtils;
@@ -19,7 +18,11 @@ import robert.services.DbService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by robert on 04.05.16.
@@ -27,6 +30,8 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("/data")
 public class DataController {
+
+    private static final Map<String, String> documents = new HashMap<>();
 
     private static final int MAX_FILE_SIZE = 150_000;
     private static final String IMAGE_NAME = "your_logo";
@@ -101,9 +106,9 @@ public class DataController {
     @RequestMapping(value = "/submit-invoice", method = RequestMethod.POST)
     public ResponseEntity<?> submitInvoice(@RequestBody InvoiceTemplate invoiceTemplate) {
         logger.info("Invoice submit from: " + sessionData.getEmail());
-        BasicResponse response = new BasicResponse();
+        BasicResponse r = new BasicResponse();
         if (!invoiceTemplate.validate()) {
-            response.setText("Error - some fields are missing.");
+            r.setText("Error - some fields are missing.");
         } else {
             Image image;
             try {
@@ -112,16 +117,31 @@ public class DataController {
                 logger.error("Image load error");
                 image = null;
             }
-            Document doc = invoiceGenerator.generateInvoice(invoiceTemplate, image);
-            if (doc == null) {
-                response.setText("Error - could not generate invoice file.");
+            String docName = invoiceGenerator.generateInvoice(invoiceTemplate, image);
+            if (docName == null) {
+                r.setText("Error - could not generate invoice file.");
             } else {
-                response.setText("Ok. Invoice is ready.");
-                response.setResult(true);
+                documents.put(sessionData.getEmail(), docName);
+                r.setText("Ok. Invoice is ready.");
+                r.setResult(true);
             }
-
         }
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(r, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/download-invoice", method = RequestMethod.GET)
+    public void downloadInvoice(HttpServletResponse response) {
+        try {
+            response.addHeader("Content-disposition", "attachment;filename="
+                    + "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf");
+            response.setContentType("txt/plain");
+            InputStream is = new FileInputStream(documents.get(sessionData.getEmail()));
+            IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+            logger.info(sessionData.getEmail() + " downloaded file");
+        } catch (Exception e) {
+            logger.error("Could not download");
+        }
     }
 
 }

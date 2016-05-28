@@ -19,7 +19,7 @@ import java.util.Calendar;
 public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private static final int TABLE_SIZE = 6;
     @Override
-    public Document generateInvoice(InvoiceTemplate template, Image image) {
+    public String generateInvoice(InvoiceTemplate template, Image image) {
         Document document = new Document();
         String fileName = "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf";
         try {
@@ -111,7 +111,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
 
             document.close(); // no need to close PDFwriter?
-            return document;
+            return fileName;
         } catch (Exception e) {
             //e.printStackTrace();
         }

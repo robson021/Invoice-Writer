@@ -153,6 +153,10 @@
                     $window.scrollTo(0, 0);
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
+                    if (data.result) {
+                        console.info("download attempt")
+                        window.open("/data/download-invoice", '_blank');
+                    }
                 });
             };
 
