@@ -122,7 +122,7 @@ public class DataController {
                 r.setText("Error - could not generate invoice file.");
             } else {
                 fileRepository.addNewFile(sessionData.getEmail(), docName);
-                r.setText("Invoice is ready. AdBlock may interrupt the download");
+                r.setText("Invoice is ready. AdBlock may interrupt the download!");
                 r.setResult(true);
                 if (invoiceTemplate.isCopyOnMail()) {
                     mailer.sendEmail(sessionData.getEmail(), "Invoice", "Generated invoice in attachment.", docName);

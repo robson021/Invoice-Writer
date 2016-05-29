@@ -35,18 +35,17 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             {"KozMinPro-Regular", "UniJIS-UCS2-H"}
     };
 
-    private static final String DEFAULT_FONT = FONTS[0][0];
-
     @Override
     public String generateInvoice(InvoiceTemplate template, Image image) {
         Document document = new Document();
         String fileName = "Invoice " + idCounter.incrementAndGet() + ".pdf";
         try {
+            BaseFont bf = BaseFont.createFont(FONTS[0][0], FONTS[0][1], BaseFont.EMBEDDED);
             PdfWriter.getInstance(document,
                     new FileOutputStream(fileName));
             document.open();
 
-            Chunk underline = new Chunk("Invoice " + template.getInvoiceNumber());
+            Chunk underline = new Chunk("Invoice " + template.getInvoiceNumber(), new Font(bf, 18));
             Paragraph element = new Paragraph(underline);
             element.setAlignment(Element.ALIGN_CENTER);
             underline.setUnderline(0.1f, -2f); //0.1 thick, -2 y-location
@@ -80,8 +79,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             dateContentTable.addCell(pSellDate);
 
 
-
-            PdfPTable topTable = generateTopTable(template, image);
+            PdfPTable topTable = generateTopTable(template, image, bf);
             document.add(topTable);
 
             document.add(new Chunk(" "));
@@ -115,6 +113,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             return fileName;
         } catch (Exception e) {
             //e.printStackTrace();
+            System.out.println("Invoice generator error");
         }
         return null;
     }
@@ -141,13 +140,18 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         return summaryTable;
     }
 
-    private PdfPTable generateTopTable(InvoiceTemplate t, Image image) {
+    private PdfPTable generateTopTable(InvoiceTemplate t, Image image, BaseFont bf) {
         PdfPTable salesmanTable = new PdfPTable(1); // nested table 1
-        salesmanTable.getDefaultCell().setBorder(0);
 
+        salesmanTable.getDefaultCell().setBorder(0);
         SimpleSalesman s = t.getSalesman();
+
+        Chunk underline = new Chunk("From:", new Font(bf, 15));
+        underline.setUnderline(0.1f, -2f);
+
+        salesmanTable.addCell(new Paragraph(underline));
         salesmanTable.addCell(new Paragraph(s.getName() + " " + s.getSurname()));
-        salesmanTable.addCell(new Paragraph(s.getCompanyName()));
+        salesmanTable.addCell(new Paragraph("Company: " + s.getCompanyName()));
         salesmanTable.addCell(new Paragraph(s.getStreetName() + " " + s.getHomeNo() + ", " + s.getPostCode() + " " + s.getCity()));
         salesmanTable.addCell(new Paragraph("Regon: " + s.getRegon()));
         salesmanTable.addCell(new Paragraph("Nip: " + s.getNipNo()));
@@ -157,8 +161,12 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         PdfPTable contractorTable = new PdfPTable(1);
         contractorTable.getDefaultCell().setBorder(0);
 
+        underline = new Chunk("To:", new Font(bf, 15));
+        underline.setUnderline(0.1f, -2f);
+
+        contractorTable.addCell(new Paragraph(underline));
         contractorTable.addCell(new Paragraph(c.getName() + " " + c.getSurname()));
-        contractorTable.addCell(new Paragraph(c.getCompanyName()));
+        contractorTable.addCell(new Paragraph("Company: " + c.getCompanyName()));
         contractorTable.addCell(new Paragraph(c.getStreetName() + " " + c.getHomeNo() + ", " + c.getPostCode() + " " + c.getCity()));
         contractorTable.addCell(new Paragraph("Nip: " + c.getNipNo()));
 
@@ -178,6 +186,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     private PdfPTable generateTableStructure() {
         PdfPTable table = new PdfPTable(TABLE_SIZE);
+
+        table.getDefaultCell().setVerticalAlignment(Element.ALIGN_CENTER);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+
         PdfPCell cell1 = new PdfPCell(new Paragraph("Name"));
         cell1.setBackgroundColor(BaseColor.GRAY);
 
