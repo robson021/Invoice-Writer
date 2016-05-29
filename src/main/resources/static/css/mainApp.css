@@ -38,4 +38,9 @@
     position: relative;
 }
 
+.maxSize1 {
+    max-height: 1000px;
+    max-width: 1000px;
+}
+
 
