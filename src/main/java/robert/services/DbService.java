@@ -120,7 +120,7 @@ public class DbService {
         passwd = new char[]{'p', 'p'};
         User pizzaMan = new User("Robert", "Nowak", new EmailAddress("invoice.writer.app@gmail.com"), passwd);
         Salesman salesman = new Salesman("Robert", "Nowak", "543535");
-        salesman.setBankName("PKO BP");
+        salesman.setBankName("Roosevelt Savings Bank");
         salesman.setBankAccNo("9837139163183685");
         salesman.setPhoneNo("323456123");
         salesman.setRegon("987386326");
@@ -232,11 +232,6 @@ public class DbService {
         user.getContractors().addAll(newContractors);
         user.getServices().addAll(newServices);
         user.getSalesmen().addAll(newSalesmen);
-
-        // for test
-        /*this.setServices(null);
-        this.setSalesmen(null);
-        this.setContractors(null);*/
     }
 
 

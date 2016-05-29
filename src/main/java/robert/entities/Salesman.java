@@ -32,6 +32,10 @@ public class Salesman extends AbstractPerson {
     public Salesman(SimpleSalesman s) {
         super(s.getName(), s.getSurname(), s.getCompanyName(), s.getStreetName(), s.getHomeNo(),
                 s.getPostCode(), s.getCity(), s.getNipNo());
+        regon = s.getRegon();
+        bankAccNo = s.getBankAccNo();
+        bankName = s.getBankName();
+        phoneNo = s.getPhoneNo();
     }
 
     public String getRegon() {
