@@ -118,7 +118,7 @@ public class DbService {
 
         // PIZZA
         passwd = new char[]{'p', 'p'};
-        User pizzaMan = new User("Robert", "Nowak", new EmailAddress("pizza@p.pl"), passwd);
+        User pizzaMan = new User("Robert", "Nowak", new EmailAddress("invoice.writer.app@gmail.com"), passwd);
         Salesman salesman = new Salesman("Robert", "Nowak", "543535");
         salesman.setBankName("PKO BP");
         salesman.setBankAccNo("9837139163183685");

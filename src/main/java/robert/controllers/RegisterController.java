@@ -51,7 +51,7 @@ public class RegisterController {
             response.setText("You can login now.");
 
             // sending via thread for better performance. Waiting for mailer takes too long
-            new Thread(new MailerTaskRunnable(u.getEmail())).start();
+            mailer.sendEmail(u.getEmail(), "Registration", "You have been registered", null);
             logger.info("User registered");
         } else {
             logger.error("Given e-mail is already taken!");
@@ -60,21 +60,4 @@ public class RegisterController {
         return response;
     }
 
-    private class MailerTaskRunnable implements Runnable {
-        private final String email;
-
-        public MailerTaskRunnable(String email) {
-            this.email = email;
-        }
-
-        @Override
-        public void run() {
-            try {
-                mailer.sendEmail(email, "Registration - Invoice-Writer app", "Registration complete!", null);
-                logger.info("Mail has been sent");
-            } catch (Exception e) {
-                logger.error("Email sender thread exception");
-            }
-        }
-    }
 }

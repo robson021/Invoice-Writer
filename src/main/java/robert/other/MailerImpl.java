@@ -1,14 +1,11 @@
 package robert.other;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.transaction.NotSupportedException;
-import java.io.File;
 
 /**
  * Created by robert on 21.05.16.
@@ -21,23 +18,44 @@ public class MailerImpl implements Mailer {
 
 
     @Override
-    public void sendEmail(String to, String subject, String body, File file) throws NotSupportedException, MessagingException {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper;
+    public void sendEmail(String to, String subject, String body, String file) {
+        new Thread(new MailerTaskRunnable(to, subject, body, file)).start();
+    }
 
-        helper = new MimeMessageHelper(message, true);
-        helper.setSubject(subject);
-        helper.setTo(to);
-        body += "\n\n(This is an auto-generated message).";
-        helper.setText(body, true);
-        if (file != null) {
-            // TODO: 23.05.16 file attachment
+
+    private class MailerTaskRunnable implements Runnable {
+        private final String to, subject, file;
+        private String body;
+
+        public MailerTaskRunnable(String to, String subject, String body, String file) {
+            this.to = to;
+            this.subject = subject;
+            this.body = body;
+            this.file = file;
         }
-        javaMailSender.send(message);
+
+        @Override
+        public void run() {
+            try {
+                MimeMessage message = javaMailSender.createMimeMessage();
+                MimeMessageHelper helper;
+
+                helper = new MimeMessageHelper(message, true);
+                helper.setSubject(subject);
+                helper.setTo(to);
+                body += "\n\n (This is an auto-generated message).";
+                helper.setText(body, true);
+                if (file != null) {
+                    FileSystemResource f = new FileSystemResource(file);
+                    helper.addAttachment(f.getFilename(), f);
+                }
+                javaMailSender.send(message);
+            } catch (Exception e) {
+                System.out.println("Mailer exception.");
+            } finally {
+                System.out.println("Mailer thread finished: " + to);
+            }
+        }
     }
 
-    @Override
-    public void sendEmail(SimpleMailMessage templateMessage) throws NotSupportedException {
-        throw new NotSupportedException("Not yet supported");
-    }
 }

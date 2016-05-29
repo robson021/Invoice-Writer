@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import robert.other.InvoiceGenerator;
 import robert.other.Mailer;
 import robert.other.SessionData;
+import robert.repositories.FileRepository;
 import robert.responses.BasicResponse;
 import robert.responses.InvoiceTemplate;
 import robert.responses.simpleentities.DataHolderResponse;
@@ -21,8 +22,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by robert on 04.05.16.
@@ -30,8 +29,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 @RequestMapping("/data")
 public class DataController {
-
-    private static final Map<String, String> documents = new ConcurrentHashMap<>();
 
     private static final int MAX_FILE_SIZE = 150_000;
     private static final String IMAGE_NAME = "your_logo";
@@ -41,13 +38,15 @@ public class DataController {
     private DbService dbService;
     private Mailer mailer;
     private InvoiceGenerator invoiceGenerator;
+    private FileRepository fileRepository;
 
     @Autowired
-    public DataController(SessionData sessionData, DbService dbService, Mailer mailer, InvoiceGenerator invoiceGenerator) {
+    public DataController(SessionData sessionData, DbService dbService, Mailer mailer, InvoiceGenerator invoiceGenerator, FileRepository fileRepository) {
         this.sessionData = sessionData;
         this.dbService = dbService;
         this.mailer = mailer;
         this.invoiceGenerator = invoiceGenerator;
+        this.fileRepository = fileRepository;
     }
 
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
@@ -122,9 +121,12 @@ public class DataController {
             if (docName == null) {
                 r.setText("Error - could not generate invoice file.");
             } else {
-                documents.put(sessionData.getEmail(), docName);
-                r.setText("Ok. Invoice is ready.");
+                fileRepository.addNewFile(sessionData.getEmail(), docName);
+                r.setText("Invoice is ready. AdBlock may interrupt the download");
                 r.setResult(true);
+                if (invoiceTemplate.isCopyOnMail()) {
+                    mailer.sendEmail(sessionData.getEmail(), "Invoice", "Generated invoice in attachment.", docName);
+                }
             }
         }
         return new ResponseEntity<>(r, HttpStatus.OK);
@@ -136,7 +138,7 @@ public class DataController {
             response.addHeader("Content-disposition", "attachment;filename="
                     + "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf");
             response.setContentType("txt/plain");
-            InputStream is = new FileInputStream(documents.get(sessionData.getEmail()));
+            InputStream is = new FileInputStream(fileRepository.getFileName(sessionData.getEmail()));
             IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
             logger.info(sessionData.getEmail() + " downloaded file");
