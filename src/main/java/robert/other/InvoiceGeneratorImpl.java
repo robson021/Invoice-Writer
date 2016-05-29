@@ -12,16 +12,19 @@ import robert.responses.simpleentities.SimpleService;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by robert on 28.05.16.
  */
 public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private static final int TABLE_SIZE = 6;
+    private static final AtomicInteger idCounter = new AtomicInteger(0);
+
     @Override
     public String generateInvoice(InvoiceTemplate template, Image image) {
         Document document = new Document();
-        String fileName = "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf";
+        String fileName = "Invoice " + idCounter.incrementAndGet() + ".pdf";
         try {
             PdfWriter.getInstance(document,
                     new FileOutputStream(fileName));
@@ -83,31 +86,13 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 table.addCell(new PdfPCell(new Paragraph(s.calculateBruttoAsString())));
                 bruttoSum += s.calculateBrutto();
             }
-            PdfPTable invisibleTable = new PdfPTable(TABLE_SIZE);
-            for (int i = 0; i < TABLE_SIZE - 2; i++) {
-                invisibleTable.addCell(new PdfPCell(new Paragraph("")));
-            }
-            invisibleTable.addCell(new PdfPCell(new Paragraph("Total:")));
-            invisibleTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", bruttoSum) + "$")));
-            invisibleTable.getDefaultCell().setBorder(0);
+
 
             document.add(new Chunk(" "));
             document.add(new Chunk(" "));
             document.add(table);
-            document.add(invisibleTable);
-
-
-            // FOOTER
-            /*Anchor link = new Anchor("Made with 'Invoice Writer by Robert Nowak'");
-            link.setFont(new Font(Font.FontFamily.HELVETICA, 8f, BaseFont.CAPHEIGHT, BaseColor.BLUE));
-            link.setReference("http://51.254.115.19:8080/");
-            //document.add(new Chunk(" "));
-            Paragraph footer = new Paragraph(link);
-            footer.setAlignment(Element.ALIGN_BOTTOM);
-            //footer.setAlignment(Element.ALIGN_CENTER);
             document.add(new Chunk(" "));
-            document.add(new Chunk(" "));
-            document.add(footer);*/
+            document.add(summaryTable(template.getSelectedServices(), bruttoSum));
 
 
             document.close(); // no need to close PDFwriter?
@@ -116,6 +101,28 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             //e.printStackTrace();
         }
         return null;
+    }
+
+    private PdfPTable summaryTable(SimpleService[] selectedServices, double total) {
+        PdfPTable summaryTable = new PdfPTable(3);
+        String columns[] = new String[]{"Netto total", "Vat value", "Total"};
+        double nettoTotal = 0, vat = 0;
+        for (SimpleService s : selectedServices) {
+            nettoTotal += s.getNettoValue() * s.getCount();
+            vat += s.getNettoValue() * s.getCount() * s.getVatPercentage() / 100;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            PdfPCell cell1 = new PdfPCell(new Paragraph(columns[i]));
+            cell1.setBackgroundColor(BaseColor.GRAY);
+            summaryTable.addCell(cell1);
+        }
+
+        summaryTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", nettoTotal) + "$")));
+        summaryTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", vat) + "$")));
+        summaryTable.addCell(new PdfPCell(new Paragraph(String.format("%.2f", total) + "$")));
+
+        return summaryTable;
     }
 
     private PdfPTable generateTopTable(InvoiceTemplate t, Image image) {
