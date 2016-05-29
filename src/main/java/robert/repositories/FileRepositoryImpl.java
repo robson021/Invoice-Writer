@@ -12,22 +12,47 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public void addNewFile(String owner, String fileName) {
+        while (files.containsKey(owner)) {
+            System.out.println("Old file still exists. Waiting for delete");
+            try {
+                Thread.sleep(3_000);
+            } catch (InterruptedException e) {
+            }
+        }
         files.put(owner, fileName);
     }
 
     @Override
     public void deleteFile(String owner) {
-        try {
-            File file = new File(files.get(owner));
-            file.delete();
-            System.out.println("Deleted file of " + owner);
-        } catch (Exception e) {
-            System.out.println("Error. Could not delete the file.");
-        }
+        new Thread(new DeleteTask(owner)).start();
+        System.out.println("Thread started");
     }
 
     @Override
     public String getFileName(String owner) {
         return files.get(owner);
+    }
+
+    private class DeleteTask implements Runnable {
+        private final String owner;
+
+        public DeleteTask(String owner) {
+            this.owner = owner;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(15_000);
+                File file = new File(files.get(owner));
+                file.delete();
+                System.out.println("Deleted file of " + owner);
+            } catch (Exception e) {
+                System.out.println("File deleting error");
+            } finally {
+                files.remove(owner);
+                System.out.println("Thread finished");
+            }
+        }
     }
 }

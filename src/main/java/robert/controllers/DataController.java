@@ -144,6 +144,8 @@ public class DataController {
             logger.info(sessionData.getEmail() + " downloaded file");
         } catch (Exception e) {
             logger.error("Could not download");
+        } finally {
+            fileRepository.deleteFile(sessionData.getEmail());
         }
     }
 
