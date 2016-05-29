@@ -95,8 +95,8 @@
 
         <!--selected content of invoice-->
         <!--selected contractor & salesman-->
-        <div layout="column" layout-align="center center" class="padded"
-             ng-show="salesman != null && contractor != null">
+        <div layout="column" layout-align="center center" class="padded">
+            <!--ng-show="salesman != null && contractor != null"-->
 
             <!--calendars-->
             <div flex layout="row" layout-align="center" style='padding: 40px; margin: 5px;' class="panel panel-info">
@@ -118,7 +118,7 @@
 
 
             <div layout="row">
-                <div class="salesman padded border2 panel panel-default">
+                <div class="salesman padded border2 panel panel-default" ng-show="salesman != null">
                     <p>{{salesman.name + " " + salesman.surname}}</p>
                     <p>{{salesman.companyName}}</p>
                     <p>{{salesman.streetName + " " + salesman.homeNo + ", " + salesman.postCode +" " +
@@ -128,7 +128,7 @@
                     <p>Phone: {{salesman.phoneNo}}</p>
                     <p>Bank: {{salesman.bankName + " " + salesman.bankAccNo}}</p>
                 </div>
-                <div class="contractor padded border2 panel panel-default">
+                <div class="contractor padded border2 panel panel-default" ng-show="contractor != null">
                     <p>{{contractor.name + " " + contractor.surname}}</p>
                     <p>{{contractor.companyName}}</p>
                     <p>{{contractor.streetName + " " + contractor.homeNo + ", " + contractor.postCode +" " +
