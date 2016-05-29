@@ -1,21 +1,11 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("toolbar-ctr", function ($rootScope, $scope, $state, logoutFactory, mainInfoFactory /*,toastFactory*/) {
+        .controller("toolbar-ctr", function ($rootScope, $scope, $state, logoutFactory) {
 
-            $rootScope.basicInfo = {
-                appInfo: {
-                    title: null, text: null
-                },
-                authorInfo: {
-                    title: null, text: null
-                }
-            };
 
-            var info = $rootScope.basicInfo;
-
-            $scope.logout = function () { //todo: watcher - enabled/disabled button
-                console.info("logout button clicked");
+            $scope.logout = function () {
+                
                 logoutFactory.logoutUser();
                 $rootScope.isLoggedIn = false;
                 $rootScope.hideRegisterLogin = false;

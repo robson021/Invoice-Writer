@@ -1,7 +1,28 @@
 <!--in case of problems delete jumbotron and add "maxWidth"-->
 <div layout-align="center center" class="jumbotron">
+
+
     <!-- nav buttons -->
-    <div layout="row" layout-align="space-around center">
+    <div class="panel panel-primary" layout="row" layout-align="space-around center">
+        <div class="panel-heading">Edit records here</div>
+        <div class="panel-body">
+            <md-button class="md-raised" ng-click="goSalesmen()">
+                Salesmen
+            </md-button>
+            <md-button class="md-raised" ng-click="goContractors()">
+                Contractors
+            </md-button>
+            <md-button class="md-raised" ng-click="goServices()">
+                Services
+            </md-button>
+            <md-button class="md-raised" ng-click="goUpload()">
+                Image upload
+            </md-button>
+        </div>
+    </div>
+
+
+    <!--<div layout="row" layout-align="space-around center" class="">
         <md-button class="md-raised" ng-click="goSalesmen()">
             Salesmen
         </md-button>
@@ -14,11 +35,11 @@
         <md-button class="md-raised" ng-click="goUpload()">
             Image upload
         </md-button>
-    </div>
+    </div>-->
 
 
     <!--container div-->
-    <div layout="row" layout-align="center center" class="padded">
+    <div layout="row" layout-align="center center" class="padded panel panel-primary">
 
         <!--3 borders-->
         <div class="padded flex-display" layout="column">

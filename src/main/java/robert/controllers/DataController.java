@@ -134,6 +134,7 @@ public class DataController {
 
     @RequestMapping(value = "/download-invoice", method = RequestMethod.GET)
     public void downloadInvoice(HttpServletResponse response) {
+        logger.info("Download request: " + sessionData.getEmail());
         try {
             response.addHeader("Content-disposition", "attachment;filename="
                     + "Invoice " + Calendar.getInstance().getTime().toString() + ".pdf");
