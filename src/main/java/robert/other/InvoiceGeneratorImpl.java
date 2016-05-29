@@ -156,6 +156,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         salesmanTable.addCell(new Paragraph("Regon: " + s.getRegon()));
         salesmanTable.addCell(new Paragraph("Nip: " + s.getNipNo()));
         salesmanTable.addCell(new Paragraph("Phone: " + s.getPhoneNo()));
+        salesmanTable.addCell(new Paragraph(s.getBankName() + ": " + s.getBankAccNo()));
 
         SimpleContractor c = t.getContractor();
         PdfPTable contractorTable = new PdfPTable(1);
