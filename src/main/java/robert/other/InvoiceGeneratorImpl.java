@@ -1,6 +1,7 @@
 package robert.other;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -15,11 +16,26 @@ import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by robert on 28.05.16.
+ * Created by robert on 28.05.16. <br>
+ * Tutorials I used:
+ * <br>
+ * http://developers.itextpdf.com/
+ * <br>
+ * http://tutorials.jenkov.com/java-itext/index.html
  */
 public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private static final int TABLE_SIZE = 6;
     private static final AtomicInteger idCounter = new AtomicInteger(0);
+
+    private final static String[][] FONTS = {
+            {BaseFont.HELVETICA, BaseFont.WINANSI},
+            {"resources/fonts/cmr10.afm", BaseFont.WINANSI},
+            {"resources/fonts/cmr10.pfm", BaseFont.WINANSI},
+            {"resources/fonts/Puritan2.otf", BaseFont.WINANSI},
+            {"KozMinPro-Regular", "UniJIS-UCS2-H"}
+    };
+
+    private static final String DEFAULT_FONT = FONTS[0][0];
 
     @Override
     public String generateInvoice(InvoiceTemplate template, Image image) {
