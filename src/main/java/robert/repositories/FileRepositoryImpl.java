@@ -12,7 +12,13 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public void addNewFile(String owner, String fileName) {
-        files.putIfAbsent(owner, fileName); // is old file already deleted?
+        while (files.putIfAbsent(owner, fileName) != null) { // is old file already deleted?
+            try {
+                System.out.println("Some file waits for being deleted");
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+        }
     }
 
     @Override
@@ -37,7 +43,7 @@ public class FileRepositoryImpl implements FileRepository {
         public void run() {
             String fileName = files.remove(owner);
             try {
-                Thread.sleep(15_000); // wait before delete. Give user chance to download & mailer to send file
+                Thread.sleep(45_000); // wait before delete. Give user chance to download & mailer to send file
                 File file = new File(fileName);
                 file.delete();
                 System.out.println("Deleted file of " + owner);
