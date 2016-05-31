@@ -12,15 +12,18 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public void addNewFile(String owner, String fileName) {
-        //TODO fix
-        while (files.putIfAbsent(owner, fileName) != null) { // old file already deleted?
+        while (files.putIfAbsent(owner, fileName) != null) try { // old file already deleted?
+            System.out.println("Some file waits for being deleted");
+            Thread.sleep(1_000);
+        } catch (InterruptedException e) {
+        } finally {
+            this.deleteFile(owner);
+            System.out.println("Forced delete of file.");
             try {
-                System.out.println("Some file waits for being deleted");
-                Thread.sleep(1_000);
+                Thread.sleep(10); // give cleaning thread time do remove file form the map before recursive call
             } catch (InterruptedException e) {
             } finally {
-                files.put(owner, fileName);
-                return;
+                this.addNewFile(owner, fileName);
             }
         }
     }
@@ -28,7 +31,7 @@ public class FileRepositoryImpl implements FileRepository {
     @Override
     public void deleteFile(String owner) {
         new Thread(new DeleteTask(owner)).start();
-        System.out.println("Thread started");
+        System.out.println("Cleaning thread started");
     }
 
     @Override
@@ -45,16 +48,16 @@ public class FileRepositoryImpl implements FileRepository {
 
         @Override
         public void run() {
-            String fileName = files.remove(owner);
+            String fileToRemove = files.remove(owner);
             try {
                 Thread.sleep(15_000); // wait before delete. Give user chance to download & mailer to send file
-                File file = new File(fileName);
+                File file = new File(fileToRemove);
                 file.delete();
                 System.out.println("Deleted file of " + owner);
             } catch (Exception e) {
                 System.out.println("File deleting error");
             } finally {
-                System.out.println("Thread finished");
+                System.out.println("Cleaning thread finished");
             }
         }
     }

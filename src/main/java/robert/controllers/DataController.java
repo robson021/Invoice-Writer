@@ -134,7 +134,7 @@ public class DataController {
 
     @RequestMapping(value = "/download-invoice", method = RequestMethod.GET)
     public void downloadInvoice(HttpServletResponse response) {
-        // TODO download NOT in new tab
+        // TODO: 01.06.16 download NOT in new tab
         logger.info("Download request: " + sessionData.getEmail());
         try {
             response.addHeader("Content-disposition", "attachment;filename="
@@ -143,7 +143,7 @@ public class DataController {
             InputStream is = new FileInputStream(fileRepository.getFileName(sessionData.getEmail()));
             IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
-            logger.info(sessionData.getEmail() + " downloaded file");
+            logger.info(sessionData.getEmail() + " downloaded the file");
         } catch (Exception e) {
             logger.error("Could not download");
         } finally {
