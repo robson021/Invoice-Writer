@@ -12,6 +12,7 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public void addNewFile(String owner, String fileName) {
+        //TODO fix
         while (files.putIfAbsent(owner, fileName) != null) { // old file already deleted?
             try {
                 System.out.println("Some file waits for being deleted");
@@ -19,6 +20,7 @@ public class FileRepositoryImpl implements FileRepository {
             } catch (InterruptedException e) {
             } finally {
                 files.put(owner, fileName);
+                return;
             }
         }
     }

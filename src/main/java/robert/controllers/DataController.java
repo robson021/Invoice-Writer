@@ -134,6 +134,7 @@ public class DataController {
 
     @RequestMapping(value = "/download-invoice", method = RequestMethod.GET)
     public void downloadInvoice(HttpServletResponse response) {
+        // TODO download NOT in new tab
         logger.info("Download request: " + sessionData.getEmail());
         try {
             response.addHeader("Content-disposition", "attachment;filename="
