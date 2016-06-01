@@ -12,18 +12,18 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public void addNewFile(String owner, String fileName) {
-        while (files.putIfAbsent(owner, fileName) != null) try { // old file already deleted?
-            System.out.println("Some file waits for being deleted");
-            Thread.sleep(1_000);
-        } catch (InterruptedException e) {
-        } finally {
-            this.deleteFile(owner);
-            System.out.println("Forced delete of file.");
-            try {
-                Thread.sleep(10); // give cleaning thread time do remove file form the map before recursive call
+        while (files.putIfAbsent(owner, fileName) != null) {
+            try { // old file already deleted?
+                System.out.println("Some file waits for being deleted");
+                Thread.sleep(1_000);
             } catch (InterruptedException e) {
             } finally {
-                this.addNewFile(owner, fileName);
+                this.deleteFile(owner);
+                System.out.println("Forced delete of file.");
+                try {
+                    Thread.sleep(10); // give cleaning thread time do remove file form the map before recursive call
+                } catch (InterruptedException e) {
+                }
             }
         }
     }
