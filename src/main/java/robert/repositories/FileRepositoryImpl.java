@@ -50,7 +50,7 @@ public class FileRepositoryImpl implements FileRepository {
         public void run() {
             String fileToRemove = files.remove(owner);
             try {
-                Thread.sleep(15_000); // wait before delete. Give user chance to download & mailer to send file
+                Thread.sleep(15_000); // wait before delete. Give user chance to download & mailer to send the file
                 File file = new File(fileToRemove);
                 file.delete();
                 System.out.println("Deleted file of " + owner);
