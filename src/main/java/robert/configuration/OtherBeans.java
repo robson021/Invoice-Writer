@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
 import robert.other.*;
-import robert.repositories.FileRepository;
-import robert.repositories.FileRepositoryImpl;
 
 /**
  * Created by robert on 30.04.16.
@@ -36,8 +34,4 @@ public class OtherBeans {
         return new InvoiceGeneratorImpl();
     }
 
-    @Bean
-    public FileRepository fileRepository() {
-        return new FileRepositoryImpl();
-    }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import robert.entities.User;
 import robert.other.Mailer;
+import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
@@ -24,11 +25,13 @@ public class RegisterController {
 
     private DbService dbService;
     private Mailer mailer;
+    private SessionData sessionData;
 
     @Autowired
-    public RegisterController(DbService dbService, Mailer mailer) {
+    public RegisterController(DbService dbService, Mailer mailer, SessionData sessionData) {
         this.dbService = dbService;
         this.mailer = mailer;
+        this.sessionData = sessionData;
     }
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
@@ -51,7 +54,7 @@ public class RegisterController {
             response.setText("You can login now.");
 
             // sending via thread for better performance. Waiting for mailer takes too long
-            mailer.sendEmail(u.getEmail(), "Registration", "You have been registered", null);
+            mailer.sendEmail(u.getEmail(), "Registration", "You have been registered", null, sessionData);
             logger.info("User registered");
         } else {
             logger.error("Given e-mail is already taken!");
