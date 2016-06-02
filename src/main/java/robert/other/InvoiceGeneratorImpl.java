@@ -109,6 +109,23 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             document.add(summaryTable(template.getSelectedServices(), bruttoSum));
 
 
+            PdfPTable signatureTable = new PdfPTable(3);
+            signatureTable.getDefaultCell().setBorder(0);
+            String dots = "...................";
+            signatureTable.addCell("Salesman");
+            signatureTable.addCell(" ");
+            signatureTable.addCell("Contractor");
+            signatureTable.addCell(" ");
+            signatureTable.addCell(" ");
+            signatureTable.addCell(" ");
+            signatureTable.addCell(dots);
+            signatureTable.addCell(" ");
+            signatureTable.addCell(dots);
+
+            document.add(new Chunk(" "));
+            document.add(new Chunk(" "));
+            document.add(signatureTable);
+
             document.close(); // no need to close PDFwriter?
             return fileName;
         } catch (Exception e) {
