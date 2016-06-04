@@ -120,18 +120,16 @@ public class DataController {
             } else {
                 try {
                     sessionData.setLastInvoice(docName);
-                    sessionData.setUserFinishedDownloading(false);
                     r.setText("Invoice is ready. AdBlock may interrupt the download!");
                     r.setResult(true);
                     if (invoiceTemplate.isCopyOnMail()) {
-                        // TODO: 04.06.16 cannot refer to the session bean form thread. fix it
-                        mailer.sendEmail(sessionData.getEmail(), "Invoice", "Generated invoice in attachment.", docName, sessionData);
+                        sessionData.setMailerThread(mailer.sendInvoice(sessionData.getEmail(), docName));
                     } else {
-                        sessionData.setMailerFinished(true);
                     }
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                     r.setText(e.getMessage());
+                    sessionData.clean();
                 }
             }
         }
@@ -153,8 +151,7 @@ public class DataController {
         } catch (Exception e) {
             logger.error("Could not download");
         } finally {
-            sessionData.setUserFinishedDownloading(true);
-            sessionData.tryCleanFile();
+            sessionData.clean();
         }
     }
 

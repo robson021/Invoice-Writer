@@ -5,7 +5,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import robert.services.api.Mailer;
-import robert.session.SessionData;
 
 import javax.mail.internet.MimeMessage;
 
@@ -20,25 +19,28 @@ public class MailerImpl implements Mailer {
 
 
     @Override
-    public void sendEmail(String to, String subject, String body, String file, SessionData sessionData) {
-        sessionData.setMailerFinished(false);
-        new Thread(new MailerTaskRunnable(to, subject, body, file, sessionData)).start();
+    public void sendEmail(String to, String subject, String body, String file) {
+        new Thread(new MailerTaskRunnable(to, subject, body, file)).start();
         //new MailerTaskRunnable(to, subject, body, file, sessionData).run();
+    }
+
+    @Override
+    public Thread sendInvoice(String to, String fileName) {
+        Thread thread = new Thread(new MailerTaskRunnable(to, "Invoice", "[Auto-generated message]", fileName));
+        thread.start();
+        return thread;
     }
 
 
     private class MailerTaskRunnable implements Runnable {
         private final String to, subject, file;
         private String body;
-        private final SessionData sessionData;
 
-        // TODO: 02.06.16 proxy bean
-        public MailerTaskRunnable(String to, String subject, String body, String file, SessionData sessionData) {
+        public MailerTaskRunnable(String to, String subject, String body, String file) {
             this.to = to;
             this.subject = subject;
             this.body = body;
             this.file = file;
-            this.sessionData = sessionData;
         }
 
         @Override
@@ -60,8 +62,6 @@ public class MailerImpl implements Mailer {
             } catch (Exception e) {
                 System.out.println("Mailer exception.");
             } finally {
-                sessionData.setMailerFinished(true);
-                sessionData.tryCleanFile();
                 System.out.println("Mailer thread finished: " + to);
             }
         }

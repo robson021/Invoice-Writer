@@ -15,10 +15,8 @@ public class SessionData {
     private String email = null;
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
-
     private String lastInvoice = null;
-    private boolean userFinishedDownloading = true;
-    private boolean mailerFinished = true;
+    private Thread mailerThread = null;
 
     public SessionData() {
     }
@@ -41,36 +39,35 @@ public class SessionData {
         emailSetted = true;
     }
 
+    public Thread getMailerThread() {
+        return mailerThread;
+    }
+
+    public void setMailerThread(Thread mailerThread) {
+        if (mailerThread != null) {
+            try {
+                mailerThread.join();
+            } catch (Exception e) {
+                System.out.println("Thread join exception");
+            }
+        }
+        this.mailerThread = mailerThread;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getLastInvoice() {
         return lastInvoice;
     }
 
     public void setLastInvoice(String lastInvoice) throws Exception {
         if (this.lastInvoice != null) {
-            throw new Exception("Old invoice still in memory");
+            throw new Exception("Old invoice is not deleted!");
+        } else {
+            this.lastInvoice = lastInvoice;
         }
-        this.userFinishedDownloading = false;
-        this.lastInvoice = lastInvoice;
-    }
-
-    public boolean isUserFinishedDownloading() {
-        return userFinishedDownloading;
-    }
-
-    public synchronized void setUserFinishedDownloading(boolean userFinishedDownloading) {
-        this.userFinishedDownloading = userFinishedDownloading;
-    }
-
-    public boolean isMailerFinished() {
-        return mailerFinished;
-    }
-
-    public synchronized void setMailerFinished(boolean mailerFinished) {
-        this.mailerFinished = mailerFinished;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @Override
@@ -82,19 +79,11 @@ public class SessionData {
                 '}';
     }
 
-    public synchronized void tryCleanFile() {
-        if (userFinishedDownloading && mailerFinished) {
-            String fileToRemove = this.lastInvoice;
-            lastInvoice = null;
-            try {
-                new Thread(new CleaningTask(fileToRemove)).start();
-            } catch (Exception e) {
-                System.out.println("Could not delete the file");
-            }
-        } else {
-            System.out.println("Can not delete the file yet: " + email);
-        }
+    public void clean() {
+        new Thread(new CleaningTask(lastInvoice)).start();
+
     }
+
 
     private class CleaningTask implements Runnable {
         private final String file;
@@ -106,14 +95,18 @@ public class SessionData {
         @Override
         public void run() {
             try {
-                Thread.sleep(10_000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
+                Thread.sleep(10_000); // not necessary
+                if (mailerThread != null) {
+                    mailerThread.join();
+                    System.out.println("Mailer finished");
+                }
                 new File(file).delete();
+            } catch (Exception e) {
+                System.out.println("Cleaning exception.");
             } finally {
-                System.out.println("Cleaning thread finished: " + email);
+                mailerThread = null;
+                lastInvoice = null;
+                System.out.println("Cleaning done");
             }
         }
     }

@@ -54,7 +54,7 @@ public class RegisterController {
             response.setText("You can login now.");
 
             // sending via thread for better performance. Waiting for mailer takes too long
-            mailer.sendEmail(u.getEmail(), "Registration", "You have been registered", null, sessionData);
+            mailer.sendEmail(u.getEmail(), "Registration", "You have been registered", null);
             logger.info("User registered");
         } else {
             logger.error("Given e-mail is already taken!");
