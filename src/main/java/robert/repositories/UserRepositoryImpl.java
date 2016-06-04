@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import robert.entities.EmailAddress;
 import robert.entities.User;
+import robert.repositories.api.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

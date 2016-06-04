@@ -1,4 +1,4 @@
-package robert.other;
+package robert.session;
 
 import java.io.File;
 import java.util.Calendar;
@@ -57,7 +57,7 @@ public class SessionData {
         return userFinishedDownloading;
     }
 
-    public void setUserFinishedDownloading(boolean userFinishedDownloading) {
+    public synchronized void setUserFinishedDownloading(boolean userFinishedDownloading) {
         this.userFinishedDownloading = userFinishedDownloading;
     }
 
@@ -65,7 +65,7 @@ public class SessionData {
         return mailerFinished;
     }
 
-    public void setMailerFinished(boolean mailerFinished) {
+    public synchronized void setMailerFinished(boolean mailerFinished) {
         this.mailerFinished = mailerFinished;
     }
 
@@ -82,7 +82,7 @@ public class SessionData {
                 '}';
     }
 
-    public void tryCleanFile() {
+    public synchronized void tryCleanFile() {
         if (userFinishedDownloading && mailerFinished) {
             String fileToRemove = this.lastInvoice;
             lastInvoice = null;

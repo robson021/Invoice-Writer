@@ -1,4 +1,4 @@
-package robert.other;
+package robert.services.api;
 
 /**
  * Created by robert on 03.05.16.

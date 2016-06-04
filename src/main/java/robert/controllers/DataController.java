@@ -8,13 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import robert.other.InvoiceGenerator;
-import robert.other.Mailer;
-import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.InvoiceTemplate;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.services.DbService;
+import robert.services.api.InvoiceGenerator;
+import robert.services.api.Mailer;
+import robert.session.SessionData;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -120,9 +120,11 @@ public class DataController {
             } else {
                 try {
                     sessionData.setLastInvoice(docName);
+                    sessionData.setUserFinishedDownloading(false);
                     r.setText("Invoice is ready. AdBlock may interrupt the download!");
                     r.setResult(true);
                     if (invoiceTemplate.isCopyOnMail()) {
+                        // TODO: 04.06.16 cannot refer to the session bean form thread. fix it
                         mailer.sendEmail(sessionData.getEmail(), "Invoice", "Generated invoice in attachment.", docName, sessionData);
                     } else {
                         sessionData.setMailerFinished(true);

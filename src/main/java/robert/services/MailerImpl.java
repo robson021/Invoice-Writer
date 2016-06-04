@@ -1,9 +1,11 @@
-package robert.other;
+package robert.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import robert.services.api.Mailer;
+import robert.session.SessionData;
 
 import javax.mail.internet.MimeMessage;
 
@@ -21,6 +23,7 @@ public class MailerImpl implements Mailer {
     public void sendEmail(String to, String subject, String body, String file, SessionData sessionData) {
         sessionData.setMailerFinished(false);
         new Thread(new MailerTaskRunnable(to, subject, body, file, sessionData)).start();
+        //new MailerTaskRunnable(to, subject, body, file, sessionData).run();
     }
 
 

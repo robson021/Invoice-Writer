@@ -15,10 +15,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
-import robert.repositories.ContractorRepository;
-import robert.repositories.SalesmanRepository;
-import robert.repositories.ServiceRepository;
-import robert.repositories.UserRepository;
+import robert.repositories.api.ContractorRepository;
+import robert.repositories.api.SalesmanRepository;
+import robert.repositories.api.ServiceRepository;
+import robert.repositories.api.UserRepository;
 import robert.responses.simpleentities.*;
 import robert.services.DbService;
 

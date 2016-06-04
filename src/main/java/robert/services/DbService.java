@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import robert.entities.*;
-import robert.repositories.UserRepository;
+import robert.repositories.api.UserRepository;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;

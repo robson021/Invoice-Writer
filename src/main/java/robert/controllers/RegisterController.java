@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import robert.entities.User;
-import robert.other.Mailer;
-import robert.other.SessionData;
 import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
+import robert.services.api.Mailer;
+import robert.session.SessionData;
 
 /**
  * Created by robert on 25.03.16.

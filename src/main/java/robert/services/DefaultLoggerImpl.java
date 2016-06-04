@@ -2,7 +2,7 @@ package robert.services;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-import robert.other.DefaultLogger;
+import robert.services.api.DefaultLogger;
 
 /**
  * Created by robert on 03.05.16.

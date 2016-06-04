@@ -1,4 +1,4 @@
-package robert.repositories;
+package robert.repositories.api;
 
 import org.springframework.data.repository.Repository;
 import robert.entities.EmailAddress;

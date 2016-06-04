@@ -6,7 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
-import robert.other.*;
+import robert.services.InvoiceGeneratorImpl;
+import robert.services.MailerImpl;
+import robert.services.api.DefaultLogger;
+import robert.services.api.InvoiceGenerator;
+import robert.services.api.Mailer;
+import robert.session.SessionData;
 
 /**
  * Created by robert on 30.04.16.

@@ -12,13 +12,13 @@ import robert.entities.Contractor;
 import robert.entities.Salesman;
 import robert.entities.TheService;
 import robert.entities.User;
-import robert.other.DefaultLogger;
 import robert.responses.Greetings;
 import robert.responses.simpleentities.DataHolderResponse;
 import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
+import robert.services.api.DefaultLogger;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;

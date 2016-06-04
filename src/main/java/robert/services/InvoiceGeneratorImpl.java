@@ -1,4 +1,4 @@
-package robert.other;
+package robert.services;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
@@ -9,6 +9,7 @@ import robert.responses.InvoiceTemplate;
 import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
+import robert.services.api.InvoiceGenerator;
 
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;

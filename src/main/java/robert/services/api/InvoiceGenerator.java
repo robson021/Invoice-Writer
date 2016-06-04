@@ -1,4 +1,4 @@
-package robert.other;
+package robert.services.api;
 
 import com.itextpdf.text.Image;
 import robert.responses.InvoiceTemplate;
