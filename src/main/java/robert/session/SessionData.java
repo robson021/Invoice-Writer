@@ -81,7 +81,6 @@ public class SessionData {
 
     public void clean() {
         new Thread(new CleaningTask(lastInvoice)).start();
-
     }
 
 
@@ -94,8 +93,9 @@ public class SessionData {
 
         @Override
         public void run() {
+            lastInvoice = null;
             try {
-                Thread.sleep(10_000); // not necessary
+                Thread.sleep(3_000); // not necessary
                 if (mailerThread != null) {
                     mailerThread.join();
                     System.out.println("Mailer finished");
@@ -105,8 +105,7 @@ public class SessionData {
                 System.out.println("Cleaning exception.");
             } finally {
                 mailerThread = null;
-                lastInvoice = null;
-                System.out.println("Cleaning done");
+                System.out.println("Cleaning done: " + file);
             }
         }
     }
