@@ -51,9 +51,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public User findByEmail(EmailAddress emailAddress) {
         try {
-            User u = (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
+            return (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")
                     .setParameter("email", emailAddress.toString()).getSingleResult();
-            return u;
         } catch (Exception e) {
             logger.error("Finding user by email exception");
             //e.printStackTrace();
