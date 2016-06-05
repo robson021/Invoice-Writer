@@ -1,5 +1,5 @@
 <!--in case of problems replace "jumbotron" with "maxWidth"-->
-<div layout-align="center center" class="jumbotron">
+<div layout-align="center center" class="jumbotron container maxWidth">
 
 
     <!-- nav buttons -->
@@ -28,7 +28,8 @@
         <div class="padded flex-display" layout="column">
 
             <!--payment-->
-            <div class="payment border1 panel panel-default" layout="column" ng-cloak layout-align="center center">
+            <div class="payment border1 panel panel-default" layout="column" ng-cloak layout-align="center center"
+                 ng-show="contractor!= null || salesman != null">
                 <md-input-container>
                     <label for="formOfPayment">Form of payment</label>
                     <input type="text" id="formOfPayment" ng-model="formOfPayment" md-autofocus>

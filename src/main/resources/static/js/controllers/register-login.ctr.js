@@ -2,10 +2,12 @@
     "use strict";
     angular.module("ngApp")
         .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, $state) {
+
+
             $rootScope.hideRegisterLogin = false;
             $scope.hideMainApp = true;
             //$scope.myData = null;
-
+            
             var r = $rootScope;
 
             $scope.user = {

@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="css/loginPage.css">
     <link rel="stylesheet" href="css/info.css">
     <link rel="stylesheet" href="css/mainApp.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body ng-app="ngApp" ng-cloak flex>
 
@@ -93,7 +96,7 @@
         </md-sidenav>
 
 
-        <form>
+        <form ng-show="!isLoggedIn">
             <md-input-container>
                 <label for="email1">E-mail</label>
                 <input type="email" id="email1" ng-model="user.email" md-autofocus>
@@ -117,7 +120,7 @@
 
 
 <!--APPEARS AFTER LOGIN -->
-<div>
+<div ng-show="isLoggedIn">
     <ui-view></ui-view>
 </div>
 

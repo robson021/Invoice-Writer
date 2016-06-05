@@ -3,6 +3,9 @@
     angular.module("ngApp")
         .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window) {
 
+            if (!$rootScope.isLoggedIn) {
+                $state.go('default');
+            }
 
             // selected right now
             $scope.salesman = null;
