@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import robert.services.api.DefaultLogger;
 import robert.services.api.Mailer;
 
 import javax.mail.internet.MimeMessage;
@@ -16,6 +17,8 @@ public class MailerImpl implements Mailer {
 
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private DefaultLogger logger;
 
 
     @Override
@@ -45,6 +48,7 @@ public class MailerImpl implements Mailer {
 
         @Override
         public void run() {
+            logger.info("Mailer started. Message to: " + to);
             try {
                 MimeMessage message = javaMailSender.createMimeMessage();
                 MimeMessageHelper helper;
@@ -60,9 +64,9 @@ public class MailerImpl implements Mailer {
                 }
                 javaMailSender.send(message);
             } catch (Exception e) {
-                System.out.println("Mailer exception.");
+                logger.error("Mailer exception.");
             } finally {
-                System.out.println("Mailer thread finished: " + to);
+                logger.info("Mailer thread finished: " + to);
             }
         }
     }
