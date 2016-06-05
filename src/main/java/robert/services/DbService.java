@@ -105,7 +105,7 @@ public class DbService {
 
         userRepository.save(user1);
         logger.info("Example user has been added.\n" + user1.toString());
-        exampleUserId = user1.getId().longValue();
+        exampleUserId = user1.getId();
         exampleUserEmail = user1.getEmail();
 
         passwd = new char[]{'a', 'a'};

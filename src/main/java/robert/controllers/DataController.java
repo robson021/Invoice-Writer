@@ -55,7 +55,7 @@ public class DataController {
         if (!file.isEmpty() && sessionData.getEmail() != null &&
                 file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(sessionData.getEmail(), file)) {
             response.setText("File has been successfully uploaded");
-            response.setResult(true);
+            response.setResult();
         } else {
             response.setText("Could not upload the file");
             status = HttpStatus.NOT_ACCEPTABLE;
@@ -72,7 +72,7 @@ public class DataController {
         try {
             dbService.updateUserData(dataHolder, sessionData.getEmail());
             response.setText("Your database records have been updated!");
-            response.setResult(true);
+            response.setResult();
         } catch (Exception e) {
             logger.error("Error occoured while saving data");
             response.setText("Error - check for empty fields in data");
@@ -121,9 +121,10 @@ public class DataController {
                 try {
                     sessionData.setLastInvoice(docName);
                     r.setText("Invoice is ready. AdBlock may interrupt the download!");
-                    r.setResult(true);
+                    r.setResult();
                     if (invoiceTemplate.isCopyOnMail()) {
                         sessionData.setMailerThread(mailer.sendInvoice(sessionData.getEmail(), docName));
+                        logger.info("Mailer thread binded to session data of: " + sessionData.getEmail());
                     } else {
                     }
                 } catch (Exception e) {
@@ -133,6 +134,7 @@ public class DataController {
                 }
             }
         }
+        logger.info("'/submit-invoice' returning");
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
 

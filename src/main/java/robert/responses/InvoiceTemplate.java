@@ -113,8 +113,6 @@ public class InvoiceTemplate {
     }
 
     public boolean validate() {
-        if (salesman == null || contractor == null || selectedServices == null || selectedServices.length == 0)
-            return false;
-        return true;
+        return !(salesman == null || contractor == null || selectedServices == null || selectedServices.length == 0);
     }
 }

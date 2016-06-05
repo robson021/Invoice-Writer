@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
+import robert.repositories.UserRepositoryImpl;
+import robert.repositories.api.UserRepository;
 import robert.services.InvoiceGeneratorImpl;
 import robert.services.MailerImpl;
 import robert.services.api.DefaultLogger;
@@ -17,7 +19,7 @@ import robert.session.SessionData;
  * Created by robert on 30.04.16.
  */
 @Configuration
-public class OtherBeans {
+public class Beans {
 
     @Autowired
     private DefaultLogger logger;
@@ -39,4 +41,8 @@ public class OtherBeans {
         return new InvoiceGeneratorImpl();
     }
 
+    @Bean
+    public UserRepository userRepository() {
+        return new UserRepositoryImpl();
+    }
 }

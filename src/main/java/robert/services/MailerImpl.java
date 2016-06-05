@@ -30,7 +30,7 @@ public class MailerImpl implements Mailer {
     @Override
     public Thread sendInvoice(String to, String fileName) {
         Thread thread = new Thread(new MailerTaskRunnable(to, "Invoice", "[Auto-generated message]", fileName));
-        thread.start();
+        //thread.start(); //start it in controller, not here
         return thread;
     }
 

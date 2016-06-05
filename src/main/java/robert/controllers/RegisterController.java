@@ -11,7 +11,6 @@ import robert.responses.BasicResponse;
 import robert.responses.simpleentities.SimpleUser;
 import robert.services.DbService;
 import robert.services.api.Mailer;
-import robert.session.SessionData;
 
 /**
  * Created by robert on 25.03.16.
@@ -23,15 +22,15 @@ public class RegisterController {
 
     private static final Logger logger = Logger.getLogger(RegisterController.class);
 
-    private DbService dbService;
+    private final DbService dbService;
     private Mailer mailer;
-    private SessionData sessionData;
+    //private SessionData sessionData;
 
     @Autowired
-    public RegisterController(DbService dbService, Mailer mailer, SessionData sessionData) {
+    public RegisterController(DbService dbService, Mailer mailer  /*, SessionData sessionData*/) {
         this.dbService = dbService;
         this.mailer = mailer;
-        this.sessionData = sessionData;
+        //this.sessionData = sessionData;
     }
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
@@ -50,7 +49,7 @@ public class RegisterController {
             System.out.println(user.toString());
             u = new User(user);
             dbService.saveUser(u);
-            response.setResult(true);
+            response.setResult();
             response.setText("You can login now.");
 
             // sending via thread for better performance. Waiting for mailer takes too long

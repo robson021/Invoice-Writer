@@ -14,6 +14,7 @@ public class SessionData {
     private String email = null;
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
+
     private String lastInvoice = null;
     private Thread mailerThread = null;
 
@@ -22,10 +23,6 @@ public class SessionData {
 
     public SessionData(String email) {
         this.email = email;
-    }
-
-    public Date getTime() {
-        return time;
     }
 
     public String getEmail() {
@@ -38,10 +35,6 @@ public class SessionData {
         emailSetted = true;
     }
 
-    public Thread getMailerThread() {
-        return mailerThread;
-    }
-
     public void setMailerThread(Thread mailerThread) {
         if (mailerThread != null) {
             try {
@@ -51,6 +44,7 @@ public class SessionData {
             }
         }
         this.mailerThread = mailerThread;
+        mailerThread.start();
     }
 
     public int getId() {
@@ -85,7 +79,6 @@ public class SessionData {
 
     private class CleaningTask implements Runnable {
         private final String file;
-
         public CleaningTask(String fileToRemove) {
             this.file = fileToRemove;
         }

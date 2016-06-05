@@ -26,8 +26,8 @@ public class BasicResponse /*implements Serializable*/ {
         this.text = text;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setResult() {
+        this.result = true;
     }
 
     @Override

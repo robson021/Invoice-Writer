@@ -25,8 +25,8 @@ public class EmailAddress {
     }
 
 
-    public static boolean isValid(String candidate) {
-        return candidate == null ? false : PATTERN.matcher(candidate).matches();
+    private static boolean isValid(String candidate) {
+        return candidate != null && PATTERN.matcher(candidate).matches();
     }
 
     public String toString() {

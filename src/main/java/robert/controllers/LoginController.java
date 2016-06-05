@@ -96,7 +96,7 @@ public class LoginController {
         String id = session.getId();
         if (session.getAttribute(id) != null) { // still active
             session.invalidate();
-            response.setResult(true);
+            response.setResult();
             response.setText("You are logged out.");
             try {
                 logger.info("After calling invalidate method:");
@@ -116,7 +116,7 @@ public class LoginController {
         holder.setServices(dbUser.getSimpleServices());
         holder.setContractors(dbUser.getSimpleContractors());
         holder.setSalesmen(dbUser.getSimpleSalesmen());
-        holder.setResult(true);
+        holder.setResult();
         holder.setText("You are logged in!");
         holder.checkNulls();
         return holder;

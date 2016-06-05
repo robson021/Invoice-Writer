@@ -25,7 +25,7 @@ public class UserDataResponse extends BasicResponse {
         contractors = user.getContractors();
         salesmen = user.getSalesmen();
         services = user.getServices();
-        this.setResult(true);
+        this.setResult();
     }
 
     // methods

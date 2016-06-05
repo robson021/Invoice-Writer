@@ -204,6 +204,7 @@ public class User extends AbstractEntity {
             decodedPassword = new String(decoder.decodeBuffer(password));
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
         return decodedPassword.toCharArray();
     }
