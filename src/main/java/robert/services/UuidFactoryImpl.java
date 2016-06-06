@@ -16,8 +16,8 @@ public class UuidFactoryImpl implements FactoryUUID {
     private SessionData sessionData;
 
     @Override
-    public boolean checkToken(UUID uuid) {
-        if (uuid.equals(sessionData.getUuid())) {
+    public boolean checkToken(String uuid) {
+        if (UUID.fromString(uuid).equals(sessionData.getUuid())) {
             return true;
         }
         return false;
@@ -25,6 +25,8 @@ public class UuidFactoryImpl implements FactoryUUID {
 
     @Override
     public UUID generateNewToken() {
-        return UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
+        sessionData.setUuid(uuid);
+        return uuid;
     }
 }
