@@ -10,7 +10,9 @@ import robert.repositories.UserRepositoryImpl;
 import robert.repositories.api.UserRepository;
 import robert.services.InvoiceGeneratorImpl;
 import robert.services.MailerImpl;
+import robert.services.UuidFactoryImpl;
 import robert.services.api.DefaultLogger;
+import robert.services.api.FactoryUUID;
 import robert.services.api.InvoiceGenerator;
 import robert.services.api.Mailer;
 import robert.session.SessionData;
@@ -44,5 +46,10 @@ public class Beans {
     @Bean
     public UserRepository userRepository() {
         return new UserRepositoryImpl();
+    }
+
+    @Bean
+    public FactoryUUID factoryUUID() {
+        return new UuidFactoryImpl();
     }
 }

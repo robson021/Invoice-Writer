@@ -3,6 +3,7 @@ package robert.session;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -14,6 +15,8 @@ public class SessionData {
     private String email = null;
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
+
+    private UUID uuid = null;
 
     private String lastInvoice = null;
     private Thread mailerThread = null;
@@ -33,6 +36,14 @@ public class SessionData {
         if (emailSetted) throw new RuntimeException("Email already setted!");
         this.email = email;
         emailSetted = true;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public void setMailerThread(Thread mailerThread) {
