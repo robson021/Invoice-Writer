@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by robert on 06.06.16.
  */
-public interface FactoryUUID {
+public interface UuidGenerator {
     boolean checkToken(String uuid);
     UUID generateNewToken();
 }

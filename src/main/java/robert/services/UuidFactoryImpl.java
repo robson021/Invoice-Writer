@@ -1,7 +1,7 @@
 package robert.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import robert.services.api.FactoryUUID;
+import robert.services.api.UuidGenerator;
 import robert.session.SessionData;
 
 import java.util.UUID;
@@ -9,8 +9,8 @@ import java.util.UUID;
 /**
  * Created by robert on 06.06.16.
  */
-public class UuidFactoryImpl implements FactoryUUID {
-    //private static final Logger logger = Logger.getLogger(FactoryUUID.class);
+public class UuidFactoryImpl implements UuidGenerator {
+    //private static final Logger logger = Logger.getLogger(UuidGenerator.class);
 
     @Autowired
     private SessionData sessionData;
@@ -28,5 +28,10 @@ public class UuidFactoryImpl implements FactoryUUID {
         UUID uuid = UUID.randomUUID();
         sessionData.setUuid(uuid);
         return uuid;
+    }
+
+    @Autowired
+    public void setSessionData(SessionData sessionData) {
+        this.sessionData = sessionData;
     }
 }
