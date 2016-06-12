@@ -22,11 +22,13 @@ public class CsrfAspect {
 
     @After("execution(* robert.session.SessionData.setUuidToCheck(..))")
     public void validUuidCode(JoinPoint jp) {
-        SessionData sessionData = (SessionData) jp.getTarget();
-        String email = sessionData.getEmail();
-        logger.info("Validation of user: " + email);
+        SessionData sessionData = null;
+        String email = null;
         try {
-            if (!validateToken(sessionData.getUuid(), sessionData.getUuidToCheck())) {
+            sessionData = (SessionData) jp.getTarget();
+            email = sessionData.getEmail();
+            logger.info("Validation of user: " + email);
+            if (email == null || !validateToken(sessionData.getUuid(), sessionData.getUuidToCheck())) {
                 sessionData.getResponse().sendRedirect("/");
             } else {
                 sessionData.setUuid(uuidGenerator.generateNewToken());
@@ -48,7 +50,7 @@ public class CsrfAspect {
             logger.error("Token = null");
             return false;
         }
-        logger.info("Given tokens:\n\t" + pattern.toString() + " and " + uuid.toString());
+        //logger.info("Given tokens:\n\t" + pattern.toString() + " and " + uuid.toString());
         if (pattern.equals(uuid)) {
             logger.info("OK. Tokens are equal");
             return true;
