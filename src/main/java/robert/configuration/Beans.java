@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
+import robert.aop.CsrfAspect;
 import robert.repositories.UserRepositoryImpl;
 import robert.repositories.api.UserRepository;
 import robert.services.InvoiceGeneratorImpl;
@@ -51,5 +52,10 @@ public class Beans {
     @Bean
     public UuidGenerator factoryUUID() {
         return new UuidFactoryImpl();
+    }
+
+    @Bean
+    public CsrfAspect csrfAspect() {
+        return new CsrfAspect();
     }
 }

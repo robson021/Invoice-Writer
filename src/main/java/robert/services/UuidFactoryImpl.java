@@ -1,8 +1,6 @@
 package robert.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import robert.services.api.UuidGenerator;
-import robert.session.SessionData;
 
 import java.util.UUID;
 
@@ -12,26 +10,14 @@ import java.util.UUID;
 public class UuidFactoryImpl implements UuidGenerator {
     //private static final Logger logger = Logger.getLogger(UuidGenerator.class);
 
-    @Autowired
-    private SessionData sessionData;
-
     @Override
     public boolean checkToken(String uuid) {
-        if (UUID.fromString(uuid).equals(sessionData.getUuid())) {
-            return true;
-        }
         return false;
     }
 
     @Override
     public UUID generateNewToken() {
-        UUID uuid = UUID.randomUUID();
-        sessionData.setUuid(uuid);
-        return uuid;
+        return null;
     }
 
-    @Autowired
-    public void setSessionData(SessionData sessionData) {
-        this.sessionData = sessionData;
-    }
 }

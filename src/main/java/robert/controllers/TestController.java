@@ -19,12 +19,14 @@ import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
 import robert.services.api.DefaultLogger;
+import robert.session.SessionData;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by robert on 30.03.16.
@@ -38,6 +40,9 @@ public class TestController {
 
     @Autowired
     private DefaultLogger logger;
+
+    @Autowired
+    SessionData sessionData;
 
     @RequestMapping(value = "/greetings", method = RequestMethod.GET)
     public List<Greetings> getGreetings() {
@@ -105,5 +110,11 @@ public class TestController {
         } catch (Exception e) {
             logger.error("exception: IOUtils.copy(...)");
         }
+    }
+
+    @RequestMapping("/uuid-test")
+    public void uuidTest(HttpServletResponse response) {
+        String uuid = UUID.randomUUID().toString();
+        sessionData.setUuidToCheck(uuid, response);
     }
 }

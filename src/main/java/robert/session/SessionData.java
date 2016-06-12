@@ -1,5 +1,6 @@
 package robert.session;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +18,8 @@ public class SessionData {
     private final Date time = Calendar.getInstance().getTime();
 
     private UUID uuid = null;
+    private UUID uuidToCheck = null;
+    private HttpServletResponse response;
 
     private String lastInvoice = null;
     private Thread mailerThread = null;
@@ -58,6 +61,15 @@ public class SessionData {
         mailerThread.start();
     }
 
+    public UUID getUuidToCheck() {
+        return uuidToCheck;
+    }
+
+    public void setUuidToCheck(String uuidToCheck, HttpServletResponse response) {
+        this.uuidToCheck = UUID.fromString(uuidToCheck);
+        this.response = response;
+    }
+
     public int getId() {
         return id;
     }
@@ -72,6 +84,10 @@ public class SessionData {
         } else {
             this.lastInvoice = lastInvoice;
         }
+    }
+
+    public HttpServletResponse getResponse() {
+        return response;
     }
 
     @Override
