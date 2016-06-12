@@ -46,11 +46,16 @@ public class DataController {
         this.invoiceGenerator = invoiceGenerator;
     }
 
-    @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
+    @RequestMapping(value = "/uplad/img/{token}", method = RequestMethod.POST)
     public ResponseEntity<?> upladImg(/*@RequestParam("name") String name,*/
-                                      @RequestParam("file") MultipartFile file/*, HttpServletResponse httpResponse*/) {
-        logger.info("\n\tFile uplad request: " + sessionData.toString() + " File name: " + file.getName() /*+ " " + name*/);
+                                      @RequestParam("file") MultipartFile file, HttpServletResponse httpResponse,
+                                      @PathVariable(value = "token") String token) {
+        logger.info("\n\tFile uplad request: " + sessionData.toString());
+
+        sessionData.setTokenToCheck(token, httpResponse);
+
         BasicResponse response = new BasicResponse();
+
         HttpStatus status = HttpStatus.OK;
         //sessionData.setTokenToCheck(); // TODO: 12.06.16
         if (!file.isEmpty() && sessionData.getEmail() != null &&
@@ -62,6 +67,7 @@ public class DataController {
             status = HttpStatus.NOT_ACCEPTABLE;
         }
         logger.info("upload status: " + status);
+        response.setToken(sessionData.getToken().toString());
         return new ResponseEntity<>(response, status);
     }
 
@@ -167,7 +173,7 @@ public class DataController {
 
     @RequestMapping(value = "/new-token", method = RequestMethod.GET)
     public ResponseEntity<?> getNewToken() {
-        // TODO: 12.06.16  
+        // TODO: 12.06.16  generate emergency new token. Add this feature in the future
         return null;
     }
 

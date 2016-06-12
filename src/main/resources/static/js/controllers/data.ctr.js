@@ -146,15 +146,17 @@
                 //Take the first selected file
                 fd.append("file", files[0]);
 
-                $http.post("/data/uplad/img", fd, {
+                $http.post("/data/uplad/img/" + $rootScope.token, fd, {
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
                 }).success(function (data) {
+                    $rootScope.token = data.token;
                     console.info("upload complete");
                     $state.go('logged-in');
                     $mdToast.show($mdToast.simple().textContent(data.text));
                 }).error(function (data) {
+                    $rootScope.token = data.token;
                     console.info("upload error");
                     $mdToast.show($mdToast.simple().textContent(data.text));
                 });
