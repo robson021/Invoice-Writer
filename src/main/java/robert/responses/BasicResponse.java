@@ -1,14 +1,12 @@
 package robert.responses;
 
-import java.util.UUID;
-
 /**
  * Created by robert on 26.03.16.
  */
 public class BasicResponse /*implements Serializable*/ {
     private String text = null;
     private boolean result = false;
-    private UUID uuid = null;
+    private String uuid = null;
 
     public BasicResponse(String text) {
         this.text = text;
@@ -17,11 +15,11 @@ public class BasicResponse /*implements Serializable*/ {
     public BasicResponse() {
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

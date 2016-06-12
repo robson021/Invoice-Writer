@@ -114,7 +114,8 @@ public class TestController {
 
     @RequestMapping("/uuid-test")
     public void uuidTest(HttpServletResponse response) {
-        String uuid = UUID.randomUUID().toString();
-        sessionData.setUuidToCheck(uuid, response);
+        UUID uuid = UUID.randomUUID();
+        sessionData.setUuid(uuid);
+        sessionData.setUuidToCheck(uuid.toString(), response);
     }
 }
