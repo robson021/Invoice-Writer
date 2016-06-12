@@ -5,10 +5,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import robert.services.api.UuidGenerator;
+import robert.services.api.TokenService;
 import robert.session.SessionData;
-
-import java.util.UUID;
 
 /**
  * Created by robert on 06.06.16.
@@ -18,7 +16,7 @@ public class CsrfAspect {
     private static final Logger logger = Logger.getLogger(CsrfAspect.class);
 
     @Autowired
-    private UuidGenerator uuidGenerator;
+    private TokenService tokenService;
 
     @After("execution(* robert.session.SessionData.setUuidToCheck(..))")
     public void validUuidCode(JoinPoint jp) {
@@ -28,10 +26,10 @@ public class CsrfAspect {
             sessionData = (SessionData) jp.getTarget();
             email = sessionData.getEmail();
             logger.info("Validation of user: " + email);
-            if (email == null || !validateToken(sessionData.getUuid(), sessionData.getUuidToCheck())) {
+            if (email == null || !tokenService.validateToken(sessionData.getUuid(), sessionData.getUuidToCheck())) {
                 sessionData.getResponse().sendRedirect("/");
             } else {
-                sessionData.setUuid(uuidGenerator.generateNewToken());
+                sessionData.setUuid(tokenService.generateNewToken());
             }
         } catch (Exception e) {
             logger.error("Error");
@@ -45,18 +43,4 @@ public class CsrfAspect {
         }
     }
 
-    private boolean validateToken(UUID pattern, UUID uuid) {
-        if (pattern == null) {
-            logger.error("Token = null");
-            return false;
-        }
-        //logger.info("Given tokens:\n\t" + pattern.toString() + " and " + uuid.toString());
-        if (pattern.equals(uuid)) {
-            logger.info("OK. Tokens are equal");
-            return true;
-        } else {
-            logger.error("Tokens do not match");
-            return false;
-        }
-    }
 }

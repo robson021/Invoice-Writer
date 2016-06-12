@@ -11,11 +11,11 @@ import robert.repositories.UserRepositoryImpl;
 import robert.repositories.api.UserRepository;
 import robert.services.InvoiceGeneratorImpl;
 import robert.services.MailerImpl;
-import robert.services.UuidFactoryImpl;
+import robert.services.TokenServiceImpl;
 import robert.services.api.DefaultLogger;
 import robert.services.api.InvoiceGenerator;
 import robert.services.api.Mailer;
-import robert.services.api.UuidGenerator;
+import robert.services.api.TokenService;
 import robert.session.SessionData;
 
 /**
@@ -50,8 +50,8 @@ public class Beans {
     }
 
     @Bean
-    public UuidGenerator factoryUUID() {
-        return new UuidFactoryImpl();
+    public TokenService tokenService() {
+        return new TokenServiceImpl();
     }
 
     @Bean

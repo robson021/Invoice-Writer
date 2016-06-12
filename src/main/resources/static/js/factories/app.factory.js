@@ -23,6 +23,9 @@
                 logoutUser: logoutUser
             }
         })
+        .factory("tokenFactory", function ($http, $rootScope) {
+            // todo
+        })
         .factory("mainInfoFactory", function ($http, $rootScope) {
             /*return {
              get:  function(){

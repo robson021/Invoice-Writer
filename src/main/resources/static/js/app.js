@@ -75,9 +75,10 @@ angular
 angular.module('ngApp')
     .run(function ($rootScope) {
         var r = $rootScope;
-        r.rootTest = new Date();
+        //r.rootTest = new Date();
         r.dbData = null;
         //r.isMainViewHidden = true;
         r.isLoggedIn = false;
         r.loginButtonEnabled = true;
+        r.token = null;
     });

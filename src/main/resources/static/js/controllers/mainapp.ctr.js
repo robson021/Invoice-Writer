@@ -5,6 +5,8 @@
 
             if (!$rootScope.isLoggedIn) {
                 $state.go('default');
+            } else {
+                console.info("token: " + $rootScope.token);
             }
 
             // selected right now
