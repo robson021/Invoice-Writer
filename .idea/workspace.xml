@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment=".">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/controllers/DataController.java" afterPath="$PROJECT_DIR$/src/main/java/robert/controllers/DataController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/robert/controllers/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/responses/BasicResponse.java" afterPath="$PROJECT_DIR$/src/main/java/robert/responses/BasicResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/controllers/register-login.ctr.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/controllers/register-login.ctr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/factories/app.factory.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/factories/app.factory.js" />
     </list>
     <ignored path="InvoiceWriter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1195,7 +1190,7 @@
       <workItem from="1465724820092" duration="866000" />
       <workItem from="1465742113600" duration="5396000" />
       <workItem from="1465747678184" duration="108000" />
-      <workItem from="1465759046562" duration="1177000" />
+      <workItem from="1465759046562" duration="1189000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1461003836666</created>
@@ -1463,7 +1458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465747773446</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary=".">
+      <created>1465760232387</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1465760232387</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1475,7 +1477,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93307000" />
+    <option name="totallyTimeSpent" value="93319000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1442" height="879" extended-state="6" />
