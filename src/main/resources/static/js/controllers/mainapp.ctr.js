@@ -1,12 +1,12 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window, logoutFactory) {
 
             if (!$rootScope.isLoggedIn) {
                 $state.go('default');
             } else {
-                console.info("token: " + $rootScope.token);
+                console.info("token:\n" + $rootScope.token);
             }
 
             // selected right now
@@ -132,8 +132,15 @@
             // bottom buttons
             $scope.saveData = function () {
                 console.info("data to send:\n" + $rootScope.dbData);
+                $rootScope.dbData.token = $rootScope.token;
                 var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
                 ajax.success(function (data) {
+                    if (data.result) {
+                        $rootScope.token = data.token;
+                        console.info("new token:\n" + data.token);
+                    } else {
+                        logoutFactory.logoutUser();
+                    }
                     $window.scrollTo(0, 0);
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
@@ -151,7 +158,8 @@
                     'copyOnMail': $scope.copyOnMail,
                     'salesman': $scope.salesman,
                     'contractor': $scope.contractor,
-                    'selectedServices': $scope.selectedServices
+                    'selectedServices': $scope.selectedServices,
+                    'token': $rootScope.token
                 };
                 var ajax = $http.post('/data/submit-invoice', invoiceTemplate);
                 ajax.success(function (data) {
@@ -159,8 +167,11 @@
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
                     if (data.result) {
-                        console.info("download attempt")
+                        $rootScope.token = data.token;
+                        console.info("download attempt");
                         window.open("/data/download-invoice", '_blank');
+                    } else {
+                        //logoutFactory.logoutUser();
                     }
                 });
             };

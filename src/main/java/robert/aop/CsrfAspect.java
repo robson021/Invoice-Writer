@@ -18,7 +18,7 @@ public class CsrfAspect {
     @Autowired
     private TokenService tokenService;
 
-    @After("execution(* robert.session.SessionData.setUuidToCheck(..))")
+    @After("execution(* robert.session.SessionData.setTokenToCheck(..))")
     public void validUuidCode(JoinPoint jp) {
         SessionData sessionData = null;
         String email = null;
@@ -26,10 +26,10 @@ public class CsrfAspect {
             sessionData = (SessionData) jp.getTarget();
             email = sessionData.getEmail();
             logger.info("Validation of user: " + email);
-            if (email == null || !tokenService.validateToken(sessionData.getUuid(), sessionData.getUuidToCheck())) {
+            if (email == null || !tokenService.validateToken(sessionData.getToken(), sessionData.getTokenToCheck())) {
                 sessionData.getResponse().sendRedirect("/");
             } else {
-                sessionData.setUuid(tokenService.generateNewToken());
+                sessionData.setToken(tokenService.generateNewToken());
             }
         } catch (Exception e) {
             logger.error("Error");

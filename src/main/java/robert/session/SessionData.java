@@ -17,8 +17,8 @@ public class SessionData {
     private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
 
-    private UUID uuid = null;
-    private UUID uuidToCheck = null;
+    private UUID token = null;
+    private UUID tokenToCheck = null;
     private HttpServletResponse response;
 
     private String lastInvoice = null;
@@ -41,12 +41,12 @@ public class SessionData {
         emailSetted = true;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getToken() {
+        return token;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setToken(UUID token) {
+        this.token = token;
     }
 
     public void setMailerThread(Thread mailerThread) {
@@ -61,12 +61,14 @@ public class SessionData {
         mailerThread.start();
     }
 
-    public UUID getUuidToCheck() {
-        return uuidToCheck;
+    public UUID getTokenToCheck() {
+        return tokenToCheck;
     }
 
-    public void setUuidToCheck(String uuidToCheck, HttpServletResponse response) {
-        this.uuidToCheck = UUID.fromString(uuidToCheck);
+    public void setTokenToCheck(String uuidToCheck, HttpServletResponse response) {
+        if (uuidToCheck != null) {
+            this.tokenToCheck = UUID.fromString(uuidToCheck);
+        }
         this.response = response;
     }
 

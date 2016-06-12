@@ -24,7 +24,7 @@ public class TokenServiceImpl implements TokenService {
             logger.error("Token = null. User is not logged in.");
             return false;
         }
-        //logger.info("Given tokens:\n\t" + pattern.toString() + " and " + uuid.toString());
+        logger.info("Given tokens:\n\t" + pattern.toString() + " and " + uuid.toString());
         if (pattern.equals(uuid)) {
             logger.info("OK. Tokens are equal");
             return true;

@@ -75,7 +75,7 @@ public class LoginController {
                 session.setMaxInactiveInterval(30 * 60); // 30min session timeout
                 logger.info("Session info: " + data.toString());
                 UUID uuid = UUID.randomUUID();
-                data.setUuid(uuid);
+                data.setToken(uuid);
                 DataHolderResponse response = this.generateHolder(dbUser);
                 response.setToken(uuid.toString());
                 return response;

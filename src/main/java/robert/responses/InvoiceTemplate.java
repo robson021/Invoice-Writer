@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by robert on 27.05.16.
  */
-public class InvoiceTemplate {
+public class InvoiceTemplate extends BasicResponse {
     private boolean copyOnMail = false;
     private Date sellDate;
     private Date exposureDate, deadDate;

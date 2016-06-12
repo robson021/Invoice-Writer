@@ -48,10 +48,11 @@ public class DataController {
 
     @RequestMapping(value = "/uplad/img", method = RequestMethod.POST)
     public ResponseEntity<?> upladImg(/*@RequestParam("name") String name,*/
-                                      @RequestParam("file") MultipartFile file) {
+                                      @RequestParam("file") MultipartFile file/*, HttpServletResponse httpResponse*/) {
         logger.info("\n\tFile uplad request: " + sessionData.toString() + " File name: " + file.getName() /*+ " " + name*/);
         BasicResponse response = new BasicResponse();
         HttpStatus status = HttpStatus.OK;
+        //sessionData.setTokenToCheck(); // TODO: 12.06.16
         if (!file.isEmpty() && sessionData.getEmail() != null &&
                 file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(sessionData.getEmail(), file)) {
             response.setText("File has been successfully uploaded");
@@ -65,9 +66,11 @@ public class DataController {
     }
 
     @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)
-    public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder) {
+    public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder, HttpServletResponse httpResponse) {
         BasicResponse response = new BasicResponse();
         logger.info("update user's db request: " + sessionData.getEmail() + "\n\t" + dataHolder.toString());
+
+        sessionData.setTokenToCheck(dataHolder.getToken(), httpResponse);
 
         try {
             dbService.updateUserData(dataHolder, sessionData.getEmail());
@@ -77,6 +80,8 @@ public class DataController {
             logger.error("Error occoured while saving data");
             response.setText("Error - check for empty fields in data");
         }
+        String token = sessionData.getToken().toString();
+        response.setToken(token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -101,8 +106,9 @@ public class DataController {
     }
 
     @RequestMapping(value = "/submit-invoice", method = RequestMethod.POST)
-    public ResponseEntity<?> submitInvoice(@RequestBody InvoiceTemplate invoiceTemplate) {
+    public ResponseEntity<?> submitInvoice(@RequestBody InvoiceTemplate invoiceTemplate, HttpServletResponse response) {
         logger.info("Invoice submit from: " + sessionData.getEmail());
+        sessionData.setTokenToCheck(invoiceTemplate.getToken(), response);
         BasicResponse r = new BasicResponse();
         if (!invoiceTemplate.validate()) {
             r.setText("Error - some fields are missing.");
@@ -134,6 +140,8 @@ public class DataController {
                 }
             }
         }
+        String token = sessionData.getToken().toString();
+        r.setToken(token);
         logger.info("'/submit-invoice' returning");
         return new ResponseEntity<>(r, HttpStatus.OK);
     }

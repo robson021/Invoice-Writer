@@ -3,7 +3,7 @@
 
     angular
         .module("ngApp")
-        .factory("logoutFactory", function ($http, $mdToast) {
+        .factory("logoutFactory", function ($http, $mdToast, $rootScope, $state) {
             function logoutUser() {
                 //todo update db before logout
                 var ajax = $http.get('login/logout');
@@ -12,10 +12,14 @@
                     if (data.result) {
                         console.info("logged out");
                         $mdToast.show($mdToast.simple().textContent(data.text));
+                        $rootScope.isLoggedIn = false;
+                        $rootScope.hideRegisterLogin = false;
+                        $rootScope.loginButtonEnabled = true;
                     } else {
                         console.info("session had expired before logout was clicked");
                         $mdToast.show($mdToast.simple().textContent(data.text));
                     }
+                    $state.go('default');
                 })
             }
 

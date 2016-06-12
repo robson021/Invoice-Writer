@@ -80,5 +80,5 @@ angular.module('ngApp')
         //r.isMainViewHidden = true;
         r.isLoggedIn = false;
         r.loginButtonEnabled = true;
-        r.token = null;
+        //r.token = null;
     });

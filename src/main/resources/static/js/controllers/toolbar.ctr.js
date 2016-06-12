@@ -4,13 +4,8 @@
         .controller("toolbar-ctr", function ($rootScope, $scope, $state, logoutFactory) {
 
 
-            $scope.logout = function () {
-                
+            $scope.logout = function () {                
                 logoutFactory.logoutUser();
-                $rootScope.isLoggedIn = false;
-                $rootScope.hideRegisterLogin = false;
-                $rootScope.loginButtonEnabled = true;
-                $state.go('default');
             };
 
             $scope.aboutAppFun = function () {
