@@ -6,7 +6,7 @@ package robert.responses;
 public class BasicResponse /*implements Serializable*/ {
     private String text = null;
     private boolean result = false;
-    private String uuid = null;
+    private String token = null;
 
     public BasicResponse(String text) {
         this.text = text;
@@ -15,12 +15,12 @@ public class BasicResponse /*implements Serializable*/ {
     public BasicResponse() {
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getToken() {
+        return token;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setResult(boolean result) {

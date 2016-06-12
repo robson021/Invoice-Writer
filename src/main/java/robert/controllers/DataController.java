@@ -157,4 +157,10 @@ public class DataController {
         }
     }
 
+    @RequestMapping(value = "/new-token", method = RequestMethod.GET)
+    public ResponseEntity<?> getNewToken() {
+        // TODO: 12.06.16  
+        return null;
+    }
+
 }

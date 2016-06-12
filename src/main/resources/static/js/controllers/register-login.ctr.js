@@ -49,7 +49,7 @@
                     $scope.message.text = 'Passwords do not match!';
                     $scope.openToast();
                 }
-            }
+            };
 
             $scope.loginFunction = function () {
                 console.info("login button clicked");
@@ -62,7 +62,6 @@
                         u.password = "";
                         u.repassword = "";
                         $rootScope.hideRegisterLogin = true;
-                        //$scope.myData = data;
 
                         $rootScope.dbData = data;
 
@@ -70,15 +69,14 @@
                         console.info($rootScope.dbData);
                         $scope.openToast();
                         rButton.text = "logout";
-                        console.info("ok!")
+                        console.info("ok!");
                         console.info("hide register/login: " + $rootScope.hideRegisterLogin);
+
+                        r.token = data.token; // csrf token
+
                         r.isLoggedIn = true;
                         r.loginButtonEnabled = false;
 
-                        for (var i = 0; i < $rootScope.dbData.services.length; i++) {
-                            var s = $rootScope.dbData.services[i];
-                            s.brutto = s.nettoValue + s.nettoValue * s.vatPercentage / 100;
-                        }
                         $state.go('logged-in');
                     } else {
                         console.error("failed to login");
@@ -86,7 +84,7 @@
                         r.isLoggedIn = false;
                     }
                 });
-            }
+            };
 
             $scope.openToast = function ($event) {
                 $mdToast.show($mdToast.simple().textContent($scope.message.text));

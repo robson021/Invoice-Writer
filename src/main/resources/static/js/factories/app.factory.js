@@ -24,7 +24,14 @@
             }
         })
         .factory("tokenFactory", function ($http, $rootScope) {
-            // todo
+            function getNewToken() {
+                var ajax = $http.get('/data/new-token');
+                // todo
+            }
+
+            return {
+                getNewToken: getNewToken
+            }
         })
         .factory("mainInfoFactory", function ($http, $rootScope) {
             /*return {

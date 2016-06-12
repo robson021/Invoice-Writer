@@ -14,6 +14,7 @@ import robert.services.DbService;
 import robert.session.SessionData;
 
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * Created by robert on 09.04.16.
@@ -73,7 +74,11 @@ public class LoginController {
                 session.setAttribute(session.getId(), data);
                 session.setMaxInactiveInterval(30 * 60); // 30min session timeout
                 logger.info("Session info: " + data.toString());
-                return this.generateHolder(dbUser);
+                UUID uuid = UUID.randomUUID();
+                data.setUuid(uuid);
+                DataHolderResponse response = this.generateHolder(dbUser);
+                response.setToken(uuid.toString());
+                return response;
             } else {
                 BasicResponse response = new BasicResponse();
                 logger.error("passwords do not match");
