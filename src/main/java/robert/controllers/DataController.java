@@ -47,17 +47,16 @@ public class DataController {
     }
 
     @RequestMapping(value = "/uplad/img/{token}", method = RequestMethod.POST)
-    public ResponseEntity<?> upladImg(/*@RequestParam("name") String name,*/
-                                      @RequestParam("file") MultipartFile file, HttpServletResponse httpResponse,
+    public ResponseEntity<?> upladImg(@RequestParam("file") MultipartFile file,
+                                      HttpServletResponse httpResponse,
                                       @PathVariable(value = "token") String token) {
-        logger.info("\n\tFile uplad request: " + sessionData.toString());
 
+        logger.info("\n\tFile uplad request: " + sessionData.toString());
         sessionData.setTokenToCheck(token, httpResponse);
 
         BasicResponse response = new BasicResponse();
-
         HttpStatus status = HttpStatus.OK;
-        //sessionData.setTokenToCheck(); // TODO: 12.06.16
+
         if (!file.isEmpty() && sessionData.getEmail() != null &&
                 file.getSize() <= MAX_FILE_SIZE && dbService.updateUserImg(sessionData.getEmail(), file)) {
             response.setText("File has been successfully uploaded");
@@ -74,7 +73,7 @@ public class DataController {
     @RequestMapping(value = "/update-user-data", method = RequestMethod.POST)
     public ResponseEntity<?> updateUserData(@RequestBody DataHolderResponse dataHolder, HttpServletResponse httpResponse) {
         BasicResponse response = new BasicResponse();
-        logger.info("update user's db request: " + sessionData.getEmail() + "\n\t" + dataHolder.toString());
+        logger.info("update user's db request: " + sessionData.getEmail()/* + "\n\t" + dataHolder.toString()*/);
 
         sessionData.setTokenToCheck(dataHolder.getToken(), httpResponse);
 

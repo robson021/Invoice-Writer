@@ -1,4 +1,4 @@
-angular
+var app = angular
     .module("ngApp", ['ngMaterial', 'ui.router', 'ngMessages'])
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -80,5 +80,5 @@ angular.module('ngApp')
         //r.isMainViewHidden = true;
         r.isLoggedIn = false;
         r.loginButtonEnabled = true;
-        //r.token = null;
+        //r.tokenName = 'csrfToken';
     });

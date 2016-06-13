@@ -1,14 +1,14 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, $state) {
+        .controller("register-login-ctr", function ($rootScope, $scope, $http, $mdSidenav, $mdToast, $state, storageService) {
 
 
             $rootScope.hideRegisterLogin = false;
             $scope.hideMainApp = true;
-            //$scope.myData = null;
-            
+
             var r = $rootScope;
+
 
             $scope.user = {
                 firstname: "",
@@ -33,7 +33,7 @@
                 console.info("register button clicked");
                 console.info($scope.user);
                 if ($scope.user.password === $scope.user.repassword) {
-                    console.info("passwords ok")
+                    console.info("passwords ok");
                     var ajax = $http.post('/register/newuser', $scope.user);
                     ajax.success(function (data) {
                         $scope.message.text = data.text;
@@ -72,7 +72,9 @@
                         console.info("ok!");
                         console.info("hide register/login: " + $rootScope.hideRegisterLogin);
 
-                        r.token = data.token; // csrf token
+                        storageService.setToken(data.token);
+
+                        console.info("Logged in. Token: " + storageService.getToken());
 
                         r.isLoggedIn = true;
                         r.loginButtonEnabled = false;

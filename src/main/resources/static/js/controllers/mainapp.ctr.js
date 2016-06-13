@@ -1,12 +1,12 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window, logoutFactory) {
+        .controller("main-app-ctr", function ($rootScope, $scope, $state, $timeout, $mdToast, $http, $window, logoutFactory, storageService) {
 
             if (!$rootScope.isLoggedIn) {
                 $state.go('default');
             } else {
-                console.info("token:\n" + $rootScope.token);
+                console.info("token:\n" + storageService.getToken());
             }
 
             // selected right now
@@ -132,11 +132,11 @@
             // bottom buttons
             $scope.saveData = function () {
                 console.info("data to send:\n" + $rootScope.dbData);
-                $rootScope.dbData.token = $rootScope.token;
+                $rootScope.dbData.token = storageService.getToken();
                 var ajax = $http.post('/data/update-user-data', $rootScope.dbData);
                 ajax.success(function (data) {
                     if (data.result) {
-                        $rootScope.token = data.token;
+                        storageService.setToken(data.token);
                         console.info("new token:\n" + data.token);
                     } else {
                         logoutFactory.logoutUser();
@@ -159,7 +159,7 @@
                     'salesman': $scope.salesman,
                     'contractor': $scope.contractor,
                     'selectedServices': $scope.selectedServices,
-                    'token': $rootScope.token
+                    'token': storageService.getToken()
                 };
                 var ajax = $http.post('/data/submit-invoice', invoiceTemplate);
                 ajax.success(function (data) {
@@ -167,12 +167,11 @@
                     $mdToast.show($mdToast.simple().textContent(data.text).position($scope.getToastPosition())
                         .hideDelay(3000));
                     if (data.result) {
-                        $rootScope.token = data.token;
                         console.info("download attempt");
                         window.open("/data/download-invoice", '_blank');
                     } else {
-                        //logoutFactory.logoutUser();
                     }
+                    storageService.setToken(data.token);
                 });
             };
 

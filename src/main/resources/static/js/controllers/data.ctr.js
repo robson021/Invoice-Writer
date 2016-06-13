@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     angular.module("ngApp")
-        .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state, $http, $mdSidenav) {
+        .controller('data-ctr', function ($rootScope, $scope, $mdToast, $state, $http, $mdSidenav, storageService) {
 
             var data = $rootScope.dbData;
             $scope.addNew = false;
@@ -100,7 +100,7 @@
 
             // deleting
             $scope.deleteService = function () {
-                console.info("deleting: " + $scope.selectedService)
+                console.info("deleting: " + $scope.selectedService);
                 if (!$scope.addNew) {
                     var index = $scope.services.indexOf($scope.selectedService);
                     if (index !== -1) {
@@ -110,7 +110,7 @@
                 $scope.closeSidebar();
             };
             $scope.deleteSalesman = function () {
-                console.info("deleting: " + $scope.selectedSalesman)
+                console.info("deleting: " + $scope.selectedSalesman);
                 if (!$scope.addNew) {
                     var index = $scope.salesmen.indexOf($scope.selectedSalesman);
                     if (index !== -1) {
@@ -120,7 +120,7 @@
                 $scope.closeSidebar();
             };
             $scope.deleteContractor = function () {
-                console.info("deleting: " + $scope.selectedContractor)
+                console.info("deleting: " + $scope.selectedContractor);
                 if (!$scope.addNew) {
                     var index = $scope.contractors.indexOf($scope.selectedContractor);
                     if (index !== -1) {
@@ -141,22 +141,22 @@
             };
 
             $scope.uploadFile = function (files) {
-                console.info("upload starterd...")
+                console.info("upload starterd...");
                 var fd = new FormData();
                 //Take the first selected file
                 fd.append("file", files[0]);
 
-                $http.post("/data/uplad/img/" + $rootScope.token, fd, {
+                $http.post("/data/uplad/img/" + storageService.getToken(), fd, {
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
                 }).success(function (data) {
-                    $rootScope.token = data.token;
+                    storageService.setToken(data.token);
                     console.info("upload complete");
                     $state.go('logged-in');
                     $mdToast.show($mdToast.simple().textContent(data.text));
                 }).error(function (data) {
-                    $rootScope.token = data.token;
+                    storageService.setToken(data.token);
                     console.info("upload error");
                     $mdToast.show($mdToast.simple().textContent(data.text));
                 });
