@@ -58,7 +58,6 @@ public class SessionData {
             }
         }
         this.mailerThread = mailerThread;
-        mailerThread.start();
     }
 
     public UUID getTokenToCheck() {
