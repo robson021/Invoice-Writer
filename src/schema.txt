@@ -37,15 +37,3 @@ backend:
     -przesyłanie obrazów (logo firmy u mieszczane na gotowej fakturze - miejsce na pieczątkę)
 
 5. Ostateczny wygląd strony, generowanie gotowego pliku pdf i jego przesłanie do klienta.
-
-
-Tech stack:
--html5
--AngularJS
-
--Spring Framework (Spring MVC, Spring Data, Spring AOP (AspectJ), Spring Security)
--H2 embedded database
--Hibernate
--JUnit
--Maven
--Git version control
