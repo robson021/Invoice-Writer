@@ -14,4 +14,6 @@ public class InvoiceWriterApplication {
     public static void main(String[] args) {
         SpringApplication.run(InvoiceWriterApplication.class, args);
     }
+
+    // TODO: 15.06.16 mysql or postresql DB 
 }

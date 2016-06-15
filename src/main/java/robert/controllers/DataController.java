@@ -1,8 +1,8 @@
 package robert.controllers;
 
 import com.itextpdf.text.Image;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
-import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
