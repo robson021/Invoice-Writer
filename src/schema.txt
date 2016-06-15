@@ -39,14 +39,13 @@ backend:
 5. Ostateczny wygląd strony, generowanie gotowego pliku pdf i jego przesłanie do klienta.
 
 
-//praca
-system gdzie mozna zakladac konta i na taj podstawie miec dostep do tego systemu
--admini
--prowadzacy
--gosice
--studenci
+Tech stack:
+-html5
+-AngularJS
 
-pobieranie aplikacji
-
-sale i projektory - uprawnienia, wyklucznia [webservice]
-rezerwacje, jednorazowe kody - tokeny
+-Spring Framework (Spring MVC, Spring Data, Spring AOP (AspectJ), Spring Security)
+-H2 embedded database
+-Hibernate
+-JUnit
+-Maven
+-Git version control
