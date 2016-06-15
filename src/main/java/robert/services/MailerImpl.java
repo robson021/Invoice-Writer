@@ -28,6 +28,12 @@ public class MailerImpl implements Mailer {
     }
 
     @Override
+    public void sendEmailToAdmin(String from, String topic, String body) {
+        body = "Message form: " + from + "\n" + body;
+        new Thread(new MailerTaskRunnable("invoice.writer.app@gmail.com", "Question", body, null)).start();
+    }
+
+    @Override
     public Thread sendInvoice(String to, String fileName) {
         Thread thread = new Thread(new MailerTaskRunnable(to, "Invoice", "[Auto-generated message]", fileName));
         //thread.start(); //start it in controller, not here

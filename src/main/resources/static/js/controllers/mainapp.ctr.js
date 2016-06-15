@@ -190,6 +190,9 @@
             $scope.goUpload = function () {
                 $state.go('uplad');
             };
+            $scope.goContact = function () {
+                $state.go('contact');
+            };
 
         }); // end of ctrl
 })();

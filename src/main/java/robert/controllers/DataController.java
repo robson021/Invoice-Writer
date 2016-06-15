@@ -176,4 +176,17 @@ public class DataController {
         return null;
     }
 
+    @RequestMapping(value = "/email", method = RequestMethod.POST)
+    public ResponseEntity<?> sendEmail(HttpServletResponse httpResponse,
+                                       @RequestBody BasicResponse r) {
+        sessionData.setTokenToCheck(r.getToken(), httpResponse);
+        BasicResponse response = new BasicResponse();
+
+        mailer.sendEmailToAdmin(sessionData.getEmail(), "Question", r.getText());
+
+        response.setToken(sessionData.getToken().toString());
+        response.setResult(true);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

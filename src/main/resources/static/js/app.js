@@ -60,6 +60,11 @@ var app = angular
                 templateUrl: '/partials/data/img-uploader.tpl.html',
                 controller: 'data-ctr'
             })
+            .state('contact', {
+                url: '/contact',
+                templateUrl: '/partials/contact.tpl.html',
+                controller: 'contact-ctr'
+            })
             .state('before-use', {
                 url: '/before-use',
                 templateUrl: '/partials/before-use.tpl.html',

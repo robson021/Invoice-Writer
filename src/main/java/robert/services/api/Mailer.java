@@ -6,5 +6,7 @@ package robert.services.api;
 public interface Mailer {
     void sendEmail(String to, String subject, String body, String file);
 
+    void sendEmailToAdmin(String from, String topic, String body);
+
     Thread sendInvoice(String to, String fileName);
 }
