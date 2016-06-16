@@ -19,6 +19,8 @@ import robert.services.api.TokenService;
 import robert.session.SessionData;
 
 /**
+ * Configuration class that is used to define
+ * implementation of each bean's interface.<br>
  * Created by robert on 30.04.16.
  */
 @Configuration

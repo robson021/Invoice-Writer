@@ -8,13 +8,13 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * Session bean that stores user's information.<br>
  * Created by robert on 30.04.16.
  */
 public class SessionData {
     private static final AtomicInteger idCounter = new AtomicInteger(0);
     private final int id = idCounter.incrementAndGet();
     private String email = null;
-    private boolean emailSetted = false;
     private final Date time = Calendar.getInstance().getTime();
 
     private UUID token = null;
@@ -36,9 +36,8 @@ public class SessionData {
     }
 
     public void setEmail(String email) { // set once
-        if (emailSetted) throw new RuntimeException("Email already setted!");
+        //if (email != null) throw new RuntimeException("Email is already setted!");
         this.email = email;
-        emailSetted = true;
     }
 
     public UUID getToken() {

@@ -9,6 +9,9 @@ import robert.services.api.TokenService;
 import robert.session.SessionData;
 
 /**
+ * Aspect that validates csrf token.
+ * If token does not match the pattern user is redirected to login page.
+ * Otherwise new token is generated and sent back.<br>
  * Created by robert on 06.06.16.
  */
 @Aspect

@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 /**
+ * Main app controller.<br>
  * Created by robert on 04.05.16.
  */
 @RestController
@@ -135,7 +136,7 @@ public class DataController {
                     r.setResult();
                     if (invoiceTemplate.isCopyOnMail()) {
                         sessionData.setMailerThread(mailer.sendInvoice(sessionData.getEmail(), docName));
-                        logger.info("Mailer thread binded to session data of: " + sessionData.getEmail());
+                        logger.info("Mailer thread binded to the session data of: " + sessionData.getEmail());
                     } else {
                     }
                 } catch (Exception e) {
@@ -153,7 +154,7 @@ public class DataController {
 
     @RequestMapping(value = "/download-invoice", method = RequestMethod.GET)
     public void downloadInvoice(HttpServletResponse response) {
-        // TODO: 01.06.16 download NOT in new tab
+        // TODO: 01.06.16 download NOT in new browser tab
         logger.info("Download request: " + sessionData.getEmail());
         try {
             response.addHeader("Content-disposition", "attachment;filename="

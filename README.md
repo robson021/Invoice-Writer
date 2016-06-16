@@ -13,4 +13,4 @@ App preview: http://51.254.115.19:8080/
 -Hibernate <br />
 -JUnit <br />
 -Maven <br />
--Git version control
+-iText PDF library 
