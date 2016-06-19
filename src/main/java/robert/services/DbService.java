@@ -30,13 +30,6 @@ public class DbService {
     @Autowired
     private UserRepository userRepository;
 
-   /* @Autowired
-    private ServiceRepository serviceRepository;
-    @Autowired
-    private ContractorRepository contractorRepository;
-    @Autowired
-    private SalesmanRepository salesmanRepository;*/
-
     private static long exampleUserId;
     private static String exampleUserEmail;
 
@@ -217,13 +210,6 @@ public class DbService {
         for (SimpleSalesman s : dataHolder.getSalesmen()) {
             newSalesmen.add(new Salesman(s));
         }
-
-        /*
-        error: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance
-        user.setServices(newServices);
-        user.setSalesmen(newSalesmen);
-        user.setContractors(newContractors);
-        */
 
         user.getContractors().clear();
         user.getSalesmen().clear();

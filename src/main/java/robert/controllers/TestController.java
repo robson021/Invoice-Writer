@@ -1,5 +1,6 @@
 package robert.controllers;
 
+import org.apache.log4j.Logger;
 import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,6 @@ import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;
 import robert.responses.simpleentities.SimpleService;
 import robert.services.DbService;
-import robert.services.api.DefaultLogger;
 import robert.session.SessionData;
 
 import javax.servlet.http.HttpServletResponse;
@@ -38,8 +38,7 @@ public class TestController {
     @Autowired
     private DbService dbService;
 
-    @Autowired
-    private DefaultLogger logger;
+    private Logger logger = Logger.getLogger(TestController.class);
 
     @Autowired
     SessionData sessionData;

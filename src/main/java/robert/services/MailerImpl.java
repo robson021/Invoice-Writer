@@ -1,10 +1,10 @@
 package robert.services;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import robert.services.api.DefaultLogger;
 import robert.services.api.Mailer;
 
 import javax.mail.internet.MimeMessage;
@@ -18,8 +18,8 @@ public class MailerImpl implements Mailer {
 
     @Autowired
     private JavaMailSender javaMailSender;
-    @Autowired
-    private DefaultLogger logger;
+
+    private Logger logger = Logger.getLogger(Mailer.class);
 
     private final Executor threadPool;
 
