@@ -1,18 +1,18 @@
 package robert.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
+import robert.aop.AfterReturningMonitor;
 import robert.aop.CsrfAspect;
+import robert.aop.LoggerAspect;
 import robert.repositories.UserRepositoryImpl;
 import robert.repositories.api.UserRepository;
 import robert.services.InvoiceGeneratorImpl;
 import robert.services.MailerImpl;
 import robert.services.TokenServiceImpl;
-import robert.services.api.DefaultLogger;
 import robert.services.api.InvoiceGenerator;
 import robert.services.api.Mailer;
 import robert.services.api.TokenService;
@@ -26,13 +26,10 @@ import robert.session.SessionData;
 @Configuration
 public class Beans {
 
-    @Autowired
-    private DefaultLogger logger;
-
     @Bean
+    @AfterReturningMonitor
     @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public SessionData sessionData() {
-        logger.info("Session bean init");
         return new SessionData();
     }
 
@@ -59,5 +56,10 @@ public class Beans {
     @Bean
     public CsrfAspect csrfAspect() {
         return new CsrfAspect();
+    }
+
+    @Bean
+    public LoggerAspect loggerAspect() {
+        return new LoggerAspect();
     }
 }

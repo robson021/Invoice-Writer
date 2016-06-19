@@ -5,6 +5,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import robert.aop.AfterReturningMonitor;
 import robert.responses.InvoiceTemplate;
 import robert.responses.simpleentities.SimpleContractor;
 import robert.responses.simpleentities.SimpleSalesman;
@@ -37,6 +38,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     };
 
     @Override
+    @AfterReturningMonitor
     public String generateInvoice(InvoiceTemplate template, Image image) {
         Document document = new Document();
         String fileName = "Invoice " + idCounter.incrementAndGet() + ".pdf";

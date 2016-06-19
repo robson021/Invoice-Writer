@@ -3,6 +3,7 @@ package robert.repositories;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import robert.aop.AfterReturningMonitor;
 import robert.entities.EmailAddress;
 import robert.entities.User;
 import robert.repositories.api.UserRepository;
@@ -30,6 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     @Transactional
+    @AfterReturningMonitor
     public User save(User user) {
         try {
             if (user.getId() == null) {
@@ -49,6 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     @Transactional
+    @AfterReturningMonitor
     public User findByEmail(EmailAddress emailAddress) {
         try {
             return (User) em.createQuery("SELECT c FROM User c WHERE c.emailAsString LIKE :email")

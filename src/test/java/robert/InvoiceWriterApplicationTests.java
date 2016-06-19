@@ -86,7 +86,6 @@ public class InvoiceWriterApplicationTests {
         User dbUser = userRepository.findOne(user.getId());
         assertNotNull(dbUser);
         assertEquals(email, dbUser.getEmail());
-        System.out.println(dbUser.toString());
 
         TheService service = new TheService();
         service.setName("Test service");
@@ -99,7 +98,6 @@ public class InvoiceWriterApplicationTests {
 
         TheService dbService = serviceRepository.findOneBySymbol(symbol);
         assertNotNull(dbService);
-        System.out.println(dbService.toString());
 
 
         // one to many relation check
@@ -160,8 +158,6 @@ public class InvoiceWriterApplicationTests {
         User testUser = null;
         testUser = dataBaseService.findUserById(DbService.getExampleUserId());
         assertNotNull(testUser);
-
-        System.out.println(testUser.toString());
 
 
         testUser = null;
