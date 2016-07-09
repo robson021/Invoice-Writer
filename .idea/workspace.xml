@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment="logger aspect added">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/robert/services/DefaultLoggerImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/robert/services/api/DefaultLogger.java" afterPath="" />
+    <list default="true" id="84b8f44d-e880-45cd-b640-c9e51b713fd7" name="Default" comment="default logger deleted">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/controllers/TestController.java" afterPath="$PROJECT_DIR$/src/main/java/robert/controllers/TestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/services/DbService.java" afterPath="$PROJECT_DIR$/src/main/java/robert/services/DbService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/robert/services/MailerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/robert/services/MailerImpl.java" />
     </list>
     <ignored path="InvoiceWriter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1078,7 +1073,7 @@
       <workItem from="1466284053518" duration="15000" />
       <workItem from="1466343220058" duration="34000" />
       <workItem from="1466360801306" duration="900000" />
-      <workItem from="1468061476002" duration="690000" />
+      <workItem from="1468061476002" duration="779000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1461003836666</created>
@@ -1388,7 +1383,21 @@
       <option name="project" value="LOCAL" />
       <updated>1466361687929</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="default logger deleted">
+      <created>1468062187788</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1468062187788</updated>
+    </task>
+    <task id="LOCAL-00046" summary="default logger deleted">
+      <created>1468062250222</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1468062250222</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1415,7 +1424,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117366000" />
+    <option name="totallyTimeSpent" value="117455000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="875" extended-state="6" />
@@ -1490,7 +1499,8 @@
     <MESSAGE value="added session storage service, to keep csrf tokens" />
     <MESSAGE value="layout fix" />
     <MESSAGE value="logger aspect added" />
-    <option name="LAST_COMMIT_MESSAGE" value="logger aspect added" />
+    <MESSAGE value="default logger deleted" />
+    <option name="LAST_COMMIT_MESSAGE" value="default logger deleted" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
