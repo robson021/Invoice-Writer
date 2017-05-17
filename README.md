@@ -2,7 +2,6 @@
 
 Web application for writing invoices. <br />
 Spring Framework + AngularJS. <br />
-App preview: http://51.254.115.19:8080/
 
 # Tech stack: <br />
 -html5 <br />
